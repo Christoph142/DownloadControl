@@ -1,0 +1,13 @@
+{
+	"lang" :							{ "message" : "en" },
+	"description" :						{ "message" : "Manage your downloads" },
+	"by" :								{ "message" : "by" },
+	"rules" :							{ "message" : "Saving Rules"},
+	"settings" :						{ "message" : "Settings"},
+	"rules_both" :						{ "message" : "Website & file type"},
+	"rules_url" :						{ "message" : "Website only"},
+	"rules_ext" :						{ "message" : "File type only"},
+	"new_rule" :						{ "message" : "Add a new rule"},
+	"create_subfolders" :				{ "message" : "Create subfolders"},
+	"footer" : 							{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." }
+}

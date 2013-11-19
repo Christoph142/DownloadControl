@@ -1,0 +1,72 @@
+<!doctype html>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
+<html>
+<head>
+	<title>Download Control</title>
+    <link rel="stylesheet" type="text/css" href="options.css">
+    <link rel="icon" type="image/png" href="../images/128.png">
+    
+    <script type="text/javascript" src="prefs.js"></script>
+</head>
+
+<body>
+  <div id="wallpaper">
+    <div id="tool-container">
+      <div id="sidebar">
+        <div id="sidebar-icon"></div>
+        <h1>Download Control</h1>
+        <h5 style="margin-top:-5px;"><span class="i18n" data-i18n="by"></span> <a href="http://christoph142.wordpress.com" target="_blank">Christoph D.</a></h5>
+        <menu id="sidebar-menu">
+          <li data-target="0" class="selected i18n menu" data-i18n="rules"></li>
+          <li data-target="1" class="i18n menu" data-i18n="settings"></li>
+        </menu>
+      </div> <!-- sidebar -->
+      <div id="content">
+      
+      	<div id="content0" class="visible">
+            <h2 class="section-header i18n" data-i18n="rules_both"></h2>
+            
+            <table class="setting" id="rules_both" cellspacing="0"><tr style="color:#888;"><th>Website</th><th>File type</th><th>directory</th></tr></table>
+            
+            <h2 class="section-header i18n" data-i18n="rules_url"></h2>
+            
+            <table class="setting" id="rules_url" cellspacing="0"><tr style="color:#888;"><th>Website</th><th>directory</th></tr></table>
+            
+            <h2 class="section-header i18n" data-i18n="rules_ext"></h2>
+            
+            <table class="setting" id="rules_ext" cellspacing="0"><tr style="color:#888;"><th>File type</th><th>directory</th></tr></table>
+            
+            <br>
+            <h2 class="section-header i18n" data-i18n="new_rule"></h2>
+            
+            <div class="setting">
+            	<label for="url">Website:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
+                <label for="ext">File type:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
+                <label for="dir">Subdirectory:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
+                <input type="button" value="Add" id="add_rule">
+            </div>
+          </div>
+          
+          <div id="content1" class="invisible">
+     		<h2 class="section-header i18n" data-i18n="settings"></h2>
+            <div class="setting">
+            	<input type="checkbox" id="create_subfolders"><label for="create_subfolders" class="i18n" data-i18n="create_subfolders"></label>
+            </div>
+          </div>
+      
+        <div id="footer"><a href="http://christoph142.wordpress.com" target="_blank"><span class="i18n" data-i18n="footer"></span> :)</a></div>
+        
+      </div> <!-- content -->
+    </div> <!-- tool-container -->
+  </div> <!-- wallpaper -->
+  
+  <a href="http://christoph142.wordpress.com/2013/06/27/help/" target="_blank">
+      <div id="help">
+        <h3 style="color:#F00;">I need your help!</h3>Please click here to read my story<br>
+        <i style="font-size:x-small;">- This is no advertising, promised! -</i>
+        <div id="close_help"><p></p></div>
+      </div>
+  </a>
+</body>
+
+</html>

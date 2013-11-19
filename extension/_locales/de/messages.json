@@ -1,0 +1,13 @@
+{
+	"lang" :							{ "message" : "de" },
+	"description" :						{ "message" : "Verwalte deine Downloads" },
+	"by" :								{ "message" : "von" },
+	"rules" :							{ "message" : "Speicher-Regeln"},
+	"settings" :						{ "message" : "Einstellungen"},
+	"rules_both" :						{ "message" : "Webseite & Datei-Typ"},
+	"rules_url" :						{ "message" : "Nur Webseite"},
+	"rules_ext" :						{ "message" : "Nur Datei-Typ"},
+	"new_rule" :						{ "message" : "Neue Regel hinzufügen"},
+	"create_subfolders" :				{ "message" : "Unterordner erstellen"},
+	"footer" : 							{ "message" : "Danke f\u00fcr das Installieren dieser Erweiterung. F\u00fcr Feedback und Fragen stehe ich jederzeit gerne zur Verf\u00fcgung." }
+}
