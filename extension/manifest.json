@@ -18,7 +18,7 @@
 	
 	"background"		: {"scripts": ["scripts/DownloadControlBG.js"]},
   
-	"permissions"		: ["storage", "downloads", "notifications"],
+	"permissions"		: ["storage", "downloads", "downloads.open"],
 	"options_page"		: "options/options.html",
 	
 	"manifest_version"	: 2

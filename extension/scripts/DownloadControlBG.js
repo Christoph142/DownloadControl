@@ -46,8 +46,33 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	else			suggest({ filename: path+download.filename, conflictAction:"prompt" });
 });
 
+chrome.downloads.onChanged.addListener( function(change){
+	if(!change.state) return;
+	else if(change.state.current !== "complete") return;
 	
-/*
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
-	chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:file});
-});*/
+	chrome.downloads.open(change.id);
+	window.setTimeout( function(){ deleteFile(change.id); }, 5000);
+});
+
+function deleteFile(change_id){
+	chrome.downloads.search({id: change_id}, function(downloads){
+		if(!downloads[0].exists)
+		{
+			chrome.downloads.erase({ id: downloads[0].id });
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
+				chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:"deleted"});
+			});
+		}
+		else
+		{
+			chrome.downloads.removeFile(downloads[0].id);
+			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 5000);
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
+				chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:"still open"});
+			});
+		}
+	});
+}
+/*	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
+		chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:file});
+	});*/
