@@ -46,6 +46,9 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 		}
 	}
 	
+	// check if path contains variables and substitute them with appropriate values:
+	path = path.replace(/%DOMAIN%/gi, download.url.split("/")[2]); // 2 because of "//" behind protocol
+	
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
 });
 
