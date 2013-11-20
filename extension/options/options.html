@@ -26,23 +26,39 @@
       	<div id="content0" class="visible">
             <h2 class="section-header i18n" data-i18n="rules_both"></h2>
             
-            <table class="setting" id="rules_both" cellspacing="0"><tr style="color:#888;"><th>Website</th><th>File type</th><th>directory</th></tr></table>
+            <table class="setting" id="rules_both" cellspacing="0">
+            	<tr style="color:#888;">
+                	<th class="i18n" data-i18n="website"></th>
+                    <th class="i18n" data-i18n="file_type"></th>
+                    <th class="i18n" data-i18n="directory"></th>
+                </tr>
+            </table>
             
             <h2 class="section-header i18n" data-i18n="rules_url"></h2>
             
-            <table class="setting" id="rules_url" cellspacing="0"><tr style="color:#888;"><th>Website</th><th>directory</th></tr></table>
+            <table class="setting" id="rules_url" cellspacing="0">
+            	<tr style="color:#888;">
+                	<th class="i18n" data-i18n="website"></th>
+                    <th class="i18n" data-i18n="directory"></th>
+                </tr>
+            </table>
             
             <h2 class="section-header i18n" data-i18n="rules_ext"></h2>
             
-            <table class="setting" id="rules_ext" cellspacing="0"><tr style="color:#888;"><th>File type</th><th>directory</th></tr></table>
+            <table class="setting" id="rules_ext" cellspacing="0">
+            	<tr style="color:#888;">
+                    <th class="i18n" data-i18n="file_type"></th>
+                    <th class="i18n" data-i18n="directory"></th>
+                </tr>
+            </table>
             
             <br>
             <h2 class="section-header i18n" data-i18n="new_rule"></h2>
             
             <div class="setting">
-            	<label for="url">Website:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
-                <label for="ext">File type:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
-                <label for="dir">Subdirectory:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
+            	<label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
+                <label for="ext" class="i18n" data-i18n="file_type">:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
+                <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
                 <input type="button" value="Add" id="add_rule">
             </div>
           </div>

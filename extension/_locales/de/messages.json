@@ -8,6 +8,13 @@
 	"rules_url" :						{ "message" : "Nur Webseite"},
 	"rules_ext" :						{ "message" : "Nur Datei-Typ"},
 	"new_rule" :						{ "message" : "Neue Regel hinzufügen"},
-	"create_subfolders" :				{ "message" : "Unterordner erstellen"},
+	"website" :							{ "message" : "Webseite"},
+	"file_type" :						{ "message" : "Datei-Typ"},
+	"directory" :						{ "message" : "Ordner"},
+	"add" :								{ "message" : "Hinzufügen"},
+	"conflictAction" :					{ "message" : "Was soll passieren, wenn die Datei bereits vorhanden ist?"},
+	"prompt" :							{ "message" : "Nachfragen"},
+	"overwrite" :						{ "message" : "Die vorhandene Datei überschreiben"},
+	"uniquify" :						{ "message" : "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen"},
 	"footer" : 							{ "message" : "Danke f\u00fcr das Installieren dieser Erweiterung. F\u00fcr Feedback und Fragen stehe ich jederzeit gerne zur Verf\u00fcgung." }
 }

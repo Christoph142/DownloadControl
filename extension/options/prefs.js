@@ -114,6 +114,12 @@ function add_page_handling(storage)
 		}
 		location.reload();
 	}, false);
+	
+	//help:
+	document.getElementById("close_help").addEventListener("click", function(e){
+		e.preventDefault(); e.stopPropagation();
+		document.getElementById("help").style.display = "none";
+	}, false);
 }
 
 function localize()
@@ -124,14 +130,8 @@ function localize()
 	for(var i = 0; i < strings.length; i++)
 	{
 		if(strings[i].tagName === "IMG")	strings[i].title = chrome.i18n.getMessage(strings[i].title); // tooltips
-		else								strings[i].innerHTML += chrome.i18n.getMessage(strings[i].dataset.i18n);
+		else								strings[i].innerHTML = chrome.i18n.getMessage(strings[i].dataset.i18n) + strings[i].innerHTML;
 	}
-	
-	//help:
-	document.getElementById("close_help").addEventListener("click", function(e){
-		e.preventDefault(); e.stopPropagation();
-		document.getElementById("help").style.display = "none";
-	}, false);
 }
 
 var bubble_setback; // timeout for info bubbles
