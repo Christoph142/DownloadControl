@@ -8,22 +8,16 @@ window.addEventListener("change", function(e) // save preferences:
 {
 	if(e.target.id === "url" || e.target.id === "ext" || e.target.id === "dir") return; // handled via onclick funtions
 	
-	if(!e.target.validity.valid) // correct out-of-range inputs
-	{
-		e.target.style.transition = "box-shadow 500ms";
-		e.target.style.boxShadow = "#F00 0 0 10px 0";
-		window.setTimeout(function(){
-			e.target.value = bg.w[e.target.id];
-			e.target.style.boxShadow = null;
-		}, 500);
-		return;
-	}
-	
 	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
-	else 							 save_new_value(e.target.id, e.target.value);
-	
-	// show/hide containers:
-	//if(e.target.id === "show_superbar")					 document.getElementById("superbar_container").style.height=(e.target.checked?"auto":"0");
+	else if(e.target.type === "radio")
+	{
+		var radio = document.getElementsByName(e.target.name);
+		for(var i = 0; i < radio.length; i++)
+		{
+			if(radio[i].checked){ save_new_value(radio[i].name, radio[i].value); break; }
+		}
+	}
+	else save_new_value(e.target.id, e.target.value);
 },false);
 
 function save_new_value(key, value)
@@ -31,7 +25,7 @@ function save_new_value(key, value)
 	var saveobject = {};
 	saveobject[key] = value;
 	chrome.storage.sync.set(saveobject);	// save it in Chrome's synced storage
-	bg.w[key] = value;						// update settings in background.js
+	bg.w[key] = value;						// update settings in bg
 }
 
 function restoreprefs()
@@ -67,9 +61,11 @@ function restoreprefs()
 	// get inputs:
 	var inputs = document.getElementsByTagName("input");	
 	for(var i = 0; i < inputs.length; i++){
-		if( !storage[inputs[i].id] )		continue;
-		if( inputs[i].type === "checkbox" )	document.getElementsByTagName("input")[i].checked = (storage[inputs[i].id] === "0" ? false : true);
-		else								document.getElementsByTagName("input")[i].value = storage[inputs[i].id];
+		if( !storage[inputs[i].id] && !storage[inputs[i].name] ) continue;
+		
+		if( inputs[i].type === "checkbox" )		inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
+		else if ( inputs[i].type === "radio" ){	if( inputs[i].value === storage[inputs[i].name] ) inputs[i].checked = true; }
+		else									inputs[i].value = storage[inputs[i].id];
 	}
 	
 	//if(document.getElementById("#######").value !== "1")				document.getElementById("button_container").style.height				= "auto";

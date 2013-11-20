@@ -9,5 +9,9 @@
 	"rules_ext" :						{ "message" : "File type only"},
 	"new_rule" :						{ "message" : "Add a new rule"},
 	"create_subfolders" :				{ "message" : "Create subfolders"},
+	"conflictAction" :					{ "message" : "What should be done when the file exists already?"},
+	"prompt" :							{ "message" : "Ask me"},
+	"overwrite" :						{ "message" : "Overwrite the existing file"},
+	"uniquify" :						{ "message" : "Download it anyway and save it with a number behind"},
 	"footer" : 							{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." }
 }

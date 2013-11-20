@@ -50,7 +50,10 @@
           <div id="content1" class="invisible">
      		<h2 class="section-header i18n" data-i18n="settings"></h2>
             <div class="setting">
-            	<input type="checkbox" id="create_subfolders"><label for="create_subfolders" class="i18n" data-i18n="create_subfolders"></label>
+            <span class="i18n" data-i18n="conflictAction"></span><br><br>
+            	<label><input type="radio" name="conflictAction" value="prompt" checked><span class="i18n" data-i18n="prompt"></span></label><br>
+                <label><input type="radio" name="conflictAction" value="overwrite"><span class="i18n" data-i18n="overwrite"></span></label><br>
+                <label><input type="radio" name="conflictAction" value="uniquify"><span class="i18n" data-i18n="uniquify"></span></label>
             </div>
           </div>
       
