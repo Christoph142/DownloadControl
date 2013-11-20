@@ -11,6 +11,7 @@
 	"website" :							{ "message" : "Webseite"},
 	"file_type" :						{ "message" : "Datei-Typ"},
 	"directory" :						{ "message" : "Ordner"},
+	"defaultPath" :						{ "message" : "Standard-Download-Verzeichnis"},
 	"add" :								{ "message" : "Hinzufügen"},
 	"conflictAction" :					{ "message" : "Was soll passieren, wenn die Datei bereits vorhanden ist?"},
 	"prompt" :							{ "message" : "Nachfragen"},

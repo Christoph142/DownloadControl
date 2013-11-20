@@ -3,6 +3,7 @@ var w = {};
 chrome.storage.sync.get( null, function(storage){
 	w = {
 	"conflictAction":	(!storage["conflictAction"] ? "prompt"	: storage["conflictAction"]),
+	"defaultPath"	:	(!storage["defaultPath"] 	? ""		: storage["defaultPath"]),
 	"rules_both" 	:	(!storage["rules_both"]		? [] 		: storage["rules_both"]),
 	"rules_url" 	:	(!storage["rules_url"]		? [] 		: storage["rules_url"]),
 	"rules_ext" 	:	(!storage["rules_ext"]		? [] 		: storage["rules_ext"])
@@ -45,6 +46,9 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 			break;
 		}
 	}
+	
+	// if no rule matched, take default path:
+	if(path === "") path = w.defaultPath;
 	
 	// check if path contains variables and substitute them with appropriate values:
 	path = path.replace(/%DOMAIN%/gi, download.url.split("/")[2]); // 2 because of "//" behind protocol
