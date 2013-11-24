@@ -68,8 +68,6 @@ function restoreprefs()
 		else									inputs[i].value = storage[inputs[i].id];
 	}
 	
-	//if(document.getElementById("#######").value !== "1")				document.getElementById("button_container").style.height				= "auto";
-	
 	add_page_handling(storage);
 }
 
@@ -120,6 +118,9 @@ function add_page_handling(storage)
 		e.preventDefault(); e.stopPropagation();
 		document.getElementById("help").style.display = "none";
 	}, false);
+	
+	// prevent shifting of page by scrollbars:
+	scrollbarHandler.registerCenteredElement(document.getElementById('tool-container'));
 }
 
 function localize()
