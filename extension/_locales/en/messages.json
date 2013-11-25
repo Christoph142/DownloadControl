@@ -9,7 +9,7 @@
 	"rules_ext" :			{ "message" : "File type only"},
 	"new_rule" :			{ "message" : "Add a new rule"},
 	"website" :				{ "message" : "Website"},
-	"file_type" :			{ "message" : "File type"},
+	"file_types" :			{ "message" : "File types"},
 	"directory" :			{ "message" : "Directory"},
 	"defaultPath" :			{ "message" : "Default download location"},
 	"add" :					{ "message" : "Add"},

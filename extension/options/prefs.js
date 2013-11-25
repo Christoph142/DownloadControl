@@ -39,7 +39,7 @@ function restoreprefs()
 		{
 			var tr = "<tr class='rule'>";
 			if(storage[rules][i].url) tr += "<td>"+storage[rules][i].url+"</td>";
-			if(storage[rules][i].ext) tr += "<td>"+storage[rules][i].ext+"</td>";
+			if(storage[rules][i].ext) tr += "<td>"+getFileTypes(storage[rules][i])+"</td>";
 			tr += "<td>"+storage[rules][i].dir+"</td><td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td></tr>";
 			
 			document.getElementById(rules).innerHTML += tr;
@@ -69,6 +69,19 @@ function restoreprefs()
 	}
 	
 	add_page_handling(storage);
+}
+
+function make_array(ext_string){
+	ext_string = ext_string.split(" ").join(""); // remove all blanks
+	ext_string = ext_string.split(".").join(""); // remove all dots
+	var ext_array = ext_string.toLowerCase().split(",");
+	
+	return ext_array;
+}
+function getFileTypes(rule){
+	var ext_string = "";
+	for(var i in rule.ext) ext_string += (ext_string === "" ? "" : ", ") + rule.ext[i];
+	return ext_string;
 }
 
 function add_page_handling(storage)
@@ -101,12 +114,12 @@ function add_page_handling(storage)
 			}
 			else if(document.getElementById("url").value === "")
 			{
-				storage.rules_ext[storage.rules_ext.length] = { "ext":document.getElementById("ext").value, "dir":dir };
+				storage.rules_ext[storage.rules_ext.length] = { "ext": make_array(document.getElementById("ext").value), "dir":dir };
 				save_new_value("rules_ext", storage.rules_ext);
 			}
 			else /* url & ext */
 			{
-				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":document.getElementById("ext").value, "dir":dir };
+				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":make_array(document.getElementById("ext").value), "dir":dir };
 				save_new_value("rules_both", storage.rules_both);
 			}
 		}

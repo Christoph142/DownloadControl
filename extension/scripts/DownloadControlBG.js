@@ -19,7 +19,7 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	for(var i = 0; i < w.rules_both.length; i++)
 	{
 		var regex = new RegExp(w.rules_both[i].url, "i"); // i = matches lower- & uppercase
-		if(regex.test(download.url) && filetype === w.rules_both[i].ext)
+		if(regex.test(download.url) && w.rules_both[i].ext.indexOf(filetype) !== -1)
 		{
 			path = w.rules_both[i].dir;
 			break;
@@ -40,7 +40,7 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	// else check for file type only rules:
 	if(path === "") for(var i = 0; i < w.rules_ext.length; i++)
 	{
-		if(filetype === w.rules_ext[i].ext)
+		if(w.rules_ext[i].ext.indexOf(filetype) !== -1)
 		{
 			path = w.rules_ext[i].dir;
 			break;
