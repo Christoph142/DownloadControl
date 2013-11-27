@@ -6,7 +6,9 @@ var storage = bg.w;
 
 window.addEventListener("change", function(e) // save preferences:
 {
-	if(e.target.id === "url" || e.target.id === "ext" || e.target.id === "dir") return; // handled via onclick funtions
+	if(e.target.id === "url" || e.target.id === "ext" || e.target.id === "dir") return; // saved via "Add"-button
+	
+	if(e.target.id === "defaultPath") e.target.value = correct_path_format(e.target.value);
 	
 	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
 	else if(e.target.type === "radio")
@@ -101,11 +103,10 @@ function add_page_handling(storage)
 	// add saving rules:
 	document.getElementById("add_rule").addEventListener("click", function(){
 		if((document.getElementById("url").value === "" && document.getElementById("ext").value === "") || document.getElementById("dir").value === "")
-			alert("You need to enter a website and/or a file type plus the subdirectory you wanna save the files in.");
+			alert(chrome.i18n.getMessage("insufficient_input"));
 		else 
 		{
-			var dir = document.getElementById("dir").value;
-			if(dir[dir.length-1] !== "/") dir += "/";
+			var dir = correct_path_format(document.getElementById("dir").value);
 			
 			if(document.getElementById("ext").value === "")
 			{
@@ -134,6 +135,15 @@ function add_page_handling(storage)
 	
 	// prevent shifting of page by scrollbars:
 	scrollbarHandler.registerCenteredElement(document.getElementById('tool-container'));
+}
+
+function correct_path_format(p)
+{
+	p = p.replace(/\//gi, "\\");			// convert forward slashes into back slashes
+	if(p[0] === "\\") p = p.substring(1);	// no slash at beginning
+	if(p[p.length-1] !== "\\") p += "\\";	// slash at end
+	
+	return p;
 }
 
 function localize()
