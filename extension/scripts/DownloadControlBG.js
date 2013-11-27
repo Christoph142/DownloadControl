@@ -10,10 +10,11 @@ chrome.storage.sync.get( null, function(storage){
 	};
 });
 
+var path = "";
+
 chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
 	
-	var path 		= "";
-	var filetype 	= download.filename.substring(download.filename.lastIndexOf(".")+1);
+	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
 	
 	// check for matching rules with URL and file type first:
 	for(var i = 0; i < w.rules_both.length; i++)
@@ -52,12 +53,21 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	
 	// check if path contains variables and substitute them with appropriate values:
 	path = path.replace(/%DOMAIN%/gi, download.url.split("/")[2]); // 2 because of "//" behind protocol
+	path = path.replace(/%FILETYPE%/gi, filetype);
 	
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
 });
 
 chrome.downloads.onChanged.addListener( function(change){
+	/*if(change.filename){ // check for manual change of download location:
+		console.log("now: "+change.filename.current);
+		console.log("path: "+path);
+		if(change.filename.current.indexOf(path) === -1) console.log("location manually changed");
+		else console.log("location unchanged");
+	}*/
 	return;
+	
+	
 	if(!change.state) return;
 	else if(change.state.current !== "complete") return;
 	
@@ -70,20 +80,13 @@ function deleteFile(change_id){
 		if(!downloads[0].exists)
 		{
 			chrome.downloads.erase({ id: downloads[0].id });
-			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
-				chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:"deleted"});
-			});
+			console.log("deleted");
 		}
 		else
 		{
 			chrome.downloads.removeFile(downloads[0].id);
 			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 5000);
-			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
-				chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:"still open"});
-			});
+			console.log("still open");
 		}
 	});
 }
-/*	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ // debugging
-		chrome.tabs.sendMessage(tabs[0].id, {data:"alert", test:file});
-	});*/
