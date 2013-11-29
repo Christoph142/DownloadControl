@@ -24,10 +24,17 @@ window.addEventListener("change", function(e) // save preferences:
 
 function save_new_value(key, value)
 {
+	key = key.split("."); // split tree
+	
+	// save in bg's settings object:
+	var saveobjectBranch = bg.w;
+	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
+	saveobjectBranch[ key[key.length-1] ] = value;
+	
+	// save in Chrome's synced storage:
 	var saveobject = {};
-	saveobject[key] = value;
-	chrome.storage.sync.set(saveobject);	// save it in Chrome's synced storage
-	bg.w[key] = value;						// update settings in bg
+	saveobject[ key[0] ] = bg.w[ key[0] ];
+	chrome.storage.sync.set(saveobject);
 }
 
 function restoreprefs()
@@ -40,9 +47,10 @@ function restoreprefs()
 		for(var i = 0; i < storage[rules].length; i++)
 		{
 			var tr = "<tr class='rule'>";
-			if(storage[rules][i].url) tr += "<td>"+storage[rules][i].url+"</td>";
-			if(storage[rules][i].ext) tr += "<td>"+getFileTypes(storage[rules][i])+"</td>";
-			tr += "<td>"+storage[rules][i].dir+"</td><td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td></tr>";
+			if(storage[rules][i].url) tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".url'>"+storage[rules][i].url+"</td>";
+			if(storage[rules][i].ext) tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".ext'>"+getFileTypes(storage[rules][i])+"</td>";
+			tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".dir'>"+storage[rules][i].dir+"</td>\
+				   <td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td></tr>";
 			
 			document.getElementById(rules).innerHTML += tr;
 		}
@@ -100,7 +108,7 @@ function add_page_handling(storage)
 		}, false);
 	}
 	
-	// add saving rules:
+	// save new rules:
 	document.getElementById("add_rule").addEventListener("click", function(){
 		if((document.getElementById("url").value === "" && document.getElementById("ext").value === "") || document.getElementById("dir").value === "")
 			alert(chrome.i18n.getMessage("insufficient_input"));
@@ -127,13 +135,19 @@ function add_page_handling(storage)
 		location.reload();
 	}, false);
 	
+	// change existing rules:
+	document.getElementById("inputchangelistener").addEventListener("input", function(e){ // &nbsp; !!!
+		if(e.target.dataset.rule.indexOf(".ext") !== -1) save_new_value(e.target.dataset.rule, make_array(e.target.innerHTML));
+		else											 save_new_value(e.target.dataset.rule, e.target.innerHTML);
+	}, false);
+
 	//help:
 	document.getElementById("close_help").addEventListener("click", function(e){
 		e.preventDefault(); e.stopPropagation();
 		document.getElementById("help").style.display = "none";
 	}, false);
 	
-	// prevent shifting of page by scrollbars:
+	// prevent shifting of page caused by scrollbars:
 	scrollbarHandler.registerCenteredElement(document.getElementById('tool-container'));
 }
 
