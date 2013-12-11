@@ -139,8 +139,9 @@ function add_page_handling(storage)
 	
 	// change existing rules:
 	document.getElementById("inputchangelistener").addEventListener("input", function(e){ // &nbsp; !!!
-		if(e.target.dataset.rule.indexOf(".ext") !== -1) save_new_value(e.target.dataset.rule, make_array(e.target.innerHTML));
-		else											 save_new_value(e.target.dataset.rule, e.target.innerHTML);
+		if		(e.target.dataset.rule.indexOf(".ext") !== -1)	save_new_value(e.target.dataset.rule, make_array(e.target.innerHTML));
+		else if (e.target.dataset.rule.indexOf(".dir") !== -1) 	save_new_value(e.target.dataset.rule, correct_path_format(e.target.innerHTML));
+		else	/* url match */									save_new_value(e.target.dataset.rule, e.target.innerHTML);
 	}, false);
 
 	//help:
