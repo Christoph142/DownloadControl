@@ -10,10 +10,11 @@ chrome.storage.sync.get( null, function(storage){
 	};
 });
 
-var path = "";
+
 
 chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
 	
+	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
 	
 	// check for matching rules with URL and file type first:
