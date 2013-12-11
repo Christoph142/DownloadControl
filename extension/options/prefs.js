@@ -84,8 +84,10 @@ function restoreprefs()
 function make_array(ext_string){
 	ext_string = ext_string.split(" ").join(""); // remove all blanks
 	ext_string = ext_string.split(".").join(""); // remove all dots
-	var ext_array = ext_string.toLowerCase().split(",");
 	
+	var ext_array = ext_string.toLowerCase().split(",");
+	for(var i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
+
 	return ext_array;
 }
 function getFileTypes(rule){
