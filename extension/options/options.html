@@ -4,9 +4,11 @@
 <head>
 	<title>Download Control</title>
     <link rel="stylesheet" type="text/css" href="options.css">
+    <link rel="stylesheet" type="text/css" href="SexyDialog.css">
     <link rel="icon" type="image/png" href="../images/128.png">
     
     <script type="text/javascript" src="prefs.js"></script>
+    <script type="text/javascript" src="SexyDialog.js"></script>
 	<script type="text/javascript" src="scrollbarHandler.js"></script>
 </head>
 
@@ -25,52 +27,34 @@
       <div id="content">
       
       	<div id="content0" class="visible">
+          <span id="inputchangelistener">
             <h2 class="section-header i18n" data-i18n="rules_both"></h2>
-            <span id="inputchangelistener">
-            <table class="setting" id="rules_both" cellspacing="0">
-            	<tr style="color:#888;">
-                	<th class="i18n" data-i18n="website"></th>
-                    <th class="i18n" data-i18n="file_types"></th>
-                    <th class="i18n" data-i18n="directory"></th>
-                </tr>
-            </table>
+            
+            <table class="setting" id="rules_both" cellspacing="0"></table>
             
             <h2 class="section-header i18n" data-i18n="rules_url"></h2>
-            
-            <table class="setting" id="rules_url" cellspacing="0">
-            	<tr style="color:#888;">
-                	<th class="i18n" data-i18n="website"></th>
-                    <th class="i18n" data-i18n="directory"></th>
-                </tr>
-            </table>
+            <table class="setting" id="rules_url" cellspacing="0"></table>
             
             <h2 class="section-header i18n" data-i18n="rules_ext"></h2>
-            
-            <table class="setting" id="rules_ext" cellspacing="0">
-            	<tr style="color:#888;">
-                    <th class="i18n" data-i18n="file_types"></th>
-                    <th class="i18n" data-i18n="directory"></th>
-                </tr>
-            </table>
-            </span>
-            <h2 class="section-header i18n" data-i18n="defaultPath"></h2>
-            
-            <div class="setting">
-            	<input type="text" id="defaultPath">
-            </div>
-            
-            <br>
-            <h2 class="section-header i18n" data-i18n="new_rule"></h2>
-            
-            <div class="setting">
-            	<label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
-                <label for="ext" class="i18n" data-i18n="file_types">:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
-                <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
-                <input type="button" value="Add" id="add_rule">
-            </div>
+            <table class="setting" id="rules_ext" cellspacing="0"></table>
+          </span>
+
+          <h2 class="section-header i18n" data-i18n="defaultPath"></h2>
+          <div class="setting">
+          	<input type="text" id="defaultPath">
           </div>
           
-          <div id="content1" class="invisible">
+          <br>
+          <h2 class="section-header i18n" data-i18n="new_rule"></h2>
+          <div class="setting">
+          	<label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
+              <label for="ext" class="i18n" data-i18n="file_types">:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
+              <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
+              <input type="button" value="Add" id="add_rule">
+          </div>
+        </div>
+          
+        <div id="content1" class="invisible">
      		<h2 class="section-header i18n" data-i18n="settings"></h2>
             <div class="setting">
             <span class="i18n" data-i18n="conflictAction"></span><br><br>

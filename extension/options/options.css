@@ -19,7 +19,7 @@ body {
 [contenteditable]:hover{ background:#DDD; }
 
 table.setting{ width:100%; display:table; }
-table.setting th{ text-align:left; padding-bottom:5px; }
+table.setting th{ text-align:left; padding-bottom:5px; color:#888; }
 table.setting td{ padding:5px; }
 table.setting > span { color:#888; }
 
