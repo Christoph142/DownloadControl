@@ -2,8 +2,21 @@ window.addEventListener("DOMContentLoaded", restoreprefs, false);
 window.addEventListener("DOMContentLoaded", localize, false);
 window.addEventListener("DOMContentLoaded", add_page_handling, false);
 
-var bg = chrome.extension.getBackgroundPage();
-var storage = bg.w;
+var stepsToFinishInitialization = 3;
+var storage = {};
+
+chrome.storage.sync.get( null, function(sync_storage){
+	storage = {
+	"conflictAction":	(!sync_storage["conflictAction"]	? "prompt"	: sync_storage["conflictAction"]),
+	"defaultPath"	:	(!sync_storage["defaultPath"] 		? ""		: sync_storage["defaultPath"]),
+	"rules_both" 	:	(!sync_storage["rules_both"]		? [] 		: sync_storage["rules_both"]),
+	"rules_url" 	:	(!sync_storage["rules_url"]			? [] 		: sync_storage["rules_url"]),
+	"rules_ext" 	:	(!sync_storage["rules_ext"]			? [] 		: sync_storage["rules_ext"])
+	};
+	
+	stepsToFinishInitialization--;
+	if(stepsToFinishInitialization === 1) restoreprefs();
+});
 
 window.addEventListener("change", function(e) // save preferences:
 {
@@ -32,14 +45,14 @@ function save_new_value(key, value)
 {
 	key = key.split("."); // split tree
 	
-	// save in bg's settings object:
-	var saveobjectBranch = bg.w;
+	// save in options page's copy of settings object:
+	var saveobjectBranch = storage;
 	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
 	saveobjectBranch[ key[key.length-1] ] = value;
 	
 	// save in Chrome's synced storage:
 	var saveobject = {};
-	saveobject[ key[0] ] = bg.w[ key[0] ];
+	saveobject[ key[0] ] = storage[ key[0] ];
 	chrome.storage.sync.set(saveobject);
 
 	// update settings page:
@@ -48,6 +61,9 @@ function save_new_value(key, value)
 
 function restoreprefs()
 {
+	if(stepsToFinishInitialization > 0) stepsToFinishInitialization--;
+	if(stepsToFinishInitialization > 1) return;
+	
 	// get rules:
 	var rule_arrays = ["rules_both", "rules_url", "rules_ext"];
 	for(var i in rule_arrays)

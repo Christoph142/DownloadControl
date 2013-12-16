@@ -1,16 +1,16 @@
 {	
 	"name"				: "Download Control",
 	"description"		: "__MSG_description__",
-	"developer"			: {"name" : "Christoph D."},
+	"developer"			: { "name" : "Christoph D." },
 	"homepage_url"		: "http://christoph142.wordpress.com",
 	
 	"default_locale"	: "en",
 	"version"			: "1.0",
-	"icons"				: { "128": "images/128.png" },
+	"icons"				: { "128" : "images/128.png" },
 	
-	"background"		: {"scripts": ["scripts/DownloadControl.js"]},
+	"background"		: { "scripts" : ["scripts/DownloadControl.js"], "persistent" : false },
   
-	"permissions"		: ["storage", "downloads", "downloads.open"],
+	"permissions"		: [ "storage", "downloads", "downloads.open" ],
 	"options_page"		: "options/options.html",
 	
 	"manifest_version"	: 2
