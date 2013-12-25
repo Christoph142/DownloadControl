@@ -1,24 +1,90 @@
 {
-	"lang" :				{ "message" : "de" },
-	"description" :			{ "message" : "Verwalte deine Downloads" },
-	"by" :					{ "message" : "von" },
-	"rules" :				{ "message" : "Speicher-Regeln"},
-	"settings" :			{ "message" : "Einstellungen"},
-	"rules_both" :			{ "message" : "Webseite & Datei-Typ"},
-	"rules_url" :			{ "message" : "Nur Webseite"},
-	"rules_ext" :			{ "message" : "Nur Datei-Typ"},
-	"new_rule" :			{ "message" : "Neue Regel hinzufügen"},
-	"website" :				{ "message" : "Webseite"},
-	"file_types" :			{ "message" : "Datei-Typen"},
-	"directory" :			{ "message" : "Ordner"},
-	"incompleteInput" :		{ "message" : "Du musst eine Webseite und/oder mind. 1 Datei-Typ sowie das Unterverzeichnis, in dem die Dateien gespeichert werden sollen, angeben."},
-	"defaultPath" :			{ "message" : "Standard-Download-Verzeichnis"},
-	"pathAbsoluteError" :	{ "message" : "Absolute Pfade sind nicht erlaubt.\nNotiere ihn relativ zum Standard-Download-Verzeichnis."},
-	"pathOutsideError" :	{ "message" : "Du kannst nur Ordner im Standard-Download-Verzeichnis nutzen.\nWenn du einen Ordner nutzen möchtest, der sich außerhalb befindet, ändere zuerst das Standard-Download-Verzeichnis in den Browser-Einstellungen so ab, dass es alle gewünschten Ordner enthält und nutze dann das Standard-Download-Verzeichnis-Feld hier um sicher zu stellen, dass alle Downloads, die von keiner Regel betroffen sind, im richtigen Verzeichnis landen."},
-	"add" :					{ "message" : "Hinzufügen"},
-	"conflictAction" :		{ "message" : "Was soll passieren, wenn bereits eine Datei mit dem selben Namen vorhanden ist?"},
-	"prompt" :				{ "message" : "Nachfragen"},
-	"overwrite" :			{ "message" : "Die vorhandene Datei überschreiben"},
-	"uniquify" :			{ "message" : "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen"},
-	"footer" : 				{ "message" : "Danke f\u00fcr das Installieren dieser Erweiterung. F\u00fcr Feedback und Fragen stehe ich jederzeit gerne zur Verf\u00fcgung." }
+    "incompleteInput": {
+        "message": "Du musst eine Webseite und/oder mind. 1 Datei-Typ sowie das Unterverzeichnis, in dem die Dateien gespeichert werden sollen, angeben.",
+        "description": ""
+    },
+    "settings": {
+        "message": "Einstellungen",
+        "description": ""
+    },
+    "conflictAction": {
+        "message": "Was soll passieren, wenn bereits eine Datei mit dem selben Namen im ermittelten Ordern vorhanden ist?",
+        "description": ""
+    },
+    "directory": {
+        "message": "Ordner",
+        "description": ""
+    },
+    "by": {
+        "message": "von",
+        "description": ""
+    },
+    "website": {
+        "message": "Webseite",
+        "description": ""
+    },
+    "prompt": {
+        "message": "Nachfragen",
+        "description": ""
+    },
+    "new_rule": {
+        "message": "Neue Regel hinzufügen",
+        "description": ""
+    },
+    "rules_ext": {
+        "message": "Nur Datei-Typ",
+        "description": ""
+    },
+    "rules": {
+        "message": "Speicher-Regeln",
+        "description": ""
+    },
+    "rules_both": {
+        "message": "Webseite & Datei-Typ",
+        "description": ""
+    },
+    "footer": {
+        "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
+        "description": ""
+    },
+    "lang": {
+        "message": "de",
+        "description": ""
+    },
+    "pathOutsideError": {
+        "message": "Du kannst nur Ordner im Standard-Download-Verzeichnis nutzen.\nWenn du einen Ordner nutzen möchtest, der sich außerhalb befindet, ändere zuerst das Standard-Download-Verzeichnis in den Browser-Einstellungen so ab, dass es alle gewünschten Ordner enthält und nutze dann das Standard-Download-Verzeichnis-Feld hier um sicher zu stellen, dass alle Downloads, die von keiner Regel betroffen sind, im richtigen Verzeichnis landen.",
+        "description": ""
+    },
+    "rules_url": {
+        "message": "Nur Webseite",
+        "description": ""
+    },
+    "add": {
+        "message": "Hinzufügen",
+        "description": ""
+    },
+    "uniquify": {
+        "message": "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen",
+        "description": ""
+    },
+    "defaultPath": {
+        "message": "Standard-Download-Verzeichnis",
+        "description": ""
+    },
+    "file_types": {
+        "message": "Datei-Typen",
+        "description": ""
+    },
+    "pathAbsoluteError": {
+        "message": "Absolute Pfade sind nicht erlaubt.\nNotiere ihn relativ zum Standard-Download-Verzeichnis.",
+        "description": ""
+    },
+    "description": {
+        "message": "Verwalte deine Downloads",
+        "description": ""
+    },
+    "overwrite": {
+        "message": "Die vorhandene Datei überschreiben",
+        "description": ""
+    }
 }

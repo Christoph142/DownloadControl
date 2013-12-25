@@ -16,7 +16,7 @@
 	"pathAbsoluteError" :	{ "message" : "Absolute paths are not allowed.\nMake it relative to your default download folder."},
 	"pathOutsideError" :	{ "message" : "You can only choose folders inside your default download folder.\nIf you want to use a folder that's outside of it, change your default download folder in browser settings first so that it includes all the folders you want and then use the Default download location field in here to ensure all files that aren't dealt by any of your rules will end up in the correct folder."},
 	"add" :					{ "message" : "Add"},
-	"conflictAction" :		{ "message" : "What should be done if a file with the same name already exists?"},
+	"conflictAction" :		{ "message" : "What should be done if a file with the same name already exists in determined location?"},
 	"prompt" :				{ "message" : "Ask me"},
 	"overwrite" :			{ "message" : "Overwrite the existing file"},
 	"uniquify" :			{ "message" : "Download it anyway and save it with a number behind"},
