@@ -15,6 +15,8 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
 	
+	while(w.length < 5){ console.log("Waiting for settings ("+w.length+" / 5 loaded)..."); }
+
 	// check for matching rules with URL and file type first:
 	for(var i = 0; i < w.rules_both.length; i++)
 	{
