@@ -13,5 +13,7 @@
 	"permissions"		: [ "storage", "downloads", "downloads.open" ],
 	"options_page"		: "options/options.html",
 	
-	"manifest_version"	: 2
+	"manifest_version"	: 2,
+
+	"minimum_chrome_version"	: 31
 }
