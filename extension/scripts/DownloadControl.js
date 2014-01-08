@@ -10,6 +10,8 @@ chrome.storage.sync.get( null, function(storage){
 	};
 });
 
+
+
 chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
 	
 	var path = "";
