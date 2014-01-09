@@ -1,3 +1,5 @@
+"use strict";
+
 //retrieve and store settings (filled with default values):
 var w = {};
 chrome.storage.sync.get( null, function(storage){
@@ -11,7 +13,7 @@ chrome.storage.sync.get( null, function(storage){
 });
 
 chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
-	
+
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
 	
@@ -55,6 +57,10 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	path = path.replace(/%FILETYPE%/gi, filetype);
 	
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
+
+	console.log("Determined path for:");
+	console.log(download);
+	console.log("Saving at "+path);
 });
 
 chrome.downloads.onChanged.addListener( function(change){
