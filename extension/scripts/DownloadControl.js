@@ -12,6 +12,8 @@ chrome.storage.sync.get( null, function(storage){
 	};
 });
 
+chrome.downloads.onCreated.addListener( function(d){ console.log("onCreated", d); } );	 // investigating DNA-15285
+
 chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
 
 	var path = "";
@@ -53,14 +55,13 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	if(path === "") path = w.defaultPath;
 	
 	// check if path contains variables and substitute them with appropriate values:
-	path = path.replace(/%DOMAIN%/gi, download.url.split("/")[2]); // 2 because of "//" behind protocol
+	path = path.replace(/%DOMAIN%/gi, download.url.split("?")[0].split("/")[2]); // 2 because of "//" behind protocol
 	path = path.replace(/%FILETYPE%/gi, filetype);
 	
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
 
-	console.log("Determined path for:");
-	console.log(download);
-	console.log("Saving at "+path);
+	console.log("Determined path for ", download);
+	console.log("Saving at ", path);
 });
 
 chrome.downloads.onChanged.addListener( function(change){
@@ -93,5 +94,22 @@ function deleteFile(change_id){
 			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 5000);
 			console.log("still open");
 		}
+	});
+}
+
+// omnibox keyword "download" to download entered file:
+chrome.omnibox.onInputEntered.addListener(function(file){
+	if(file.indexOf("://") === -1) file = "http://"+file;
+	download(file);
+});
+
+// contextmenu entry:
+chrome.contextMenus.create({ "id" : "downloadcontrol", "contexts" : ["link"], "title" : "Download" }); //chrome.i18n.getMessage("contextmenu_"+s) });
+chrome.contextMenus.onClicked.addListener(function(e){ download(e.linkUrl); });
+
+function download(file){
+	chrome.downloads.download({ "url" : file }, function(downloadid){
+		if (downloadid !== undefined)	console.log("Downloading ", file);
+		else							console.log(file, " is an invalid URL - downloading impossible");
 	});
 }

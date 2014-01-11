@@ -6,11 +6,12 @@
 	
 	"default_locale"	: "en",
 	"version"			: "1.0",
-	"icons"				: { "128": "images/128.png" },
-	
-	"background"		: {"scripts": ["scripts/DownloadControl.js"]},
+	"icons"				: { "16": "images/16.png", "128": "images/128.png" },
   
-	"permissions"		: ["storage", "downloads", "downloads.open"],
+	"background"		: { "scripts": ["scripts/DownloadControl.js"] },
+  
+	"permissions"		: [ "storage", "downloads", "downloads.open", "contextMenus" ],
+	"omnibox"			: { "keyword" : "download" },
 	"options_page"		: "options/options.html",
 	
 	"manifest_version"	: 2,
