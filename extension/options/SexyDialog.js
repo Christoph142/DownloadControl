@@ -1,3 +1,6 @@
+// Check for necessary HTML5 support:
+if(document.createElement("dialog").showModal === undefined) return;
+
 window.alert = function(text){
 	text = text.toString().replace(/\n/g, "<br>");
 	
