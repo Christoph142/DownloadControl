@@ -31,6 +31,10 @@
         "message": "Neue Regel hinzufügen",
         "description": ""
     },
+    "open": {
+        "message": "Open",
+        "description": ""
+    },
     "rules_ext": {
         "message": "Nur Datei-Typ",
         "description": ""
@@ -53,6 +57,10 @@
     },
     "pathOutsideError": {
         "message": "Du kannst nur Ordner im Standard-Download-Verzeichnis nutzen.\nWenn du einen Ordner nutzen möchtest, der sich außerhalb befindet, ändere zuerst das Standard-Download-Verzeichnis in den Browser-Einstellungen so ab, dass es alle gewünschten Ordner enthält und nutze dann das Standard-Download-Verzeichnis-Feld hier um sicher zu stellen, dass alle Downloads, die von keiner Regel betroffen sind, im richtigen Verzeichnis landen.",
+        "description": ""
+    },
+    "save": {
+        "message": "Save",
         "description": ""
     },
     "rules_url": {

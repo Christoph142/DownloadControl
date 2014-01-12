@@ -64,6 +64,32 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	console.log("Saving at ", path);
 });
 
+// omnibox keyword "download" to download entered file:
+chrome.omnibox.onInputEntered.addListener(function(file){
+	if(file.indexOf("://") === -1) file = "http://"+file;
+	save(file);
+});
+
+// contextmenu entries:
+chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
+chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
+chrome.contextMenus.onClicked.addListener(function(e){
+	if 		(e.id === "dc_save")	save(e.linkUrl);
+	else if (e.id === "dc_open")	open(e.linkUrl);
+});
+
+function save(file){
+	chrome.downloads.download({ "url" : file }, function(downloadid){
+		if (downloadid !== undefined)	console.log("Downloading ", file);
+		else							console.log(file, " is an invalid URL - downloading impossible");
+	});
+}
+
+// open files:
+function open(file){
+	save(file);
+}
+
 chrome.downloads.onChanged.addListener( function(change){
 	/*if(change.filename){ // check for manual change of download location:
 		console.log("now: "+change.filename.current);
@@ -94,22 +120,5 @@ function deleteFile(change_id){
 			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 5000);
 			console.log("still open");
 		}
-	});
-}
-
-// omnibox keyword "download" to download entered file:
-chrome.omnibox.onInputEntered.addListener(function(file){
-	if(file.indexOf("://") === -1) file = "http://"+file;
-	download(file);
-});
-
-// contextmenu entry:
-chrome.contextMenus.create({ "id" : "downloadcontrol", "contexts" : ["link"], "title" : "Download" }); //chrome.i18n.getMessage("contextmenu_"+s) });
-chrome.contextMenus.onClicked.addListener(function(e){ download(e.linkUrl); });
-
-function download(file){
-	chrome.downloads.download({ "url" : file }, function(downloadid){
-		if (downloadid !== undefined)	console.log("Downloading ", file);
-		else							console.log(file, " is an invalid URL - downloading impossible");
 	});
 }

@@ -20,5 +20,8 @@
 	"prompt" :				{ "message" : "Ask me"},
 	"overwrite" :			{ "message" : "Overwrite the existing file"},
 	"uniquify" :			{ "message" : "Download it anyway and save it with a number behind"},
-	"footer" : 				{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." }
+	"footer" : 				{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." },
+
+	"save" :				{ "message" : "Save"},
+	"open" :				{ "message" : "Open"}
 }
