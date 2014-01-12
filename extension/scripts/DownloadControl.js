@@ -74,8 +74,8 @@ chrome.omnibox.onInputEntered.addListener(function(file){
 chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
 chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
 chrome.contextMenus.onClicked.addListener(function(e){
-	if 		(e.id === "dc_save")	save(e.linkUrl);
-	else if (e.id === "dc_open")	open(e.linkUrl);
+	if 		(e.menuItemId === "dc_save") save(e.linkUrl);
+	else if (e.menuItemId === "dc_open") open(e.linkUrl);
 });
 
 function save(file){
