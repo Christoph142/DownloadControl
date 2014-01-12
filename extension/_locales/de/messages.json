@@ -32,7 +32,7 @@
         "description": ""
     },
     "open": {
-        "message": "Open",
+        "message": "Öffnen",
         "description": ""
     },
     "rules_ext": {
@@ -60,7 +60,7 @@
         "description": ""
     },
     "save": {
-        "message": "Save",
+        "message": "Speichern",
         "description": ""
     },
     "rules_url": {
