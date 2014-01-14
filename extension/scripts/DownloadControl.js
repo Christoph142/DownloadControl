@@ -85,26 +85,34 @@ function save(file){
 	});
 }
 
-// open files:
+// mark file to open on completion:
 function open(file){
-	save(file);
+	chrome.downloads.download({ "url" : file }, function(downloadid){
+		if (downloadid !== undefined)
+		{
+			var saveobject = {};
+			saveobject[ downloadid ] = "open";
+			chrome.storage.local.set(saveobject);
+
+			console.log("Downloading ", file);
+		}
+		else console.log(file, " is an invalid URL - downloading impossible");
+
+		chrome.storage.local.get( null, function(s){ console.log(s);});
+	});
 }
 
-chrome.downloads.onChanged.addListener( function(change){
-	/*if(change.filename){ // check for manual change of download location:
-		console.log("now: "+change.filename.current);
-		console.log("path: "+path);
-		if(change.filename.current.indexOf(path) === -1) console.log("location manually changed");
-		else console.log("location unchanged");
-	}*/
-	return;
-	
-	
+// open files:
+chrome.downloads.onChanged.addListener( function(change){	
 	if(!change.state) return;
 	else if(change.state.current !== "complete") return;
 	
-	chrome.downloads.open(change.id);
-	window.setTimeout( function(){ deleteFile(change.id); }, 5000);
+	chrome.storage.local.get( change.id.toString(), function(l){
+		if(l[ change.id.toString() ] === undefined) return; // stop if file shouldn't get opened
+
+		chrome.downloads.open( change.id );
+		window.setTimeout( function(){ deleteFile(change.id); }, 5000);
+	});
 });
 
 function deleteFile(change_id){
@@ -122,3 +130,12 @@ function deleteFile(change_id){
 		}
 	});
 }
+
+/*chrome.downloads.onChanged.addListener( function(change){
+	if(change.filename){ // check for manual change of download location:
+		console.log("now: "+change.filename.current);
+		console.log("path: "+path);
+		if(change.filename.current.indexOf(path) === -1) console.log("location manually changed");
+		else console.log("location unchanged");
+	}
+});*/
