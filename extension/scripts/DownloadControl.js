@@ -61,7 +61,7 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
 
 	console.log("Determined path for ", download);
-	console.log("Saving at ", path);
+	console.log("Suggested ", path);
 });
 
 // omnibox keyword "download" to download entered file:
@@ -80,7 +80,7 @@ chrome.contextMenus.onClicked.addListener(function(e){
 
 function save(file){
 	chrome.downloads.download({ "url" : file }, function(downloadid){
-		if (downloadid !== undefined)	console.log("Downloading ", file);
+		if (downloadid !== undefined)	console.log("Saving ", file);
 		else							console.log(file, " is an invalid URL - downloading impossible");
 	});
 }
@@ -94,22 +94,21 @@ function open(file){
 			saveobject[ downloadid ] = "open";
 			chrome.storage.local.set(saveobject);
 
-			console.log("Downloading ", file);
+			console.log("Opening ", file);
 		}
 		else console.log(file, " is an invalid URL - downloading impossible");
-
-		chrome.storage.local.get( null, function(s){ console.log(s);});
 	});
 }
 
 // open files:
 chrome.downloads.onChanged.addListener( function(change){	
 	if(!change.state) return;
-	else if(change.state.current !== "complete") return;
+	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
 	chrome.storage.local.get( change.id.toString(), function(l){
-		if(l[ change.id.toString() ] !== "open") return; // stop if file shouldn't get opened
-		chrome.storage.local.remove( change.id.toString() );
+		if(l[ change.id.toString() ] === undefined) return;		// stop if file shouldn't get opened
+		chrome.storage.local.remove( change.id.toString() );	// remove from list of file to get opened
+		if(change.state.current !== "complete") return;			// if download got interrupted stop here
 
 		chrome.downloads.open( change.id );
 		window.setTimeout( function(){ deleteFile(change.id); }, 5000);
