@@ -108,7 +108,8 @@ chrome.downloads.onChanged.addListener( function(change){
 	else if(change.state.current !== "complete") return;
 	
 	chrome.storage.local.get( change.id.toString(), function(l){
-		if(l[ change.id.toString() ] === undefined) return; // stop if file shouldn't get opened
+		if(l[ change.id.toString() ] !== "open") return; // stop if file shouldn't get opened
+		chrome.storage.local.remove( change.id.toString() );
 
 		chrome.downloads.open( change.id );
 		window.setTimeout( function(){ deleteFile(change.id); }, 5000);
