@@ -1,5 +1,5 @@
 // Check for necessary HTML5 support:
-if(document.createElement("dialog").showModal === undefined) return;
+if(document.createElement("dialog").showModal !== undefined){
 
 window.alert = function(text){
 	text = text.toString().replace(/\n/g, "<br>");
@@ -21,6 +21,8 @@ window.alert = function(text){
 	window.addEventListener("keydown", sexy_check_key, true);
 	
 	dialog.showModal();
+}
+
 }
 
 function sexy_close(returnValue){
