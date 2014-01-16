@@ -22,6 +22,7 @@
 	"uniquify" :			{ "message" : "Download it anyway and save it with a number behind"},
 	"footer" : 				{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." },
 
+	"contextMenu" :			{ "message" : "Which entries do you want the extension to add to context menu for you?"},
 	"save" :				{ "message" : "Save"},
 	"open" :				{ "message" : "Open"}
 }
