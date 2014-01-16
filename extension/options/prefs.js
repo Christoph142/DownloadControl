@@ -42,8 +42,9 @@ function save_new_value(key, value)
 	saveobject[ key[0] ] = bg.w[ key[0] ];
 	chrome.storage.sync.set(saveobject);
 
-	// update settings page:
-	restoreprefs();
+	restoreprefs(); // update settings page
+
+	if( key[0] === "contextMenu" ) bg.adjustContextMenu(); // update contextMenu if necessary
 }
 
 function restoreprefs()
@@ -90,9 +91,12 @@ function restoreprefs()
 	// get inputs:
 	var inputs = document.getElementsByTagName("input");	
 	for(var i = 0; i < inputs.length; i++){
-		if( !storage[inputs[i].id] && !storage[inputs[i].name] ) continue;
+		if( !storage[inputs[i].id] && !storage[inputs[i].name] && inputs[i].id.split(".")[0] !== "contextMenu") continue;
 		
-		if( inputs[i].type === "checkbox" )		inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
+		if( inputs[i].type === "checkbox" ){
+			if(inputs[i].id.split(".")[0] === "contextMenu") inputs[i].checked = (storage["contextMenu"][ inputs[i].id.split(".")[1] ] === "0" ? false : true);
+			else 											 inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
+		}
 		else if ( inputs[i].type === "radio" ){	if( inputs[i].value === storage[inputs[i].name] ) inputs[i].checked = true; }
 		else									inputs[i].value = storage[inputs[i].id];
 	}

@@ -4,12 +4,15 @@
 var w = {};
 chrome.storage.sync.get( null, function(storage){
 	w = {
-	"conflictAction":	(!storage["conflictAction"] ? "prompt"	: storage["conflictAction"]),
-	"defaultPath"	:	(!storage["defaultPath"] 	? ""		: storage["defaultPath"]),
-	"rules_both" 	:	(!storage["rules_both"]		? [] 		: storage["rules_both"]),
-	"rules_url" 	:	(!storage["rules_url"]		? [] 		: storage["rules_url"]),
-	"rules_ext" 	:	(!storage["rules_ext"]		? [] 		: storage["rules_ext"])
+	"conflictAction":	(!storage["conflictAction"] ? "prompt"			: storage["conflictAction"]),
+	"contextMenu"	:	(!storage["contextMenu"	] 	? { "open" : "1" }	: storage["contextMenu"	]),
+	"defaultPath"	:	(!storage["defaultPath"] 	? ""				: storage["defaultPath"]),
+	"rules_both" 	:	(!storage["rules_both"]		? [] 				: storage["rules_both"]),
+	"rules_url" 	:	(!storage["rules_url"]		? [] 				: storage["rules_url"]),
+	"rules_ext" 	:	(!storage["rules_ext"]		? [] 				: storage["rules_ext"])
 	};
+
+	adjustContextMenu(); // contextmenu entries
 });
 
 chrome.downloads.onCreated.addListener( function(d){ console.log("onCreated", d); } );	 // investigating DNA-15285
@@ -70,13 +73,18 @@ chrome.omnibox.onInputEntered.addListener(function(file){
 	save(file);
 });
 
-// contextmenu entries:
-chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
-chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
+// contextMenu clicks:
 chrome.contextMenus.onClicked.addListener(function(e){
 	if 		(e.menuItemId === "dc_save") save(e.linkUrl);
 	else if (e.menuItemId === "dc_open") open(e.linkUrl);
 });
+
+function adjustContextMenu(){
+	chrome.contextMenus.removeAll( function(){
+		if( w.contextMenu.open === "1" ) chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
+		if( w.contextMenu.save === "1" ) chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
+	});
+}
 
 function save(file){
 	chrome.downloads.download({ "url" : file }, function(downloadid){
