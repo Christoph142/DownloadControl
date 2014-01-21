@@ -313,6 +313,7 @@ a {
 .rule:hover > .delete_rule{ background:#FFD2B7;}
 .rule:hover > .delete_rule::before{ content:"x"; position:relative; left:6px; bottom:3px; }
 
+.example  { color: #7B8; }
 #defaultPath{ width:100%; }
 
 #footer{ padding-top:20px; }

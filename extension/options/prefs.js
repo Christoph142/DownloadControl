@@ -10,11 +10,12 @@ window.addEventListener("change", function(e) // save preferences:
 {
 	if(e.target.id === "url" || e.target.id === "ext" || e.target.id === "dir") return; // saved via "Add"-button
 	
-	if(e.target.id === "defaultPath"){
-		var p = correct_path_format(e.target.value);
+	if(e.target.id.indexOf("defaultPath") !== -1){
+		if(e.target.id === "defaultPathBrowser")	var p = correct_path_format(e.target.value, "absolute");
+		else 										var p = correct_path_format(e.target.value, "relative");
 
-		if(p) 	e.target.value = p;
-		else 	return;
+		if(p !== false) 	e.target.value = p;
+		else 				return;
 	}
 	
 	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
@@ -29,7 +30,7 @@ window.addEventListener("change", function(e) // save preferences:
 	else save_new_value(e.target.id, e.target.value);
 },false);
 
-function save_new_value(key, value)
+function save_new_value(key, value, callback)
 {
 	key = key.split("."); // split tree
 	
@@ -46,6 +47,10 @@ function save_new_value(key, value)
 	restoreprefs(); // update settings page
 
 	if( key[0] === "contextMenu" ) bg.adjustContextMenu(); // update contextMenu if necessary
+
+	console.log("Saved", key, value, "settings now: ", storage);
+
+	if(typeof callback === "function") callback();
 }
 
 function restoreprefs()
@@ -138,8 +143,8 @@ function add_page_handling()
 			alert( chrome.i18n.getMessage("incompleteInput") );
 		else 
 		{
-			var dir = correct_path_format(document.getElementById("dir").value);
-			if(!dir) return;
+			var dir = correct_path_format(document.getElementById("dir").value, "relative");
+			if(dir === false) return;
 
 			if(document.getElementById("ext").value === "")
 			{
@@ -159,7 +164,7 @@ function add_page_handling()
 		}
 	}, false);
 	
-	// change existing rules:
+	// change existing rules/folders:
 	document.getElementById("inputchangelistener").addEventListener("input", function(e){
 		e.target.addEventListener("blur", handleChanges, false);
 	}, false);
@@ -168,31 +173,45 @@ function add_page_handling()
 		var v = t.innerHTML;
 
 		if		(t.dataset.rule.indexOf(".ext") !== -1) v = make_array(t.innerHTML);
-		else if (t.dataset.rule.indexOf(".dir") !== -1) v = correct_path_format(t.innerHTML);
+		else if (t.dataset.rule.indexOf(".dir") !== -1) v = correct_path_format(t.innerHTML, "relative");
 		
-		if(v) save_new_value(t.dataset.rule, v);
+		if(v !== false) save_new_value(t.dataset.rule, v);
 		t.removeEventListener("blur", handleChanges, false);
 	}
 
-	//help:
+	// help:
 	document.getElementById("close_help").addEventListener("click", function(e){
 		e.preventDefault(); e.stopPropagation();
 		document.getElementById("help").style.display = "none";
 	}, false);
+
+	// automatical default folder button:
+	document.getElementById("checkDefaultPathBrowser").addEventListener("click", function(){
+		checkDefaultPathBrowser( function(){
+			if(!storage.defaultPathBrowser) document.getElementById("checkDefaultPathBrowser").innerHTML = "Auto-detection failed. Retry?";
+			else{
+				document.getElementById("defaultPathBrowser").value = storage.defaultPathBrowser;
+				document.getElementById("checkDefaultPathBrowser").innerHTML = "Auto-detection successful. Click to refresh if you changed it again";
+			}
+		});
+	});
 	
 	// prevent shifting of page caused by scrollbars:
 	scrollbarHandler.registerCenteredElement(document.getElementById('tool-container'));
 }
 
-function correct_path_format(p)
+function correct_path_format(p, type)
 {
+	if(p === "") return (type === "absolute" ? false : p);
+
 	p = p.replace(/\//gi, "\\");			// convert forward slashes into back slashes
 	if(p[0] === "\\") p = p.substring(1);	// no slash at beginning
 	if(p[p.length-1] !== "\\") p += "\\";	// slash at end
 	
-	if( p[1] === ":" || (p[0] === "." && p[1] === ".") ){
-		if (p[1] === ":")	alert( chrome.i18n.getMessage("pathAbsoluteError") );
-		else 				alert( chrome.i18n.getMessage("pathOutsideError") );
+	if( (p[1] === ":" && type === "relative") || (p[1] !== ":" && type === "absolute") || (p[0] === "." && p[1] === ".") ){
+		if 		(p[1] === ":" && type === "relative")	alert( chrome.i18n.getMessage("pathAbsoluteError") );
+		else if (p[1] !== ":" && type === "absolute")	alert( chrome.i18n.getMessage("pathRelativeError") );
+		else 											alert( chrome.i18n.getMessage("pathOutsideError") );
 
 		return false;
 	}
@@ -207,12 +226,34 @@ function localize()
 	for(var i = 0; i < strings.length; i++) strings[i].innerHTML = chrome.i18n.getMessage(strings[i].dataset.i18n) + strings[i].innerHTML;
 }
 
+// preselect Initial Setup page if not initialized yet:
 function onInstall(){
-	if(window.location.href.indexOf("install") === -1) return;
+	if(storage.defaultPathBrowser) return;
 
 	var m = document.getElementsByTagName("li");
 	m[0].className = "i18n menu selected";
 	m[1].className = "i18n menu";
+
 	document.getElementById("content0").className = "visible";
 	document.getElementById("content1").className = "invisible";
+}
+
+// Determine Chrome/Opera's default download folder:
+function checkDefaultPathBrowser(callback){
+	chrome.downloads.onChanged.addListener( function (change){
+		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") > 0){
+
+			save_new_value("defaultPathBrowser", change.filename.current.split("DownloadControl")[0], callback);
+
+			// clean up:
+			chrome.downloads.cancel(change.id);		// if it's still in progress
+			chrome.downloads.removeFile(change.id); // if it already finished
+			chrome.downloads.erase({ "id" : change.id });
+		}
+	});
+	alert("If this step opens up a file chooser dialog that prompts you to specify a download location, automatic determination doesn't work right now.\n\
+			In this case, cancel the dialog and open your browser's settings again.\n\
+			If 'Ask where to save each file before downloading' is active, you may deactivate it and try the auto-detection again. If it isn't or you don't want to try again, manually copy the content of the 'Download location'-field and paste it to this page.\n\n\
+			You can repeat this automatic step if you need to see these instructions again.");
+	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check", "conflictAction" : "overwrite" });
 }

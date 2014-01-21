@@ -12,9 +12,11 @@
 	"file_types" :			{ "message" : "File types"},
 	"directory" :			{ "message" : "Directory"},
 	"incompleteInput" :		{ "message" : "You need to enter a website and/or at least 1 file type as well as the subdirectory you wanna save the files in."},
+	"checkDefaultPathBrowser" :	{ "message" : "Try to detect your browser's default download location automatically"},
 	"defaultPathBrowser" :	{ "message" : "Default download location of your browser"},
 	"defaultPath" :			{ "message" : "Default download location"},
-	"pathAbsoluteError" :	{ "message" : "Absolute paths are not allowed.\nMake it relative to your default download folder."},
+	"pathAbsoluteError" :	{ "message" : "Absolute paths are not allowed here.\nMake it relative to your default download folder."},
+	"pathRelativeError" :	{ "message" : "Relative paths are not allowed here.\nIt needs to start with the letter of your hard drive, e.g. 'C:\\'"},
 	"pathOutsideError" :	{ "message" : "You can only choose folders inside your default download folder.\nIf you want to use a folder that's outside of it, change your default download folder in browser settings first so that it includes all the folders you want and then use the Default download location field in here to ensure all files that aren't dealt by any of your rules will end up in the correct folder."},
 	"add" :					{ "message" : "Add"},
 	"conflictAction" :		{ "message" : "What should be done if a file with the same name already exists in determined location?"},
@@ -25,5 +27,8 @@
 	"contextMenu" :			{ "message" : "Which entries do you want the extension to add to context menu for you?"},
 	"save" :				{ "message" : "Save"},
 	"open" :				{ "message" : "Open"},
-	"welcome" :				{ "message" : "Welcome"}
+	"welcome" :				{ "message" : "Welcome"},
+	"initialSetup" :		{ "message" : "Initial Setup"},
+	"letsgetstarted" :		{ "message" : "Let's get started"},
+	"thatsit" :				{ "message" : "That's it"}
 }

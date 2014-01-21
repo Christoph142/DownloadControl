@@ -6,6 +6,7 @@ chrome.storage.sync.get( null, function (storage){
 	w = {
 	"conflictAction"		:	(!storage["conflictAction"] 		? "prompt"			: storage["conflictAction"]),
 	"contextMenu"			:	(!storage["contextMenu"	] 			? { "open" : "1" }	: storage["contextMenu"	]),
+	"defaultPathBrowser"	:	(!storage["defaultPathBrowser"] 	? ""				: storage["defaultPathBrowser"]),
 	"defaultPathAppendix"	:	(!storage["defaultPathAppendix"] 	? ""				: storage["defaultPathAppendix"]),
 	"rules_both" 			:	(!storage["rules_both"]				? [] 				: storage["rules_both"]),
 	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
@@ -148,24 +149,7 @@ function deleteFile(change_id){
 	}
 });*/
 
-// show information page about this extension after setup:
+// show initial setup page after setup:
 chrome.runtime.onInstalled.addListener(function (e){
-	if(e.reason === "install") chrome.tabs.create({ url : "options/options.html?install" });
+	if(e.reason === "install") chrome.tabs.create({ url : "options/options.html" });
 });
-
-function checkDefaultPathBrowser(){
-	// Determine Chrome/Opera's default download folder:
-	chrome.downloads.onChanged.addListener( function (change){
-		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") !== -1){
-			w.defaultPathBrowser = change.filename.current.split("DownloadControl")[0];
-
-			// clean up:
-			chrome.downloads.cancel(change.id);		// if it's still in progress
-			chrome.downloads.removeFile(change.id); // if it already finished
-			chrome.downloads.erase({ "id" : change.id });
-
-			console.log("Default Download Folder: ", w.defaultPathBrowser);
-		}
-	});
-	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check" });
-}
