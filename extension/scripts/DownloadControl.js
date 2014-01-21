@@ -2,22 +2,22 @@
 
 //retrieve and store settings (filled with default values):
 var w = {};
-chrome.storage.sync.get( null, function(storage){
+chrome.storage.sync.get( null, function (storage){
 	w = {
-	"conflictAction":	(!storage["conflictAction"] ? "prompt"			: storage["conflictAction"]),
-	"contextMenu"	:	(!storage["contextMenu"	] 	? { "open" : "1" }	: storage["contextMenu"	]),
-	"defaultPath"	:	(!storage["defaultPath"] 	? ""				: storage["defaultPath"]),
-	"rules_both" 	:	(!storage["rules_both"]		? [] 				: storage["rules_both"]),
-	"rules_url" 	:	(!storage["rules_url"]		? [] 				: storage["rules_url"]),
-	"rules_ext" 	:	(!storage["rules_ext"]		? [] 				: storage["rules_ext"])
+	"conflictAction"		:	(!storage["conflictAction"] 		? "prompt"			: storage["conflictAction"]),
+	"contextMenu"			:	(!storage["contextMenu"	] 			? { "open" : "1" }	: storage["contextMenu"	]),
+	"defaultPathAppendix"	:	(!storage["defaultPathAppendix"] 	? ""				: storage["defaultPathAppendix"]),
+	"rules_both" 			:	(!storage["rules_both"]				? [] 				: storage["rules_both"]),
+	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
+	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"])
 	};
 
 	adjustContextMenu(); // contextmenu entries
 });
 
-chrome.downloads.onCreated.addListener( function(d){ console.log("onCreated", d); } );	 // investigating DNA-15285
-
-chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){ // determine correct location
+// determine correct location:
+chrome.downloads.onDeterminingFilename.addListener( function (download, suggest){
+	if(download.byExtensionId === "iccnbnkbhccimhmjoehjcbipkiogdfbc") return; // started by Download Control
 
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
@@ -55,7 +55,7 @@ chrome.downloads.onDeterminingFilename.addListener( function(download, suggest){
 	}
 	
 	// if no rule matched, take default path:
-	if(path === "") path = w.defaultPath;
+	if(path === "") path = w.defaultPathAppendix;
 	
 	// check if path contains variables and substitute them with appropriate values:
 	path = path.replace(/%DOMAIN%/gi, download.url.split("?")[0].split("/")[2]); // 2 because of "//" behind protocol
@@ -74,7 +74,7 @@ chrome.omnibox.onInputEntered.addListener(function(file){
 });
 
 // contextMenu clicks:
-chrome.contextMenus.onClicked.addListener(function(e){
+chrome.contextMenus.onClicked.addListener(function (e){
 	if 		(e.menuItemId === "dc_save") save(e.linkUrl);
 	else if (e.menuItemId === "dc_open") open(e.linkUrl);
 });
@@ -87,7 +87,7 @@ function adjustContextMenu(){
 }
 
 function save(file){
-	chrome.downloads.download({ "url" : file }, function(downloadid){
+	chrome.downloads.download({ "url" : file }, function (downloadid){
 		if (downloadid !== undefined)	console.log("Saving ", file);
 		else							console.log(file, " is an invalid URL - downloading impossible");
 	});
@@ -95,7 +95,7 @@ function save(file){
 
 // mark file to open on completion:
 function open(file){
-	chrome.downloads.download({ "url" : file }, function(downloadid){
+	chrome.downloads.download({ "url" : file }, function (downloadid){
 		if (downloadid !== undefined)
 		{
 			var saveobject = {};
@@ -109,7 +109,7 @@ function open(file){
 }
 
 // open files:
-chrome.downloads.onChanged.addListener( function(change){	
+chrome.downloads.onChanged.addListener( function (change){
 	if(!change.state) return;
 	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
@@ -124,7 +124,7 @@ chrome.downloads.onChanged.addListener( function(change){
 });
 
 function deleteFile(change_id){
-	chrome.downloads.search({id: change_id}, function(downloads){
+	chrome.downloads.search({id: change_id}, function (downloads){
 		if(!downloads[0].exists)
 		{
 			chrome.downloads.erase({ id: downloads[0].id });
@@ -147,3 +147,25 @@ function deleteFile(change_id){
 		else console.log("location unchanged");
 	}
 });*/
+
+// show information page about this extension after setup:
+chrome.runtime.onInstalled.addListener(function (e){
+	if(e.reason === "install") chrome.tabs.create({ url : "options/install.html" });
+});
+
+function checkDefaultPathBrowser(){
+	// Determine Chrome/Opera's default download folder:
+	chrome.downloads.onChanged.addListener( function (change){
+		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") !== -1){
+			w.defaultPathBrowser = change.filename.current.split("DownloadControl")[0];
+
+			// clean up:
+			chrome.downloads.cancel(change.id);		// if it's still in progress
+			chrome.downloads.removeFile(change.id); // if it already finished
+			chrome.downloads.erase({ "id" : change.id });
+
+			console.log("Default Download Folder: ", w.defaultPathBrowser);
+		}
+	});
+	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check" });
+}

@@ -12,6 +12,7 @@
 	"file_types" :			{ "message" : "File types"},
 	"directory" :			{ "message" : "Directory"},
 	"incompleteInput" :		{ "message" : "You need to enter a website and/or at least 1 file type as well as the subdirectory you wanna save the files in."},
+	"defaultPathBrowser" :	{ "message" : "Default download location of your browser"},
 	"defaultPath" :			{ "message" : "Default download location"},
 	"pathAbsoluteError" :	{ "message" : "Absolute paths are not allowed.\nMake it relative to your default download folder."},
 	"pathOutsideError" :	{ "message" : "You can only choose folders inside your default download folder.\nIf you want to use a folder that's outside of it, change your default download folder in browser settings first so that it includes all the folders you want and then use the Default download location field in here to ensure all files that aren't dealt by any of your rules will end up in the correct folder."},
@@ -21,8 +22,8 @@
 	"overwrite" :			{ "message" : "Overwrite the existing file"},
 	"uniquify" :			{ "message" : "Download it anyway and save it with a number behind"},
 	"footer" : 				{ "message" : "Thanks for installing this extension. You can contact me at any time for feedback and questions." },
-
 	"contextMenu" :			{ "message" : "Which entries do you want the extension to add to context menu for you?"},
 	"save" :				{ "message" : "Save"},
-	"open" :				{ "message" : "Open"}
+	"open" :				{ "message" : "Open"},
+	"welcome" :				{ "message" : "Welcome"}
 }
