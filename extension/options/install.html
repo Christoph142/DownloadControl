@@ -1,0 +1,54 @@
+<!doctype html>
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=utf-8">
+<html>
+<head>
+	<title>Download Control</title>
+    <link rel="stylesheet" type="text/css" href="options.css">
+    <link rel="stylesheet" type="text/css" href="SexyDialog.css">
+    <link rel="icon" type="image/png" href="../images/128.png">
+    
+    <script type="text/javascript" src="prefs.js"></script>
+    <script type="text/javascript" src="SexyDialog.js"></script>
+	<script type="text/javascript" src="scrollbarHandler.js"></script>
+</head>
+
+<body>
+  <div id="wallpaper">
+    <div id="tool-container">
+      <div id="sidebar">
+        <div id="sidebar-icon"></div>
+        <h1>Welcome to Download Control</h1>
+        <h5 style="margin-top:-5px;"><span class="i18n" data-i18n="by"></span> <a href="http://christoph142.wordpress.com" target="_blank">Christoph D.</a></h5>
+        <menu id="sidebar-menu">
+          <li data-target="0" class="selected i18n menu" data-i18n="welcome"></li>
+        </menu>
+      </div> <!-- sidebar -->
+      <div id="content">
+      
+      	<div id="content0" class="visible">
+          <h2 class="section-header i18n" data-i18n="welcome"></h2>
+          Let's start with a quick initial setup that's required for this extension to work properly.<br>
+          You can close this windows to skip this step, but some functionality will not be working until you complete it.<br>
+          Download Control will determine a folder for each download you start according to the rules you set up. If you save it to a location different than the one Download Control expects this file to be saved at, it'll ask you if you want to add a new rule. Therefore, it needs to know the
+          <div class="setting">
+          	<label class="i18n" data-i18n="defaultPathBrowser"><input type="text" id="defaultPathBrowser" placeholder="e.g. C:\\Users\\You\\Downloads"></label>
+          	It's recommended that you copy this folder from <a href="opera://settings" target="_blank">opera:settings</a> to ensure its correctness. Errors in here will result in misbehavior.
+          </div>
+        </div>
+      
+        <div id="footer"><a href="http://christoph142.wordpress.com" target="_blank"><span class="i18n" data-i18n="footer"></span> :)</a></div>
+        
+      </div> <!-- content -->
+    </div> <!-- tool-container -->
+  </div> <!-- wallpaper -->
+  
+  <a href="http://christoph142.wordpress.com/2013/06/27/help/" target="_blank">
+      <div id="help">
+        <h3 style="color:#F00;">I need your help!</h3>Please click here to read my story<br>
+        <i style="font-size:x-small;">- This is no advertising, promised! -</i>
+        <div id="close_help"><p></p></div>
+      </div>
+  </a>
+</body>
+
+</html>
