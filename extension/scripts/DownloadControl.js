@@ -150,7 +150,7 @@ function deleteFile(change_id){
 
 // show information page about this extension after setup:
 chrome.runtime.onInstalled.addListener(function (e){
-	if(e.reason === "install") chrome.tabs.create({ url : "options/install.html" });
+	if(e.reason === "install") chrome.tabs.create({ url : "options/options.html?install" });
 });
 
 function checkDefaultPathBrowser(){

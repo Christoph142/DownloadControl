@@ -1,3 +1,4 @@
+window.addEventListener("DOMContentLoaded", onInstall, false);
 window.addEventListener("DOMContentLoaded", restoreprefs, false);
 window.addEventListener("DOMContentLoaded", localize, false);
 window.addEventListener("DOMContentLoaded", add_page_handling, false);
@@ -204,4 +205,14 @@ function localize()
 	
 	var strings = document.getElementsByClassName("i18n");
 	for(var i = 0; i < strings.length; i++) strings[i].innerHTML = chrome.i18n.getMessage(strings[i].dataset.i18n) + strings[i].innerHTML;
+}
+
+function onInstall(){
+	if(window.location.href.indexOf("install") === -1) return;
+
+	var m = document.getElementsByTagName("li");
+	m[0].className = "i18n menu selected";
+	m[1].className = "i18n menu";
+	document.getElementById("content0").className = "visible";
+	document.getElementById("content1").className = "invisible";
 }

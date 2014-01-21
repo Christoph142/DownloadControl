@@ -20,13 +20,25 @@
         <h1>Download Control</h1>
         <h5 style="margin-top:-5px;"><span class="i18n" data-i18n="by"></span> <a href="http://christoph142.wordpress.com" target="_blank">Christoph D.</a></h5>
         <menu id="sidebar-menu">
-          <li data-target="0" class="selected i18n menu" data-i18n="rules"></li>
-          <li data-target="1" class="i18n menu" data-i18n="settings"></li>
+          <li data-target="0" class="invisible" data-i18n="welcome"></li>
+          <li data-target="1" class="selected i18n menu" data-i18n="rules"></li>
+          <li data-target="2" class="i18n menu" data-i18n="settings"></li>
         </menu>
       </div> <!-- sidebar -->
       <div id="content">
       
-      	<div id="content0" class="visible">
+      	<div id="content0" class="invisible">
+          <h2 class="section-header i18n" data-i18n="welcome"></h2>
+          Let's start with a quick initial setup that's required for this extension to work properly.<br>
+          You can close this windows to skip this step, but some functionality will not be working until you complete it.<br>
+          Download Control will determine a folder for each download you start according to the rules you set up. If you save it to a location different than the one Download Control expects this file to be saved at, it'll ask you if you want to add a new rule. Therefore, it needs to know the
+          <div class="setting">
+            <label class="i18n" data-i18n="defaultPathBrowser"><input type="text" id="defaultPathBrowser" placeholder="e.g. C:\\Users\\You\\Downloads"></label>
+            It's recommended that you copy this folder from <a href="opera://settings" target="_blank">opera:settings</a> to ensure its correctness. Errors in here will result in misbehavior.
+          </div>
+        </div>
+
+        <div id="content1" class="visible">
           <span id="inputchangelistener">
             <h2 class="section-header i18n" data-i18n="rules_both"></h2>
             
@@ -41,20 +53,20 @@
 
           <h2 class="section-header i18n" data-i18n="defaultPath"></h2>
           <div class="setting">
-          	<input type="text" id="defaultPath">
+            <input type="text" id="defaultPath">
           </div>
           
           <br>
           <h2 class="section-header i18n" data-i18n="new_rule"></h2>
           <div class="setting">
-          	<label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
+            <label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
               <label for="ext" class="i18n" data-i18n="file_types">:</label><input type="text" id="ext" placeholder="e.g. 'exe'" style="width:100%;">
               <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" placeholder="path/to/your/file" style="width:100%;">
               <input type="button" value="Add" id="add_rule">
           </div>
         </div>
           
-        <div id="content1" class="invisible">
+        <div id="content2" class="invisible">
      		<h2 class="section-header i18n" data-i18n="settings"></h2>
             <div class="setting">
             	<span class="i18n" data-i18n="conflictAction"></span><br><br>
