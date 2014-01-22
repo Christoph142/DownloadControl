@@ -10,7 +10,8 @@ chrome.storage.sync.get( null, function (storage){
 	"defaultPathAppendix"	:	(!storage["defaultPathAppendix"] 	? ""				: storage["defaultPathAppendix"]),
 	"rules_both" 			:	(!storage["rules_both"]				? [] 				: storage["rules_both"]),
 	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
-	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"])
+	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"]),
+	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"])
 	};
 
 	adjustContextMenu(); // contextmenu entries
@@ -145,15 +146,31 @@ function deleteFile(change_id){
 // check if file gets saved where Download Control expects it:
 chrome.downloads.onChanged.addListener( function (change){
 	if(!change.filename || !w[change.id]) return;
-	
 	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
 	
-	if(change.filename.current.indexOf(w[change.id]) !== 0 || w[change.id].length !== change.filename.current.lastIndexOf("\\") + 1){ // if folder is different than expected
-		if(change.filename.current.indexOf(w.defaultPathBrowser) === 0) console.log("location changed inside default -> ask");
-		else															console.log("location changed to outside -> can't handle");
+	// if folder is different than expected (outside of expected folder OR subfolder thereof):
+	if(change.filename.current.indexOf(w[change.id]) !== 0 || w[change.id].length !== change.filename.current.lastIndexOf("\\") + 1)
+	{
+		// inside default folder:
+		if(change.filename.current.indexOf(w.defaultPathBrowser) === 0)
+		{
+			chrome.downloads.search({ "id" : change.id }, function (ds)
+			{
+				var d = ds[0];
+				w.suggestedRules[w.suggestedRules.length] = {
+					"url" : d.url.split("/")[2],
+					"ext" : d.filename.substring(d.filename.lastIndexOf(".")+1),
+					"dir" : d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\"))
+				};
+				save_new_value("suggestedRules", w.suggestedRules);
+				
+				console.log("location changed inside default folder -> suggesting new rule", w.suggestedRules[w.suggestedRules.length-1], "for", d);
+			});
+		}
+		else 	console.log("location changed to outside of default folder -> can't handle");
 	}
-	else																console.log("location unchanged");
-
+	else 		console.log("location unchanged");
+	
 	delete w[change.id]; //clean up
 });
 
@@ -167,3 +184,25 @@ chrome.commands.onCommand.addListener(function (e){
 	if(e === "open") 	{}//open("");
 	else				{}//save("");
 });
+
+
+function save_new_value(key, value, callback)
+{
+	key = key.split("."); // split tree
+	
+	// save to sync storage cache (w):
+	var saveobjectBranch = w;
+	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
+	saveobjectBranch[ key[key.length-1] ] = value;
+	
+	// save in Chrome's synced storage:
+	var saveobject = {};
+	saveobject[ key[0] ] = w[ key[0] ];
+	chrome.storage.sync.set(saveobject);
+
+	if( key[0] === "contextMenu" ) adjustContextMenu(); // update contextMenu if necessary
+
+	console.log("Saved", key, value, "settings now: ", w);
+
+	if(typeof callback === "function") callback();
+}
