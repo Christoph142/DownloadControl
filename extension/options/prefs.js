@@ -18,43 +18,21 @@ window.addEventListener("change", function(e) // save preferences:
 		else 				return;
 	}
 	
-	if(e.target.type === "checkbox") save_new_value(e.target.id, e.target.checked?"1":"0");
+	if(e.target.type === "checkbox") bg.save_new_value(e.target.id, e.target.checked?"1":"0");
 	else if(e.target.type === "radio")
 	{
 		var radio = document.getElementsByName(e.target.name);
 		for(var i = 0; i < radio.length; i++)
 		{
-			if(radio[i].checked){ save_new_value(radio[i].name, radio[i].value); break; }
+			if(radio[i].checked){ bg.save_new_value(radio[i].name, radio[i].value); break; }
 		}
 	}
-	else save_new_value(e.target.id, e.target.value);
+	else bg.save_new_value(e.target.id, e.target.value);
 },false);
-
-function save_new_value(key, value, callback)
-{
-	key = key.split("."); // split tree
-	
-	// save in bg's settings object:
-	var saveobjectBranch = bg.w;
-	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
-	saveobjectBranch[ key[key.length-1] ] = value;
-	
-	// save in Chrome's synced storage:
-	var saveobject = {};
-	saveobject[ key[0] ] = bg.w[ key[0] ];
-	chrome.storage.sync.set(saveobject);
-
-	restoreprefs(); // update settings page
-
-	if( key[0] === "contextMenu" ) bg.adjustContextMenu(); // update contextMenu if necessary
-
-	console.log("Saved", key, value, "settings now: ", storage);
-
-	if(typeof callback === "function") callback();
-}
 
 function restoreprefs()
 {
+	console.log("herex");
 	// get rules:
 	var rule_arrays = ["rules_both", "rules_url", "rules_ext"];
 	for(var i in rule_arrays)
@@ -90,7 +68,7 @@ function restoreprefs()
 	{
 		delete_rule_buttons[i].addEventListener("click", function(){
 			storage[this.dataset.from].splice([this.dataset.nr], 1);
-			save_new_value(this.dataset.from, storage[this.dataset.from]);
+			bg.save_new_value(this.dataset.from, storage[this.dataset.from], restoreprefs);
 		}, false);
 	}
 	
@@ -149,17 +127,17 @@ function add_page_handling()
 			if(document.getElementById("ext").value === "")
 			{
 				storage.rules_url[storage.rules_url.length] = { "url":document.getElementById("url").value, "dir":dir };
-				save_new_value("rules_url", storage.rules_url);
+				bg.save_new_value("rules_url", storage.rules_url, restoreprefs);
 			}
 			else if(document.getElementById("url").value === "")
 			{
 				storage.rules_ext[storage.rules_ext.length] = { "ext": make_array(document.getElementById("ext").value), "dir":dir };
-				save_new_value("rules_ext", storage.rules_ext);
+				bg.save_new_value("rules_ext", storage.rules_ext, restoreprefs);
 			}
 			else /* url & ext */
 			{
 				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":make_array(document.getElementById("ext").value), "dir":dir };
-				save_new_value("rules_both", storage.rules_both);
+				bg.save_new_value("rules_both", storage.rules_both, restoreprefs);
 			}
 		}
 	}, false);
@@ -175,7 +153,7 @@ function add_page_handling()
 		if		(t.dataset.rule.indexOf(".ext") !== -1) v = make_array(t.innerHTML);
 		else if (t.dataset.rule.indexOf(".dir") !== -1) v = correct_path_format(t.innerHTML, "relative");
 		
-		if(v !== false) save_new_value(t.dataset.rule, v);
+		if(v !== false) bg.save_new_value(t.dataset.rule, v);
 		t.removeEventListener("blur", handleChanges, false);
 	}
 
@@ -243,7 +221,7 @@ function checkDefaultPathBrowser(callback){
 	chrome.downloads.onChanged.addListener( function (change){
 		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") > 0){
 
-			save_new_value("defaultPathBrowser", change.filename.current.split("DownloadControl")[0], callback);
+			bg.save_new_value("defaultPathBrowser", change.filename.current.split("DownloadControl")[0], callback);
 
 			// clean up:
 			chrome.downloads.cancel(change.id);		// if it's still in progress
@@ -253,7 +231,7 @@ function checkDefaultPathBrowser(callback){
 	});
 	alert("If this step opens up a file chooser dialog that prompts you to specify a download location, automatic determination doesn't work right now.\n\
 			In this case, cancel the dialog and open your browser's settings again.\n\
-			If 'Ask where to save each file before downloading' is active, you may deactivate it and try the auto-detection again. If it isn't or you don't want to try again, manually copy the content of the 'Download location'-field and paste it to this page.\n\n\
+			If 'Ask where to save each file before downloading' is active, you may deactivate it and try the auto-detection again. If it isn't or you don't want to try again, copy the content of the 'Download location'-field and paste it to this page.\n\n\
 			You can repeat this automatic step if you need to see these instructions again.");
 	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check", "conflictAction" : "overwrite" });
 }
