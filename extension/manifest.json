@@ -1,20 +1,27 @@
 {	
-	"name"				: "Download Control",
-	"description"		: "__MSG_description__",
-	"developer"			: {"name" : "Christoph D."},
-	"homepage_url"		: "http://christoph142.wordpress.com",
+	"name"						: "Download Control",
+	"description"				: "__MSG_description__",
+	"developer"					: {"name" : "Christoph D."},
+	"homepage_url"				: "http://christoph142.wordpress.com",
 	
-	"default_locale"	: "en",
-	"version"			: "1.0",
-	"icons"				: { "16": "images/16.png", "128": "images/128.png" },
+	"default_locale"			: "en",
+	"version"					: "1.0",
+	"icons"						: {
+									"16": "images/16.png",
+									"128": "images/128.png"
+								  },
   
-	"background"		: { "scripts": ["scripts/DownloadControl.js"] },
+	"background"				: { "scripts": ["scripts/DownloadControl.js"] },
   
-	"permissions"		: [ "storage", "downloads", "downloads.open", "contextMenus" ],
-	"omnibox"			: { "keyword" : "download" },
-	"options_page"		: "options/options.html",
+	"permissions"				: [ "storage", "downloads", "downloads.open", "contextMenus" ],
+	"omnibox"					: { "keyword" : "download" },
+	"commands"					: {
+									"open" : { "suggested_key": { "default": "Ctrl+Shift+O", "mac": "Command+Shift+O" }, "description": "Open (clipboard content)" },
+									"save" : { "suggested_key": { "default": "Ctrl+Shift+S", "mac": "Command+Shift+S" }, "description": "Save (clipboard content)" }
+								  },
+	"options_page"				: "options/options.html",
 	
-	"manifest_version"	: 2,
+	"manifest_version"			: 2,
 
 	"minimum_chrome_version"	: "31"
 }

@@ -18,7 +18,7 @@ chrome.storage.sync.get( null, function (storage){
 
 // determine correct location:
 chrome.downloads.onDeterminingFilename.addListener( function (download, suggest){
-	if(download.byExtensionId === "iccnbnkbhccimhmjoehjcbipkiogdfbc") return; // started by Download Control
+	if(download.byExtensionId === "iccnbnkbhccimhmjoehjcbipkiogdfbc" && download.filename.indexOf("DownloadControl.check") !== -1) return; // default folder check
 
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
@@ -115,7 +115,7 @@ chrome.downloads.onChanged.addListener( function (change){
 	if(!change.state) return;
 	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
-	chrome.storage.local.get( change.id.toString(), function(l){
+	chrome.storage.local.get( change.id.toString(), function (l){
 		if(l[ change.id.toString() ] === undefined) return;		// stop if file shouldn't get opened
 		
 		chrome.storage.local.remove( change.id.toString() );	// remove from list of file to get opened
@@ -144,7 +144,7 @@ function deleteFile(change_id){
 
 // check if file gets saved where Download Control expects it:
 chrome.downloads.onChanged.addListener( function (change){
-	if(!change.filename) return;
+	if(!change.filename || !w[change.id]) return;
 	
 	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
 	
@@ -153,9 +153,17 @@ chrome.downloads.onChanged.addListener( function (change){
 		else															console.log("location changed to outside -> can't handle");
 	}
 	else																console.log("location unchanged");
+
+	delete w[change.id]; //clean up
 });
 
 // show initial setup page after setup:
 chrome.runtime.onInstalled.addListener(function (e){
 	if(e.reason === "install") chrome.tabs.create({ url : "options/options.html" });
+});
+
+// keyboard shortcuts:
+chrome.commands.onCommand.addListener(function (e){
+	if(e === "open") 	{}//open("");
+	else				{}//save("");
 });
