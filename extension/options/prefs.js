@@ -100,7 +100,7 @@ function restoreprefs()
 		if( !storage[inputs[i].id] && !storage[inputs[i].name] && inputs[i].id.split(".")[0] !== "contextMenu") continue;
 		
 		if( inputs[i].type === "checkbox" ){
-			if(inputs[i].id.split(".")[0] === "contextMenu") inputs[i].checked = (storage["contextMenu"][ inputs[i].id.split(".")[1] ] === "0" ? false : true);
+			if(inputs[i].id.split(".")[0] === "contextMenu") inputs[i].checked = (storage["contextMenu"][ inputs[i].id.split(".")[1] ] === "1" ? true : false);
 			else 											 inputs[i].checked = (storage[inputs[i].id] === "0" ? false : true);
 		}
 		else if ( inputs[i].type === "radio" ){	if( inputs[i].value === storage[inputs[i].name] ) inputs[i].checked = true; }
