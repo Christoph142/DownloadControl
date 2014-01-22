@@ -62,6 +62,7 @@ chrome.downloads.onDeterminingFilename.addListener( function (download, suggest)
 	path = path.replace(/%DOMAIN%/gi, download.url.split("?")[0].split("/")[2]); // 2 because of "//" behind protocol
 	path = path.replace(/%FILETYPE%/gi, filetype);
 	
+	w[download.id] = w.defaultPathBrowser+path; // save for comparison with final save path
 	suggest({ filename: path+download.filename, conflictAction: w.conflictAction });
 
 	console.log("Determined path for ", download);
@@ -116,6 +117,7 @@ chrome.downloads.onChanged.addListener( function (change){
 	
 	chrome.storage.local.get( change.id.toString(), function(l){
 		if(l[ change.id.toString() ] === undefined) return;		// stop if file shouldn't get opened
+		
 		chrome.storage.local.remove( change.id.toString() );	// remove from list of file to get opened
 		if(change.state.current !== "complete") return;			// if download got interrupted stop here
 
@@ -140,14 +142,18 @@ function deleteFile(change_id){
 	});
 }
 
-/*chrome.downloads.onChanged.addListener( function(change){
-	if(change.filename){ // check for manual change of download location:
-		console.log("now: "+change.filename.current);
-		console.log("path: "+path);
-		if(change.filename.current.indexOf(path) === -1) console.log("location manually changed");
-		else console.log("location unchanged");
+// check if file gets saved where Download Control expects it:
+chrome.downloads.onChanged.addListener( function (change){
+	if(!change.filename) return;
+	
+	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
+	
+	if(change.filename.current.indexOf(w[change.id]) !== 0 || w[change.id].length !== change.filename.current.lastIndexOf("\\") + 1){ // if folder is different than expected
+		if(change.filename.current.indexOf(w.defaultPathBrowser) === 0) console.log("location changed inside default -> ask");
+		else															console.log("location changed to outside -> can't handle");
 	}
-});*/
+	else																console.log("location unchanged");
+});
 
 // show initial setup page after setup:
 chrome.runtime.onInstalled.addListener(function (e){
