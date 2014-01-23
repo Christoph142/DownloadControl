@@ -32,9 +32,8 @@ window.addEventListener("change", function(e) // save preferences:
 
 function restoreprefs()
 {
-	console.log("herex");
 	// get rules:
-	var rule_arrays = ["rules_both", "rules_url", "rules_ext"];
+	var rule_arrays = ["rules_both", "rules_url", "rules_ext", "suggestedRules"];
 	for(var i in rule_arrays)
 	{
 		var rules = rule_arrays[i];
@@ -51,24 +50,61 @@ function restoreprefs()
 		for(var i = 0; i < storage[rules].length; i++)
 		{
 			var tr = "<tr class='rule'>";
-			if(storage[rules][i].url) tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".url'>"+storage[rules][i].url+"</td>";
-			if(storage[rules][i].ext) tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".ext'>"+getFileTypes(storage[rules][i])+"</td>";
+			if(rules !== "rules_ext") tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".url'>"+storage[rules][i].url+"</td>";
+			if(rules !== "rules_url") tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".ext'>"+getFileTypes(storage[rules][i])+"</td>";
 			tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".dir'>"+storage[rules][i].dir+"</td>\
-				   <td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td></tr>";
-			
+				   <td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td>";
+			if(rules === "suggestedRules") tr += "<td class='adopt_rule' data-nr='"+i+"'></td>";
+			tr += "</tr>";
+
 			rules_element.innerHTML += tr;
 		}
 		
 		if(storage[rules].length === 0) rules_element.innerHTML += "<br><span>No rules yet</span>";
 	}
 
-	// delete rule buttons:
+	// "delete rule"-buttons:
 	var delete_rule_buttons = document.getElementsByClassName("delete_rule");
 	for(var i = 0; i < delete_rule_buttons.length; i++)
 	{
 		delete_rule_buttons[i].addEventListener("click", function(){
 			storage[this.dataset.from].splice([this.dataset.nr], 1);
 			bg.save_new_value(this.dataset.from, storage[this.dataset.from], restoreprefs);
+		}, false);
+	}
+
+	// "adopt rule"-buttons:
+	var adopt_rule_buttons = document.getElementsByClassName("adopt_rule");
+	for(var i = 0; i < adopt_rule_buttons.length; i++)
+	{
+		adopt_rule_buttons[i].addEventListener("click", function()
+		{
+			// get by reference:
+			var rule = storage.suggestedRules[this.dataset.nr];
+			
+			if(rule.url === "" && rule.ext.length === 0) alert( chrome.i18n.getMessage("incompleteInput") );
+			else
+			{
+				// get original:
+				rule = storage.suggestedRules.splice([this.dataset.nr], 1)[0];
+
+				if(rule.ext.length === 0){
+					delete rule.ext;
+					storage.rules_url[storage.rules_url.length] = rule;
+					bg.save_new_value("rules_url", storage.rules_url);
+				}
+				else if(rule.url === ""){
+					delete rule.url;
+					storage.rules_ext[storage.rules_ext.length] = rule;
+					bg.save_new_value("rules_ext", storage.rules_ext);
+				}
+				else{
+					storage.rules_both[storage.rules_both.length] = rule;
+					bg.save_new_value("rules_both", storage.rules_both);
+				}
+
+				bg.save_new_value("suggestedRules", storage.suggestedRules, restoreprefs);
+			}
 		}, false);
 	}
 	
@@ -153,7 +189,7 @@ function add_page_handling()
 		if		(t.dataset.rule.indexOf(".ext") !== -1) v = make_array(t.innerHTML);
 		else if (t.dataset.rule.indexOf(".dir") !== -1) v = correct_path_format(t.innerHTML, "relative");
 		
-		if(v !== false) bg.save_new_value(t.dataset.rule, v);
+		if(v !== false) bg.save_new_value(t.dataset.rule, v, restoreprefs);
 		t.removeEventListener("blur", handleChanges, false);
 	}
 
