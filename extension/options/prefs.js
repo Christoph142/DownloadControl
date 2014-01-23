@@ -11,8 +11,8 @@ window.addEventListener("change", function(e) // save preferences:
 	if(e.target.id === "url" || e.target.id === "ext" || e.target.id === "dir") return; // saved via "Add"-button
 	
 	if(e.target.id.indexOf("defaultPath") !== -1){
-		if(e.target.id === "defaultPathBrowser")	var p = correct_path_format(e.target.value, "absolute");
-		else 										var p = correct_path_format(e.target.value, "relative");
+		if(e.target.id === "defaultPathBrowser")	var p = bg.correct_path_format(e.target.value, "absolute");
+		else 										var p = bg.correct_path_format(e.target.value, "relative");
 
 		if(p !== false) 	e.target.value = p;
 		else 				return;
@@ -122,21 +122,6 @@ function restoreprefs()
 	}
 }
 
-function make_array(ext_string){
-	ext_string = ext_string.split(" ").join(""); // remove all blanks
-	ext_string = ext_string.split(".").join(""); // remove all dots
-	
-	var ext_array = ext_string.toLowerCase().split(",");
-	for(var i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
-
-	return ext_array;
-}
-function getFileTypes(rule){
-	var ext_string = "";
-	for(var i in rule.ext) ext_string += (ext_string === "" ? "" : ", ") + rule.ext[i];
-	return ext_string;
-}
-
 function add_page_handling()
 {
 	// change subpages:
@@ -157,7 +142,7 @@ function add_page_handling()
 			alert( chrome.i18n.getMessage("incompleteInput") );
 		else 
 		{
-			var dir = correct_path_format(document.getElementById("dir").value, "relative");
+			var dir = bg.correct_path_format(document.getElementById("dir").value, "relative");
 			if(dir === false) return;
 
 			if(document.getElementById("ext").value === "")
@@ -167,12 +152,12 @@ function add_page_handling()
 			}
 			else if(document.getElementById("url").value === "")
 			{
-				storage.rules_ext[storage.rules_ext.length] = { "ext": make_array(document.getElementById("ext").value), "dir":dir };
+				storage.rules_ext[storage.rules_ext.length] = { "ext": bg.make_array(document.getElementById("ext").value), "dir":dir };
 				bg.save_new_value("rules_ext", storage.rules_ext, restoreprefs);
 			}
 			else /* url & ext */
 			{
-				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":make_array(document.getElementById("ext").value), "dir":dir };
+				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":bg.make_array(document.getElementById("ext").value), "dir":dir };
 				bg.save_new_value("rules_both", storage.rules_both, restoreprefs);
 			}
 		}
@@ -186,8 +171,8 @@ function add_page_handling()
 		var t = window.event.target;
 		var v = t.innerHTML;
 
-		if		(t.dataset.rule.indexOf(".ext") !== -1) v = make_array(t.innerHTML);
-		else if (t.dataset.rule.indexOf(".dir") !== -1) v = correct_path_format(t.innerHTML, "relative");
+		if		(t.dataset.rule.indexOf(".ext") !== -1) v = bg.make_array(t.innerHTML);
+		else if (t.dataset.rule.indexOf(".dir") !== -1) v = bg.correct_path_format(t.innerHTML, "relative");
 		
 		if(v !== false) bg.save_new_value(t.dataset.rule, v, restoreprefs);
 		t.removeEventListener("blur", handleChanges, false);
@@ -212,24 +197,6 @@ function add_page_handling()
 	
 	// prevent shifting of page caused by scrollbars:
 	scrollbarHandler.registerCenteredElement(document.getElementById('tool-container'));
-}
-
-function correct_path_format(p, type)
-{
-	if(p === "") return (type === "absolute" ? false : p);
-
-	p = p.replace(/\//gi, "\\");			// convert forward slashes into back slashes
-	if(p[0] === "\\") p = p.substring(1);	// no slash at beginning
-	if(p[p.length-1] !== "\\") p += "\\";	// slash at end
-	
-	if( (p[1] === ":" && type === "relative") || (p[1] !== ":" && type === "absolute") || (p[0] === "." && p[1] === ".") ){
-		if 		(p[1] === ":" && type === "relative")	alert( chrome.i18n.getMessage("pathAbsoluteError") );
-		else if (p[1] !== ":" && type === "absolute")	alert( chrome.i18n.getMessage("pathRelativeError") );
-		else 											alert( chrome.i18n.getMessage("pathOutsideError") );
-
-		return false;
-	}
-	else return p;
 }
 
 function localize()
@@ -270,4 +237,10 @@ function checkDefaultPathBrowser(callback){
 			If 'Ask where to save each file before downloading' is active, you may deactivate it and try the auto-detection again. If it isn't or you don't want to try again, copy the content of the 'Download location'-field and paste it to this page.\n\n\
 			You can repeat this automatic step if you need to see these instructions again.");
 	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check", "conflictAction" : "overwrite" });
+}
+
+function getFileTypes(rule){
+	var ext_string = "";
+	for(var i in rule.ext) ext_string += (ext_string === "" ? "" : ", ") + rule.ext[i];
+	return ext_string;
 }

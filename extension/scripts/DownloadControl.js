@@ -159,8 +159,8 @@ chrome.downloads.onChanged.addListener( function (change){
 				var d = ds[0];
 				w.suggestedRules[w.suggestedRules.length] = {
 					"url" : d.url.split("/")[2],
-					"ext" : d.filename.substring(d.filename.lastIndexOf(".")+1),
-					"dir" : d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\"))
+					"ext" : make_array( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
+					"dir" : correct_path_format( d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) )
 				};
 				save_new_value("suggestedRules", w.suggestedRules);
 				
@@ -186,6 +186,7 @@ chrome.commands.onCommand.addListener(function (e){
 });
 
 
+// helper functions:
 function save_new_value(key, value, callback)
 {
 	key = key.split("."); // split tree
@@ -205,4 +206,32 @@ function save_new_value(key, value, callback)
 	console.log("Saved", key, value, "settings now: ", w);
 
 	if(typeof callback === "function") callback();
+}
+
+function correct_path_format(p, type)
+{
+	if(p === "") return (type === "absolute" ? false : p);
+
+	p = p.replace(/\//gi, "\\");			// convert forward slashes into back slashes
+	if(p[0] === "\\") p = p.substring(1);	// no slash at beginning
+	if(p[p.length-1] !== "\\") p += "\\";	// slash at end
+	
+	if( (p[1] === ":" && type === "relative") || (p[1] !== ":" && type === "absolute") || (p[0] === "." && p[1] === ".") ){
+		if 		(p[1] === ":" && type === "relative")	alert( chrome.i18n.getMessage("pathAbsoluteError") );
+		else if (p[1] !== ":" && type === "absolute")	alert( chrome.i18n.getMessage("pathRelativeError") );
+		else 											alert( chrome.i18n.getMessage("pathOutsideError") );
+
+		return false;
+	}
+	else return p;
+}
+
+function make_array(ext_string){
+	ext_string = ext_string.split(" ").join(""); // remove all blanks
+	ext_string = ext_string.split(".").join(""); // remove all dots
+	
+	var ext_array = ext_string.toLowerCase().split(",");
+	for(var i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
+
+	return ext_array;
 }
