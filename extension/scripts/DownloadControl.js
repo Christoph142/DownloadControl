@@ -162,7 +162,7 @@ chrome.downloads.onChanged.addListener( function (change){
 					"ext" : make_array( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
 					"dir" : correct_path_format( d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) )
 				};
-				save_new_value("suggestedRules", w.suggestedRules);
+				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.extension.sendMessage({ "update" : "1" }); /* update options page if open */ });
 				
 				console.log("location changed inside default folder -> suggesting new rule", w.suggestedRules[w.suggestedRules.length-1], "for", d);
 			});

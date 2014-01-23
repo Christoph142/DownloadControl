@@ -30,6 +30,7 @@ window.addEventListener("change", function(e) // save preferences:
 	else bg.save_new_value(e.target.id, e.target.value);
 },false);
 
+chrome.extension.onMessage.addListener( restoreprefs );
 function restoreprefs()
 {
 	// get rules:
