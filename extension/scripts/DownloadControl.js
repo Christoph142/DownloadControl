@@ -145,7 +145,7 @@ function deleteFile(change_id){
 
 // check if file gets saved where Download Control expects it:
 chrome.downloads.onChanged.addListener( function (change){
-	if(!change.filename || !w[change.id]) return;
+	if(!change.filename || !w[change.id] || w.defaultPathBrowser.length < 3) return;
 	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
 	
 	// if folder is different than expected (outside of expected folder OR subfolder thereof):
@@ -157,11 +157,24 @@ chrome.downloads.onChanged.addListener( function (change){
 			chrome.downloads.search({ "id" : change.id }, function (ds)
 			{
 				var d = ds[0];
-				w.suggestedRules[w.suggestedRules.length] = {
-					"url" : d.url.split("/")[2],
+				var newRule = {
+					"dir" : correct_path_format( d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) ),
 					"ext" : make_array( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
-					"dir" : correct_path_format( d.filename.substring(w.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) )
+					"url" : d.url.split("/")[2]
 				};
+				var jsonRule = JSON.stringify(newRule);
+				
+				// check if rule got suggested earlier already:
+				for(var i = w.suggestedRules.length-1; i >= 0; i--)
+				{
+					if ( jsonRule === JSON.stringify(w.suggestedRules[i]) )
+					{
+						console.log("location changed inside default folder -> rule", w.suggestedRules[w.suggestedRules.length-1], "suggested earlier already");
+						return;
+					}
+				}
+
+				w.suggestedRules[w.suggestedRules.length] = newRule;
 				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.extension.sendMessage({ "update" : "1" }); /* update options page if open */ });
 				
 				console.log("location changed inside default folder -> suggesting new rule", w.suggestedRules[w.suggestedRules.length-1], "for", d);
@@ -226,12 +239,13 @@ function correct_path_format(p, type)
 	else return p;
 }
 
-function make_array(ext_string){
+function make_array(ext_string, may_be_empty)
+{
 	ext_string = ext_string.split(" ").join(""); // remove all blanks
 	ext_string = ext_string.split(".").join(""); // remove all dots
 	
 	var ext_array = ext_string.toLowerCase().split(",");
 	for(var i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
 
-	return ext_array;
+	return ( (ext_array.length > 0 || may_be_empty) ? ext_array : false );
 }
