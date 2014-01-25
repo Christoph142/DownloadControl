@@ -28,49 +28,50 @@
       <div id="content">
       
       	<div id="content0" class="invisible">
-          <h2 class="section-header i18n" data-i18n="welcome"></h2>
-          Let's start with a quick initial setup that's required for this extension to work properly.<br>
-          You can close this window to skip these 3 steps for now, but some functionality will not be working until you complete it.<br><br>
-          <h2 class="section-header i18n" data-i18n="letsgetstarted"></h2>
+          <h2 class="section-header i18n" data-i18n="welcome"></h2><!-- Welcome -->
+          <span class="i18n" data-i18n="intro1"></span><br>
+          <span class="i18n" data-i18n="intro2"></span><br>
+          <br>
+          <h2 class="section-header i18n" data-i18n="letsgetstarted"></h2><!-- Let's get started -->
           <div class="setting">
-            <h3 class="section-header">Step 1</h3>
-            <b>Download Control will determine a folder for each download you start according to the rules you set up</b><br>
-            Due to security restrictions this is only possible inside your browser's default download folder. As a consequence, you need to choose this folder in a way that it contains all folders that you want to save files at.<br>
-            <span class="example">e.g. if you want to save files at "C:\Users\You\Downloads\Stuff\" and "C:\Users\You\Documents\", the perfect choice would be "C:\Users\You\".</span><br>
+            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;1</h3><!-- Step 1 -->
+            <b class="i18n" data-i18n="step1"></b><br>
+            <span class="i18n" data-i18n="step1_1"></span><br>
+            <span class="example i18n" data-i18n="step1_2"></span><br>
             <br>
-            To specify this folder, go ahead now and
+            <span class="i18n" data-i18n="step1_3"></span>
             <ol>
-              <li>open settings (Alt+P)</li>
-              <li>scroll down to see "Download location"-setting in "Downloads"-section</li>
-              <li>click "Change..."</li>
-              <li>select the folder you want to use</li>
+              <li class="i18n" data-i18n="step1_4"></li>
+              <li class="i18n" data-i18n="step1_5"></li>
+              <li class="i18n" data-i18n="step1_6"></li>
+              <li class="i18n" data-i18n="step1_7"></li>
             </ol>
           </div>
           <div class="setting">
-          <h3 class="section-header">Step 2</h3>
-            <b>Download Control can make your life easy</b><br>
-            It can offer you to add a new rule whenever you choose to save a file at a location different from the one it expects this file to be saved at.<br>
-            If you don't need or want this feature, you can proceed with step 3.<br>
-            If you do want this feature to work, you need to tell Download Control the folder you just chose in step 1. Enter it in here:<br>
+            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;2</h3><!-- Step 2 -->
+            <b class="i18n" data-i18n="step2"></b><br>
+            <span class="i18n" data-i18n="step2_1"></span><br>
+            <span class="i18n" data-i18n="step2_2"></span><br>
+            <br>
             <br>
             <input type="text" id="defaultPathBrowser" placeholder="e.g. C:\Users\You\Downloads\" style="width:100%;"><br>
             <button class="i18n" data-i18n="checkDefaultPathBrowser" id="checkDefaultPathBrowser"></button><br>
             <br>
-            <b>Note: </b>Download Control will not work properly if this folder is incorrect. Remember to always change it in here if you change it in your browser's settings! 
+            <b class="i18n" data-i18n="note"></b> <span class="i18n" data-i18n="step2_4"></span>
           </div>
           <div class="setting">
-            <h3 class="section-header">Step 3</h3>
-            <b>A universal rule</b><br>
-            Changing your browser's default folder comes along with one disadvantage: your default folder changed (Oh, really?).<br>
-            In order to prevent all files that don't get matched by any of your rules from ending up in this folder, you need to tell Download Control the subfolder to save those at.<br>
-            <span class="example">e.g. if you want your default folder to be "C:\Users\You\Downloads\" and you set "C:\Users\You\" in step 1 (and 2), enter "Downloads\".</span><br>
+            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;3</h3><!-- Step 3 -->
+            <b class="i18n" data-i18n="step3"></b><br>
+            <span class="i18n" data-i18n="step3_1"></span><br>
+            <span class="i18n" data-i18n="step3_2"></span><br>
+            <span class="example i18n" data-i18n="step3_3"></span><br>
             <br>
             <input type="text" id="defaultPathAppendix" placeholder="e.g. Downloads\" style="width:100%;"><br>
           </div>
           <br>
-          <h2 class="section-header i18n" data-i18n="thatsit"></h2>
-          The initial setup is completed.<br>
-          If you want to, you can start creating some rules or have a look at Download Control's settings now.
+          <h2 class="section-header i18n" data-i18n="thatsit"></h2><!-- That's it -->
+          <span class="i18n" data-i18n="done1"></span><br>
+          <span class="i18n" data-i18n="done2"></span>          
         </div>
 
         <div id="content1" class="visible">
