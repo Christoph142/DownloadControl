@@ -15,7 +15,7 @@ window.addEventListener("change", function(e) // save preferences:
 		else 										var p = bg.correct_path_format(e.target.value, "relative");
 
 		if(p !== false) 	e.target.value = p;
-		else 				return;
+		else{ 				restoreprefs(); return; }
 	}
 	
 	if(e.target.type === "checkbox") bg.save_new_value(e.target.id, e.target.checked?"1":"0");
@@ -139,8 +139,7 @@ function add_page_handling()
 	
 	// save new rules:
 	document.getElementById("add_rule").addEventListener("click", function(){
-		if((document.getElementById("url").value === "" && document.getElementById("ext").value === "") || document.getElementById("dir").value === "")
-			alert( chrome.i18n.getMessage("incompleteInput") );
+		if(document.getElementById("url").value === "" && document.getElementById("ext").value === "") alert( chrome.i18n.getMessage("incompleteInput") );
 		else 
 		{
 			var dir = bg.correct_path_format(document.getElementById("dir").value, "relative");
@@ -171,11 +170,13 @@ function add_page_handling()
 	function handleChanges(){ // &nbsp; !!!
 		var t = window.event.target;
 		var v = t.innerHTML;
-
-		if		(t.dataset.rule.indexOf(".ext") !== -1) v = bg.make_array(t.innerHTML);
+		
+		if		(t.dataset.rule.indexOf(".ext") !== -1) v = bg.make_array(t.innerHTML, ( t.dataset.rule.indexOf("suggestedRules") !== -1 ? true : false) ); // make_array(string, may_be_empty)
 		else if (t.dataset.rule.indexOf(".dir") !== -1) v = bg.correct_path_format(t.innerHTML, "relative");
 		
 		if(v !== false) bg.save_new_value(t.dataset.rule, v, restoreprefs);
+		else 			restoreprefs();
+
 		t.removeEventListener("blur", handleChanges, false);
 	}
 
@@ -210,7 +211,7 @@ function localize()
 
 // preselect Initial Setup page if not initialized yet:
 function onInstall(){
-	if(storage.defaultPathBrowser) return;
+	if(storage.defaultPathBrowser.length > 2) return;
 
 	var m = document.getElementsByTagName("li");
 	m[0].className = "i18n menu selected";
