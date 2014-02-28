@@ -92,7 +92,7 @@ function adjustContextMenu(){
 function save(file){
 	chrome.downloads.download({ "url" : file }, function (downloadid){
 		if (downloadid !== undefined)	console.log("Saving ", file);
-		else							console.log(file, " is an invalid URL - downloading impossible");
+		else							console.error(file, " is an invalid URL - downloading impossible");
 	});
 }
 
@@ -107,7 +107,7 @@ function open(file){
 
 			console.log("Opening ", file);
 		}
-		else console.log(file, " is an invalid URL - downloading impossible");
+		else console.error(file, " is an invalid URL - downloading impossible");
 	});
 }
 
