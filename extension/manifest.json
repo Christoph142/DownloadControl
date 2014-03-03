@@ -15,7 +15,7 @@
 									"128": "images/128.png"
 								  },
   
-	"background"				: { "scripts": ["scripts/DownloadControl.js"] },
+	"background"				: { "scripts": ["scripts/DownloadControl.js"], "persistent" : false },
   
 	"permissions"				: [ "storage", "downloads", "downloads.open", "contextMenus" ],
 	"omnibox"					: { "keyword" : "download" },

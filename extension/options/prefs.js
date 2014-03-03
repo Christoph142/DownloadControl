@@ -3,8 +3,21 @@ window.addEventListener("DOMContentLoaded", restoreprefs, false);
 window.addEventListener("DOMContentLoaded", localize, false);
 window.addEventListener("DOMContentLoaded", add_page_handling, false);
 
-var bg = chrome.extension.getBackgroundPage();
-var storage = bg.w;
+var bg = null;
+var storage = null;
+var ready = false;
+
+chrome.runtime.getBackgroundPage( function (b){
+	bg = b;
+	storage = b.w;
+
+	if(!ready) ready = true;
+	else
+	{
+		onInstall();
+		restoreprefs();
+	}
+});
 
 window.addEventListener("change", function(e) // save preferences:
 {
@@ -30,9 +43,11 @@ window.addEventListener("change", function(e) // save preferences:
 	else bg.save_new_value(e.target.id, e.target.value);
 },false);
 
-chrome.extension.onMessage.addListener( restoreprefs );
+chrome.runtime.onMessage.addListener( restoreprefs );
 function restoreprefs()
 {
+	if(!ready){ ready = true; return; }
+
 	// get rules:
 	var rule_arrays = ["rules_both", "rules_url", "rules_ext", "suggestedRules"];
 	for(var i in rule_arrays)
@@ -156,17 +171,17 @@ function add_page_handling()
 
 			if(document.getElementById("ext").value === "")
 			{
-				storage.rules_url[storage.rules_url.length] = { "url":document.getElementById("url").value, "dir":dir };
+				storage.rules_url[storage.rules_url.length] = { "url" : document.getElementById("url").value, "dir" : dir };
 				bg.save_new_value("rules_url", storage.rules_url, restoreprefs);
 			}
 			else if(document.getElementById("url").value === "")
 			{
-				storage.rules_ext[storage.rules_ext.length] = { "ext": bg.make_array(document.getElementById("ext").value), "dir":dir };
+				storage.rules_ext[storage.rules_ext.length] = { "ext" : bg.make_array(document.getElementById("ext").value), "dir" : dir };
 				bg.save_new_value("rules_ext", storage.rules_ext, restoreprefs);
 			}
 			else /* url & ext */
 			{
-				storage.rules_both[storage.rules_both.length] = { "url":document.getElementById("url").value, "ext":bg.make_array(document.getElementById("ext").value), "dir":dir };
+				storage.rules_both[storage.rules_both.length] = { "url" : document.getElementById("url").value, "ext" : bg.make_array(document.getElementById("ext").value), "dir" : dir };
 				bg.save_new_value("rules_both", storage.rules_both, restoreprefs);
 			}
 		}
@@ -195,7 +210,7 @@ function add_page_handling()
 		document.getElementById("help").style.display = "none";
 	}, false);
 
-	// automatical default folder button:
+	// auto-detect default folder button:
 	document.getElementById("checkDefaultPathBrowser").addEventListener("click", function(){
 		checkDefaultPathBrowser( function(){
 			if(!storage.defaultPathBrowser) document.getElementById("checkDefaultPathBrowser").innerHTML = chrome.i18n.getMessage("auto_detection_failed");
@@ -224,6 +239,7 @@ function localize()
 
 // preselect Initial Setup page if not initialized yet:
 function onInstall(){
+	if(!ready) return;
 	if(storage.defaultPathBrowser.length > 2) return;
 
 	var m = document.getElementsByTagName("li");
