@@ -42,15 +42,15 @@ function restoreprefs()
 
 		// head:
 		var head = "<tr>";
-		if(rules !== "rules_ext") head += "<th>"+chrome.i18n.getMessage("website")+"</th>";
-		if(rules !== "rules_url") head += "<th>"+chrome.i18n.getMessage("file_types")+"</th>";
-		head += "<th>"+chrome.i18n.getMessage("directory")+"</th></tr>";
+		if(rules !== "rules_ext") head += "<th>" + chrome.i18n.getMessage("website") + "</th>";
+		if(rules !== "rules_url") head += "<th>" + chrome.i18n.getMessage("file_types") + "</th>";
+		head += "<th>" + chrome.i18n.getMessage("directory") + "</th></tr>";
 		rules_element.innerHTML = head;
 
 		// content:
 		for(var i = 0; i < storage[rules].length; i++)
 		{
-			var tr = "<tr class='rule'>";
+			var tr = "<tr class='rule' draggable='true' data-rule='"+rules+"."+i+"'>";
 			if(rules !== "rules_ext") tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".url'>"+storage[rules][i].url+"</td>";
 			if(rules !== "rules_url") tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".ext'>"+getFileTypes(storage[rules][i])+"</td>";
 			tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".dir'>"+storage[rules][i].dir+"</td>\
@@ -61,7 +61,7 @@ function restoreprefs()
 			rules_element.innerHTML += tr;
 		}
 		
-		if(storage[rules].length === 0) rules_element.innerHTML += "<br><span>No rules yet</span>";
+		if(storage[rules].length === 0) rules_element.innerHTML += "<br><span>" + chrome.i18n.getMessage("no_rules_yet") + "</span>";
 	}
 
 	// "delete rule"-buttons:
@@ -109,6 +109,15 @@ function restoreprefs()
 		}, false);
 	}
 	
+	// reorder rules:
+	var dragrules = document.getElementsByClassName("rule");
+	for(var i = 0; i < dragrules.length; i++){
+		dragrules[i].addEventListener("dragstart", dragstart, false);
+		dragrules[i].addEventListener("dragover", dragover, false);
+		dragrules[i].addEventListener("dragleave", dragleave, false);
+		dragrules[i].addEventListener("dragend", dragend, false);
+	}
+
 	// get inputs:
 	var inputs = document.getElementsByTagName("input");	
 	for(var i = 0; i < inputs.length; i++){
@@ -189,10 +198,10 @@ function add_page_handling()
 	// automatical default folder button:
 	document.getElementById("checkDefaultPathBrowser").addEventListener("click", function(){
 		checkDefaultPathBrowser( function(){
-			if(!storage.defaultPathBrowser) document.getElementById("checkDefaultPathBrowser").innerHTML = "Auto-detection failed. Retry?";
+			if(!storage.defaultPathBrowser) document.getElementById("checkDefaultPathBrowser").innerHTML = chrome.i18n.getMessage("auto_detection_failed");
 			else{
 				document.getElementById("defaultPathBrowser").value = storage.defaultPathBrowser;
-				document.getElementById("checkDefaultPathBrowser").innerHTML = "Auto-detection successful. Click to refresh if you changed it again";
+				document.getElementById("checkDefaultPathBrowser").innerHTML = chrome.i18n.getMessage("auto_detection_succeeded");
 			}
 		});
 	});
@@ -206,7 +215,11 @@ function localize()
 	if(chrome.i18n.getMessage("lang") === "ar" || chrome.i18n.getMessage("lang") === "ur_PK") document.body.dir = "rtl";
 	
 	var strings = document.getElementsByClassName("i18n");
-	for(var i = 0; i < strings.length; i++) strings[i].innerHTML = chrome.i18n.getMessage(strings[i].dataset.i18n) + strings[i].innerHTML;
+	for(var i = 0; i < strings.length; i++)
+	{
+		if (strings[i].nodeName === "INPUT") 	strings[i].placeholder = chrome.i18n.getMessage(strings[i].dataset.i18n);
+		else 									strings[i].innerHTML = chrome.i18n.getMessage(strings[i].dataset.i18n) + strings[i].innerHTML;
+	}
 }
 
 // preselect Initial Setup page if not initialized yet:
@@ -224,25 +237,55 @@ function onInstall(){
 // Determine Chrome/Opera's default download folder:
 function checkDefaultPathBrowser(callback){
 	chrome.downloads.onChanged.addListener( function (change){
-		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") > 0){
-
+		if(change.filename) if(change.filename.current.indexOf("DownloadControl.check") > 0)
 			bg.save_new_value("defaultPathBrowser", change.filename.current.split("DownloadControl")[0], callback);
-
-			// clean up:
-			chrome.downloads.cancel(change.id);		// if it's still in progress
-			chrome.downloads.removeFile(change.id); // if it already finished
+		if(change.state && storage.checkId) if(change.id === storage.checkId && change.state.current === "complete"){
+			// clean up at completion:
+			delete storage.checkId;
+			chrome.downloads.removeFile(change.id);
 			chrome.downloads.erase({ "id" : change.id });
 		}
 	});
-	alert("If this step opens up a file chooser dialog that prompts you to specify a download location, automatic determination doesn't work right now.\n\
-			In this case, cancel the dialog and open your browser's settings again.\n\
-			If 'Ask where to save each file before downloading' is active, you may deactivate it and try the auto-detection again. If it isn't or you don't want to try again, copy the content of the 'Download location'-field and paste it to this page.\n\n\
-			You can repeat this automatic step if you need to see these instructions again.");
-	chrome.downloads.download({ "url" : "chrome-extension://iccnbnkbhccimhmjoehjcbipkiogdfbc/options/DownloadControl.check", "conflictAction" : "overwrite" });
+	alert( chrome.i18n.getMessage("auto_detection1") + "\n" + chrome.i18n.getMessage("auto_detection2") + "\n" + chrome.i18n.getMessage("auto_detection3") + "\n\n" + chrome.i18n.getMessage("auto_detection4") );
+	chrome.downloads.download({
+		"url" : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/options/DownloadControl.check",
+		"conflictAction" : "overwrite" },
+		function (id){ storage.checkId = id; });
 }
 
 function getFileTypes(rule){
 	var ext_string = "";
 	for(var i in rule.ext) ext_string += (ext_string === "" ? "" : ", ") + rule.ext[i];
 	return ext_string;
+}
+
+// reorder rules:
+function dragstart(event){
+	console.log("start", event.target.dataset);
+}
+function dragover(event){
+	event.preventDefault(); // enable dropping
+	event.stopPropagation();
+
+	var sibblings = event.toElement.parentNode.childNodes;
+	for(var i = 0; i < sibblings.length; i++){
+		if(sibblings[i].nodeName !== "TD") continue;
+
+		sibblings[i].style.position = "relative";
+		sibblings[i].style.top = "20px";
+	}
+
+	//console.log(event);
+}
+function dragleave(event){
+	var sibblings = event.toElement.parentNode.childNodes;
+	for(var i = 0; i < sibblings.length; i++){
+		if(sibblings[i].nodeName !== "TD") continue;
+
+		sibblings[i].style.position = "relative";
+		sibblings[i].style.top = "0px";
+	}
+}
+function dragend(event){
+	console.log("end", event.target.dataset);
 }
