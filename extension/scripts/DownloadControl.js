@@ -71,13 +71,13 @@ chrome.downloads.onDeterminingFilename.addListener( function (download, suggest)
 });
 
 // omnibox keyword "download" to download entered file:
-chrome.omnibox.onInputEntered.addListener(function(file){
+chrome.omnibox.onInputEntered.addListener( function (file){
 	if(file.indexOf("://") === -1) file = "http://"+file;
 	save(file);
 });
 
 // contextMenu clicks:
-chrome.contextMenus.onClicked.addListener(function (e){
+chrome.contextMenus.onClicked.addListener( function (e){
 	if 		(e.menuItemId === "dc_save") save(e.linkUrl);
 	else if (e.menuItemId === "dc_open") open(e.linkUrl);
 });
@@ -96,7 +96,7 @@ function save(file){
 	});
 }
 
-// mark file to open on completion:
+// mark file to open at completion:
 function open(file){
 	chrome.downloads.download({ "url" : file }, function (downloadid){
 		if (downloadid !== undefined)
@@ -137,7 +137,7 @@ function deleteFile(change_id){
 		else
 		{
 			chrome.downloads.removeFile(downloads[0].id);
-			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 5000);
+			window.setTimeout( function(){ deleteFile(downloads[0].id); }, 10000);
 			console.log("still open");
 		}
 	});
