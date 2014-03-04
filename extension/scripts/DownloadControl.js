@@ -177,6 +177,18 @@ chrome.downloads.onChanged.addListener( function (change){
 				w.suggestedRules[w.suggestedRules.length] = newRule;
 				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.extension.sendMessage({ "update" : "1" }); /* update options page if open */ });
 				
+				if(chrome.notifications) chrome.notifications.create(
+					"DownloadControl",
+					{
+						"type" : "basic",
+						"iconUrl" : "icon96.png",
+						"title" : "New rule suggested",
+						"message" : "Click this notification to ",
+						"isClickable" : true
+					},
+					function (id){}
+				);	
+
 				console.log("location changed inside default folder -> suggesting new rule", w.suggestedRules[w.suggestedRules.length-1], "for", d);
 			});
 		}
@@ -198,6 +210,10 @@ chrome.commands.onCommand.addListener(function (e){
 	else				{}//save("");
 });
 
+// notification handling:
+if(chrome.notifications) chrome.notifications.onClicked.addListener( function (id){
+	if(id === "DownloadControl") chrome.tabs.create({ url : "options/options.html" });
+});
 
 // helper functions:
 function save_new_value(key, value, callback)

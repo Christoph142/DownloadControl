@@ -17,7 +17,7 @@
   
 	"background"				: { "scripts": ["scripts/DownloadControl.js"], "persistent" : false },
   
-	"permissions"				: [ "storage", "downloads", "downloads.open", "contextMenus" ],
+	"permissions"				: [ "storage", "downloads", "downloads.open", "contextMenus", "notifications" ],
 	"omnibox"					: { "keyword" : "download" },
 	"commands"					: {
 									"open" : { "suggested_key": { "default": "Ctrl+Shift+O", "mac": "Command+Shift+O" }, "description": "Open (clipboard content)" },
