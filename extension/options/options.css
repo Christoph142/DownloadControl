@@ -14,6 +14,7 @@ body {
   margin: 0;
   padding: 0;
   cursor:default;
+  direction: __MSG_@@bidi_dir__;
 }
 [contenteditable]{ cursor:text; }
 [contenteditable]:hover{ background:#DDD; }

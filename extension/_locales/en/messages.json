@@ -1,5 +1,4 @@
 {
-	"lang" :					{ "message" : "en" },
 	"description" :				{ "message" : "Manage your downloads" },
 	"by" :						{ "message" : "by" },
 	"rules" :					{ "message" : "Saving Rules"},

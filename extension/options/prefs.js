@@ -227,8 +227,6 @@ function add_page_handling()
 
 function localize()
 {
-	if(chrome.i18n.getMessage("lang") === "ar" || chrome.i18n.getMessage("lang") === "ur_PK") document.body.dir = "rtl";
-	
 	var strings = document.getElementsByClassName("i18n");
 	for(var i = 0; i < strings.length; i++)
 	{
