@@ -143,10 +143,6 @@
         "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
         "description": ""
     },
-    "lang": {
-        "message": "de",
-        "description": ""
-    },
     "step3_2": {
         "message": "Damit nicht alle Dateien, auf die keine deiner Regeln zutrifft, in diesem Ordner landen, musst du Download Control einen Unterordner nennen, in dem all diese Dateien gespeichert werden sollen.",
         "description": ""
