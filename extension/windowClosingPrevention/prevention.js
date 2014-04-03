@@ -1,0 +1,1 @@
+window.onbeforeunload = function(){ return "Download in progress!"; }

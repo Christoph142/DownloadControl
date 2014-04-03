@@ -11,14 +11,28 @@ chrome.storage.sync.get( null, function (storage){
 	"rules_both" 			:	(!storage["rules_both"]				? [] 				: storage["rules_both"]),
 	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
 	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"]),
-	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"])
+	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"]),
+	"preventClosing"		:	(!storage["preventClosing"]			? true 				: storage["preventClosing"])
 	};
 
 	adjustContextMenu(); // contextmenu entries
 });
 
+chrome.downloads.onDeterminingFilename.addListener( onDeterminingFilename );
+chrome.downloads.onChanged.addListener( onChanged );
+
+function onDeterminingFilename(download, suggest){
+	determineFolder(download, suggest);
+	preventBrowserClosing();
+}
+function onChanged(change){
+	openFile( change );
+	checkIfSavedInExpectedFolder( change );
+	removeBrowserClosingPrevention( change );
+}
+
 // determine correct location:
-chrome.downloads.onDeterminingFilename.addListener( function (download, suggest){
+function determineFolder(download, suggest){
 	if(download.byExtensionId === "iccnbnkbhccimhmjoehjcbipkiogdfbc" && download.filename.indexOf("DownloadControl.check") !== -1) return; // default folder check
 
 	var path = "";
@@ -68,13 +82,32 @@ chrome.downloads.onDeterminingFilename.addListener( function (download, suggest)
 
 	console.log("Determined path for ", download);
 	console.log("Suggested ", path);
-});
+}
 
-// omnibox keyword "download" to download entered file:
-chrome.omnibox.onInputEntered.addListener( function (file){
-	if(file.indexOf("://") === -1) file = "http://"+file;
-	save(file);
+// omnibox:
+chrome.omnibox.onInputStarted.addListener( handleOmnibox );
+chrome.omnibox.onInputChanged.addListener( handleOmnibox );
+chrome.omnibox.onInputEntered.addListener( function (string){
+	var s = string.split(" ");
+	for(var i = 0; i < s.length; i++) if(s[i] === "") s.splice(i, 1); // remove empty entries
+
+	if(!s[1]) // no keyword -> try to download it:
+		save( s[0].indexOf("://") > 0 ? s[0] : "http://"+s[0] );
+	else if(s[0] === "o" || s[0] === "open") // open
+		open( s[1].indexOf("://") > 0 ? s[1] : "http://"+s[1] );
+	else if(s[0] === "s" || s[0] === "search") // search
+	{
+		//chrome.downloads.search({ });
+	}
+	else console.log("User entered an invalid command into omnibox");
 });
+function handleOmnibox(text, suggest){
+	console.log(text);
+	suggest([
+		{ "content" : "open "+text, "description" : "Open "+text},
+		{ "content" : "search "+text, "description" : "Search a download containing "+text}
+	]);
+};
 
 // contextMenu clicks:
 chrome.contextMenus.onClicked.addListener( function (e){
@@ -112,7 +145,7 @@ function open(file){
 }
 
 // open files:
-chrome.downloads.onChanged.addListener( function (change){
+function openFile(change){
 	if(!change.state) return;
 	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
@@ -125,7 +158,7 @@ chrome.downloads.onChanged.addListener( function (change){
 		chrome.downloads.open( change.id );
 		window.setTimeout( function(){ deleteFile(change.id); }, 5000);
 	});
-});
+}
 
 function deleteFile(change_id){
 	chrome.downloads.search({id: change_id}, function (downloads){
@@ -144,7 +177,7 @@ function deleteFile(change_id){
 }
 
 // check if file gets saved where Download Control expects it:
-chrome.downloads.onChanged.addListener( function (change){
+function checkIfSavedInExpectedFolder (change){
 	if(!change.filename || !w[change.id] || w.defaultPathBrowser.length < 3) return;
 	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
 	
@@ -197,7 +230,7 @@ chrome.downloads.onChanged.addListener( function (change){
 	else 		console.log("location unchanged");
 	
 	delete w[change.id]; //clean up
-});
+}
 
 // show initial setup page after setup:
 chrome.runtime.onInstalled.addListener(function (e){
@@ -264,4 +297,23 @@ function make_array(ext_string, may_be_empty)
 	for(var i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
 
 	return ( (ext_array.length > 0 || may_be_empty) ? ext_array : false );
+}
+
+// prevent browser from closing while there are downloads in progress by opening a non-closable tab:
+function preventBrowserClosing(){
+	if( w.preventClosing === true ) chrome.tabs.create({
+		url : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/windowClosingPrevention/windowClosingPrevention.html",
+		active: false
+	}, function (tab){ w.preventClosing = tab.id });
+}
+// remove tab if no download is active anymore:
+function removeBrowserClosingPrevention(change){
+	console.log("change", w.preventClosing);
+	if(!change.state || w.preventClosing === true || w.preventClosing === false) return;
+	chrome.downloads.search({ state : "in_progress" }, function (results){
+		if( results.length > 0 ) return;
+
+		chrome.tabs.remove( w.preventClosing );
+		w.preventClosing = true;
+	});
 }
