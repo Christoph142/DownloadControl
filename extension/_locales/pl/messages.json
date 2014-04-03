@@ -1,0 +1,270 @@
+{
+    "welcome": {
+        "message": "Witaj",
+        "description": ""
+    },
+    "incompleteInput": {
+        "message": "Musisz wprowadzić stronę i/lub co najmniej 1 typ pliku dla reguły, aby miało to sens.",
+        "description": ""
+    },
+    "auto_detection3": {
+        "message": "If you don't know it just cancel the dialog and go back into browser settings, copy the content of the \"Download location\"-field and paste it to this page.",
+        "description": ""
+    },
+    "settings": {
+        "message": "Ustawienia",
+        "description": ""
+    },
+    "contextMenu": {
+        "message": "Które wpisy chcesz, aby rozszerzenie dodało je do menu kontekstowego?",
+        "description": ""
+    },
+    "step3_3": {
+        "message": "np.: jeśli chcesz, by twoim domyślnym folderem był \"C:\\Użytkownicy\\Ty\\Pobieranie\\\", a ustawiesz \"C:\\Użytkownicy\\Ty\\\" w kroku 1 (i 2), wybierz \"Pobieranie\\\".",
+        "description": ""
+    },
+    "intro2": {
+        "message": "Możesz zamknąć to okno, aby pominąć póki co te 3 kroki, ale kilka funkcjonalności nie będzie działać do momentu ich ukończenia.",
+        "description": ""
+    },
+    "conflictAction": {
+        "message": "Co powinno się stać, jeśli plik z taką samą nazwą już istnieje w określonej lokalizacji?",
+        "description": ""
+    },
+    "auto_detection1": {
+        "message": "Depending on your browser settings automatic determination may not work.",
+        "description": ""
+    },
+    "suggestedRules": {
+        "message": "Możliwe nowe reguły",
+        "description": ""
+    },
+    "directory": {
+        "message": "Katalog",
+        "description": ""
+    },
+    "by": {
+        "message": "przez",
+        "description": ""
+    },
+    "website": {
+        "message": "Strona internetowa",
+        "description": ""
+    },
+    "placeholder3": {
+        "message": "np.: \"google.pl\" lub \"przykladowy-url.org/x\"",
+        "description": ""
+    },
+    "prompt": {
+        "message": "Zapytaj mnie",
+        "description": ""
+    },
+    "done2": {
+        "message": "If you want to, you can start creating some rules or have a look at Download Control's settings now.",
+        "description": ""
+    },
+    "step1_3": {
+        "message": "Aby sprecyzować ten folder",
+        "description": ""
+    },
+    "new_rule": {
+        "message": "Dodaj nową regułę",
+        "description": ""
+    },
+    "placeholder4": {
+        "message": "np.: \"pdf, doc\"",
+        "description": ""
+    },
+    "intro1": {
+        "message": "Zacznijmy od szybkiej wstępnej konfiguracji, która jest niezbędna dla tego rozszerzenia, aby działało poprawnie.",
+        "description": ""
+    },
+    "initialSetup": {
+        "message": "Wstępna konfiguracja",
+        "description": ""
+    },
+    "step2_2": {
+        "message": "Jeśli nie potrzebujesz lub nie chcesz tej funkcji, przejdź do kroku nr 3.",
+        "description": ""
+    },
+    "checkDefaultPathBrowser": {
+        "message": "Spróbuj wykryć domyślną lokalizację pobierania twojej przeglądarki automatycznie",
+        "description": ""
+    },
+    "step3": {
+        "message": "Uniwersalna reguła",
+        "description": ""
+    },
+    "step1_6": {
+        "message": "kliknij \"Zmień...\"",
+        "description": ""
+    },
+    "open": {
+        "message": "Otwórz",
+        "description": ""
+    },
+    "step1_2": {
+        "message": "np.: jeśli chcesz zapisać pliki w \"C:\\Użytkownicy\\Ty\\Pobieranie\\Rzeczy\\\" i \"C:\\Użytkownicy\\Ty\\Dokoumenty\\\", najlepszym wyborem będzie \"C:\\Użytkownicy\\Ty\\\".",
+        "description": ""
+    },
+    "step2_1": {
+        "message": "To może zaproponować nowe reguły",
+        "description": ""
+    },
+    "step1_5": {
+        "message": "Przewiń w dół, aby znaleźć opcję \"Lokalizacja pobierania\" (musisz najpierw kliknąć \"Pokaż zaawansowane ustawienia...\" w Google Chrome)",
+        "description": ""
+    },
+    "rules_ext": {
+        "message": "Tylko typ pliku",
+        "description": ""
+    },
+    "pathRelativeError": {
+        "message": "Ścieżki względne są tutaj niedozwolone.\nMuszą się one zaczynać od litery twojego dysku twardego, np.: \"C:\\\"",
+        "description": ""
+    },
+    "rules": {
+        "message": "Zapisz reguły",
+        "description": ""
+    },
+    "rules_both": {
+        "message": "Strona i typ pliku",
+        "description": ""
+    },
+    "thatsit": {
+        "message": "To wszystko",
+        "description": ""
+    },
+    "step1_7": {
+        "message": "wybierz folder, którego chcesz użyć.",
+        "description": ""
+    },
+    "footer": {
+        "message": "Dziękuję za zainstalowanie tego rozszerzenia. Możesz skontaktować się ze mną w dowolnym czasie w celu odzewu i pytań. ",
+        "description": ""
+    },
+    "step3_2": {
+        "message": "In order to prevent all files that don't get matched by any of your rules from ending up in this folder, you need to tell Download Control the subfolder to save those at.",
+        "description": ""
+    },
+    "placeholder1": {
+        "message": "np.: C:\\Użytkownicy\\Ty\\Pobieranie\\",
+        "description": ""
+    },
+    "pathOutsideError": {
+        "message": "Możesz wybrać tylko foldery wewnątrz twojego domyślnego folderu pobierania.\nJeśli chcesz użyć folderu, który jest na zewnątrz niego, zmień najpierw w ustawieniach przeglądarki twój domyślny folder pobierania, który będzie zawierał wszystkie foldery, które chcesz, a wtedy użyj tutaj pola Domyślna lokalizacja pobierania, aby upewnić się, że wszystkie pliki, które nie są zajmowane przez dowolną z twoich reguł trafią do poprawnego folderu.",
+        "description": ""
+    },
+    "defaultPathBrowser": {
+        "message": "Domyślna lokalizacja pobierania plików twojej przeglądarki",
+        "description": ""
+    },
+    "step3_1": {
+        "message": "Changing your browser's default folder comes along with one disadvantage: your default folder changed (\"No, really?\").",
+        "description": ""
+    },
+    "auto_detection4": {
+        "message": "Możesz bezpiecznie powtórzyć ten krok, jeśli potrzebujesz zobaczyć te instrukcje ponownie.",
+        "description": ""
+    },
+    "step1_4": {
+        "message": "otwórz ustawienia (poprzez skrót Alt+P w Operze)",
+        "description": ""
+    },
+    "auto_detection_failed": {
+        "message": "Automatyczne wykrywanie nie powiodło się. Powtórzyć?",
+        "description": ""
+    },
+    "no_rules_yet": {
+        "message": "Brak reguł póki co",
+        "description": ""
+    },
+    "note": {
+        "message": "Uwaga:",
+        "description": ""
+    },
+    "save": {
+        "message": "Zapisz",
+        "description": ""
+    },
+    "step2_3": {
+        "message": "Jednakże, jeśli chcesz, żeby ta funkcja działała, musisz wskazać \"Kontrolerowi pobierania\" folder, który wybrałeś w kroku 1. Wskaż go tutaj:",
+        "description": ""
+    },
+    "rules_url": {
+        "message": "Tylko strona internetowa",
+        "description": ""
+    },
+    "step": {
+        "message": "Krok",
+        "description": ""
+    },
+    "placeholder5": {
+        "message": "np.: ścieżka\\do\\twojego\\pliku\\",
+        "description": ""
+    },
+    "add": {
+        "message": "Dodaj",
+        "description": ""
+    },
+    "uniquify": {
+        "message": "Pobierz mimo to i zapisz z numerem przed nazwą pliku",
+        "description": ""
+    },
+    "defaultPath": {
+        "message": "Domyślna lokalizacja pobierania plików",
+        "description": ""
+    },
+    "step2": {
+        "message": "\"Kontroler pobierania\" potrafi ułatwić Ci życie",
+        "description": ""
+    },
+    "file_types": {
+        "message": "Typy plików",
+        "description": ""
+    },
+    "done1": {
+        "message": "Ustawienia wstępne zakończone.",
+        "description": ""
+    },
+    "auto_detection_succeeded": {
+        "message": "Automatyczne wykrywanie powiodło się. Kliknij, aby odświeżyć, jeśli ponownie to zmieniłeś.",
+        "description": ""
+    },
+    "step2_4": {
+        "message": "\"Kontroler pobierania\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
+        "description": ""
+    },
+    "step1": {
+        "message": "\"Kontroler pobierania\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
+        "description": ""
+    },
+    "step1_1": {
+        "message": "Ze względu na restrykcje bezpieczeństwa, jest to możliwe tylko wewnątrz domyślnego folderu pobierania twojej przeglądarki. W związku z tym, musisz wybrać ten folder, który zawiera wszystkie foldery, w których chcesz zapisywać pliki.",
+        "description": ""
+    },
+    "letsgetstarted": {
+        "message": "Zacznijmy",
+        "description": ""
+    },
+    "pathAbsoluteError": {
+        "message": "Ścieżki bezwzględne są tutaj niedozwolone.\nMusisz uczynić je względne do twojego domyślnego folderu pobierania.",
+        "description": ""
+    },
+    "placeholder2": {
+        "message": "np.: Pobieranie\\",
+        "description": ""
+    },
+    "description": {
+        "message": "Zarządzaj swoimi pobranymi plikami",
+        "description": ""
+    },
+    "auto_detection2": {
+        "message": "So if this step opens a file chooser dialog that prompts you to specify a download location, you may select your default download folder instead if you want to (don't alter the file name!).",
+        "description": ""
+    },
+    "overwrite": {
+        "message": "Nadpisz istniejący plik",
+        "description": ""
+    }
+}
