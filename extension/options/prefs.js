@@ -171,16 +171,19 @@ function add_page_handling()
 
 			if(document.getElementById("ext").value === "")
 			{
+				//#### duplication check
 				storage.rules_url[storage.rules_url.length] = { "url" : document.getElementById("url").value, "dir" : dir };
 				bg.save_new_value("rules_url", storage.rules_url, restoreprefs);
 			}
 			else if(document.getElementById("url").value === "")
 			{
+				//#### duplication check
 				storage.rules_ext[storage.rules_ext.length] = { "ext" : bg.make_array(document.getElementById("ext").value), "dir" : dir };
 				bg.save_new_value("rules_ext", storage.rules_ext, restoreprefs);
 			}
 			else /* url & ext */
 			{
+				//#### duplication check
 				storage.rules_both[storage.rules_both.length] = { "url" : document.getElementById("url").value, "ext" : bg.make_array(document.getElementById("ext").value), "dir" : dir };
 				bg.save_new_value("rules_both", storage.rules_both, restoreprefs);
 			}
