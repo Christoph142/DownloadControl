@@ -116,7 +116,7 @@
         "description": ""
     },
     "downloadInProgress": {
-        "message": "Currently there's a download in progress.\nYou will have to restart from the beginning if you close your browser now.",
+        "message": "W tej chwili trwa pobieranie.\nBędziesz musiał pobrać każdy plik od początku, jeśli zamkniesz teraz przeglądarkę.",
         "description": ""
     },
     "rules_ext": {
@@ -216,7 +216,7 @@
         "description": ""
     },
     "preventClosing": {
-        "message": "Ask for confirmation before closing the browser while there are downloads in progress",
+        "message": "Pytaj o potwierdzenie przed zamknięciem przeglądarki, podczas gdy trwa pobieranie.",
         "description": ""
     },
     "defaultPath": {
