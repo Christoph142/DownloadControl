@@ -31,7 +31,7 @@ window.addEventListener("change", function(e) // save preferences:
 		else{ 				restoreprefs(); return; }
 	}
 	
-	if(e.target.type === "checkbox") bg.save_new_value(e.target.id, e.target.checked?"1":"0");
+	if(e.target.type === "checkbox") bg.save_new_value(e.target.id, e.target.checked ? "1" : "0");
 	else if(e.target.type === "radio")
 	{
 		var radio = document.getElementsByName(e.target.name);

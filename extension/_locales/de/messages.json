@@ -115,6 +115,10 @@
         "message": "Scrolle nach unten zur \"Download-Ordner\"-Einstellung (in Chrome musst du zuerst auf \"Zeige erweiterte Einstellungen...\" klicken)",
         "description": ""
     },
+    "downloadInProgress": {
+        "message": "Momentan ist ein Download aktiv.\nDu musst mit dem Herunterladen komplett von vorne anfangen, wenn du deinen Browser jetzt schließt.",
+        "description": ""
+    },
     "rules_ext": {
         "message": "Nur Datei-Typ",
         "description": ""
@@ -209,6 +213,10 @@
     },
     "uniquify": {
         "message": "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen",
+        "description": ""
+    },
+    "preventClosing": {
+        "message": "Schließen des Browsers nur nach Bestätigung wenn Downloads aktiv sind",
         "description": ""
     },
     "defaultPath": {

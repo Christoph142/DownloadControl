@@ -33,6 +33,8 @@
 	"contextMenu" :				{ "message" : "Which entries do you want the extension to add to context menu?"},
 	"save" :					{ "message" : "Save"},
 	"open" :					{ "message" : "Open"},
+	"preventClosing" :			{ "message" : "Ask for confirmation before closing the browser while there are downloads in progress"},
+	"downloadInProgress" :		{ "message" : "Currently there's a download in progress.\nYou will have to restart from the beginning if you close your browser now."},
 	"initialSetup" :			{ "message" : "Initial Setup"},
 	"welcome" :					{ "message" : "Welcome"},
 	"intro1" :					{ "message" : "Let's start with a quick initial setup that's required for this extension to work properly."},

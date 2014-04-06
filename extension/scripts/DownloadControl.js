@@ -12,7 +12,7 @@ chrome.storage.sync.get( null, function (storage){
 	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
 	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"]),
 	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"]),
-	"preventClosing"		:	(!storage["preventClosing"]			? true 				: storage["preventClosing"])
+	"preventClosing"		:	(!storage["preventClosing"]			? "1" 				: storage["preventClosing"])
 	};
 
 	adjustContextMenu(); // contextmenu entries
@@ -301,19 +301,18 @@ function make_array(ext_string, may_be_empty)
 
 // prevent browser from closing while there are downloads in progress by opening a non-closable tab:
 function preventBrowserClosing(){
-	if( w.preventClosing === true ) chrome.tabs.create({
+	if( w.preventClosing === "1" ) chrome.tabs.create({
 		url : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/windowClosingPrevention/windowClosingPrevention.html",
 		active: false
 	}, function (tab){ w.preventClosing = tab.id });
 }
 // remove tab if no download is active anymore:
 function removeBrowserClosingPrevention(change){
-	console.log("change", w.preventClosing);
-	if(!change.state || w.preventClosing === true || w.preventClosing === false) return;
+	if(!change.state || w.preventClosing === "1" || w.preventClosing === "0") return;
 	chrome.downloads.search({ state : "in_progress" }, function (results){
 		if( results.length > 0 ) return;
 
 		chrome.tabs.remove( w.preventClosing );
-		w.preventClosing = true;
+		w.preventClosing = "1";
 	});
 }

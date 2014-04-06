@@ -1,1 +1,1 @@
-window.onbeforeunload = function(){ return "Download in progress!"; }
+window.onbeforeunload = function(){ return chrome.i18n.getMessage("downloadInProgress"); }
