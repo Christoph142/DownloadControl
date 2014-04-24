@@ -18,12 +18,14 @@ chrome.storage.sync.get( null, function (storage){
 	adjustContextMenu(); // contextmenu entries
 });
 
+
+chrome.runtime.onStartup.addListener(function(){/* make extension start once before downloading to prevent first download from ending up in default folder */});
 chrome.downloads.onDeterminingFilename.addListener( onDeterminingFilename );
 chrome.downloads.onChanged.addListener( onChanged );
 
 function onDeterminingFilename(download, suggest){
 	determineFolder(download, suggest);
-	preventBrowserClosing();
+	if(!download.byExtensionId || download.filename.indexOf("DownloadControl.check") === -1) preventBrowserClosing(); // default folder check
 }
 function onChanged(change){
 	openFile( change );
@@ -33,7 +35,7 @@ function onChanged(change){
 
 // determine correct location:
 function determineFolder(download, suggest){
-	if(download.byExtensionId === "iccnbnkbhccimhmjoehjcbipkiogdfbc" && download.filename.indexOf("DownloadControl.check") !== -1) return; // default folder check
+	if(download.byExtensionId === chrome.i18n.getMessage("@@extension_id") && download.filename.indexOf("DownloadControl.check") !== -1) return; // default folder check
 
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
@@ -208,7 +210,7 @@ function checkIfSavedInExpectedFolder (change){
 				}
 
 				w.suggestedRules[w.suggestedRules.length] = newRule;
-				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.extension.sendMessage({ "update" : "1" }); /* update options page if open */ });
+				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
 				
 				if(chrome.notifications) chrome.notifications.create(
 					"DownloadControl",
@@ -302,17 +304,17 @@ function make_array(ext_string, may_be_empty)
 // prevent browser from closing while there are downloads in progress by opening a non-closable tab:
 function preventBrowserClosing(){
 	if( w.preventClosing === "1" ) chrome.tabs.create({
-		url : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/windowClosingPrevention/windowClosingPrevention.html",
+		url : "windowClosingPrevention/windowClosingPrevention.html",
 		active: false
-	}, function (tab){ w.preventClosing = tab.id });
+	}, function (tab){});
 }
+
 // remove tab if no download is active anymore:
 function removeBrowserClosingPrevention(change){
-	if(!change.state || w.preventClosing === "1" || w.preventClosing === "0") return;
+	if(!change.state || w.preventClosing !== "1") return;
 	chrome.downloads.search({ state : "in_progress" }, function (results){
 		if( results.length > 0 ) return;
 
-		chrome.tabs.remove( w.preventClosing );
-		w.preventClosing = "1";
+		chrome.runtime.sendMessage({ "data" : "allDownloadsFinished" });
 	});
 }
