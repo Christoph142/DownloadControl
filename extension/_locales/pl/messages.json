@@ -44,7 +44,7 @@
         "description": ""
     },
     "by": {
-        "message": "przez",
+        "message": "Autor: ",
         "description": ""
     },
     "website": {
@@ -96,7 +96,11 @@
         "description": ""
     },
     "step1_6": {
-        "message": "kliknij \"Zmień...\"",
+        "message": "Kliknij \"Zmień...\"",
+        "description": ""
+    },
+    "fileDeleted": {
+        "message": "Kiedy pobrany plik został usunięty/przeniesiony",
         "description": ""
     },
     "open": {
@@ -108,7 +112,7 @@
         "description": ""
     },
     "step2_1": {
-        "message": "To może zaproponować nowe reguły gdy zdecydujesz się zapisać plik w lokalizacji innej niż ta, która oczekuje tego pliku do zapisania.",
+        "message": "Może on zaproponować nowe reguły, gdy zdecydujesz się zapisać plik w lokalizacji innej niż ta, która oczekuje tego pliku do zapisania.",
         "description": ""
     },
     "step1_5": {
@@ -127,6 +131,10 @@
         "message": "Ścieżki względne są tutaj niedozwolone.\nMuszą się one zaczynać od litery twojego dysku twardego, np.: \"C:\\\"",
         "description": ""
     },
+    "removeFromListWhen": {
+        "message": "Automatycznie usuń pobierany/pobrany plik z historii pobierań przeglądarki",
+        "description": ""
+    },
     "rules": {
         "message": "Zapisz reguły",
         "description": ""
@@ -140,7 +148,7 @@
         "description": ""
     },
     "step1_7": {
-        "message": "wybierz folder, którego chcesz użyć.",
+        "message": "Wybierz folder, którego chcesz użyć.",
         "description": ""
     },
     "footer": {
@@ -148,7 +156,7 @@
         "description": ""
     },
     "step3_2": {
-        "message": "W celu uniknięcia wszystkich plików, które nie są dopasowane do dowolnej z twoich reguł kończących się w tym folderze, musisz powiedzieć \"Kontrolerowi pobierania\" gdzie zapiszesz je w podfolderze.",
+        "message": "W celu uniknięcia wszystkich plików, które nie są dopasowane do dowolnej z twoich reguł kończących się w tym folderze, musisz dać znać \"Download Control\" gdzie zapiszesz je w podfolderze.",
         "description": ""
     },
     "placeholder1": {
@@ -171,8 +179,12 @@
         "message": "Możesz bezpiecznie powtórzyć ten krok, jeśli potrzebujesz zobaczyć te instrukcje ponownie.",
         "description": ""
     },
+    "never": {
+        "message": "Nigdy",
+        "description": ""
+    },
     "step1_4": {
-        "message": "otwórz ustawienia (poprzez skrót Alt+P w Operze)",
+        "message": "Otwórz ustawienia (poprzez skrót Alt+P w Operze)",
         "description": ""
     },
     "auto_detection_failed": {
@@ -180,7 +192,7 @@
         "description": ""
     },
     "no_rules_yet": {
-        "message": "Brak reguł póki co",
+        "message": "Obecnie nie ma reguł.",
         "description": ""
     },
     "note": {
@@ -224,11 +236,15 @@
         "description": ""
     },
     "step2": {
-        "message": "\"Kontroler pobierania\" potrafi ułatwić Ci życie",
+        "message": "\"Download Control\" potrafi ułatwić Ci życie",
         "description": ""
     },
     "file_types": {
         "message": "Typy plików",
+        "description": ""
+    },
+    "finished": {
+        "message": "Tak szybko jak skończyło się pobieranie",
         "description": ""
     },
     "done1": {
@@ -240,11 +256,11 @@
         "description": ""
     },
     "step2_4": {
-        "message": "\"Kontroler pobierania\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
+        "message": "\"Download Control\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
         "description": ""
     },
     "step1": {
-        "message": "\"Kontroler pobierania\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
+        "message": "\"Download Control\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
         "description": ""
     },
     "step1_1": {
@@ -264,7 +280,7 @@
         "description": ""
     },
     "description": {
-        "message": "Zarządzaj swoimi pobranymi plikami",
+        "message": "Zarządzaj swoimi pobieranymi plikami",
         "description": ""
     },
     "auto_detection2": {
