@@ -5,6 +5,7 @@ var w = {};
 chrome.storage.sync.get( null, function (storage){
 	w = {
 	"conflictAction"		:	(!storage["conflictAction"] 		? "prompt"			: storage["conflictAction"]),
+	"removeFromListWhen"	:	(!storage["removeFromListWhen"]		? "fileDeleted"		: storage["removeFromListWhen"]),
 	"contextMenu"			:	(!storage["contextMenu"	] 			? { "open" : "1" }	: storage["contextMenu"	]),
 	"defaultPathBrowser"	:	(!storage["defaultPathBrowser"] 	? ""				: storage["defaultPathBrowser"]),
 	"defaultPathAppendix"	:	(!storage["defaultPathAppendix"] 	? ""				: storage["defaultPathAppendix"]),
@@ -31,6 +32,7 @@ function onChanged(change){
 	openFile( change );
 	checkIfSavedInExpectedFolder( change );
 	removeBrowserClosingPrevention( change );
+	removeDownloadFromList( change );
 }
 
 // determine correct location:
@@ -317,4 +319,10 @@ function removeBrowserClosingPrevention(change){
 
 		chrome.runtime.sendMessage({ "data" : "allDownloadsFinished" });
 	});
+}
+
+// remove downloads from Downloads history:
+function removeDownloadFromList(change){
+	if( w.removeFromListWhen === "finished" && change.state) if( change.state.current === "complete" ) chrome.downloads.erase({"state" : "complete"});
+	if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
 }

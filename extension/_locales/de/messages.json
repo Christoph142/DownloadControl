@@ -99,6 +99,10 @@
         "message": "klicke auf \"Ändern...\"",
         "description": ""
     },
+    "fileDeleted": {
+        "message": "wenn die heruntergeladene Datei gelöscht / verschoben wurde",
+        "description": ""
+    },
     "open": {
         "message": "Öffnen",
         "description": ""
@@ -125,6 +129,10 @@
     },
     "pathRelativeError": {
         "message": "Relative Pfade sind hier nicht erlaubt.\nEs muss mit dem Buchstaben deines Laufwerks starten, z.B. \"C:\\\"",
+        "description": ""
+    },
+    "removeFromListWhen": {
+        "message": "Entferne Downloads automatisch aus dem Download-Verlauf des Browsers",
         "description": ""
     },
     "rules": {
@@ -169,6 +177,10 @@
     },
     "auto_detection4": {
         "message": "Du kannst diesen automatischen Schritt gefahrlos wiederholen, wenn du diese Anweisungen noch einmal sehen willst.",
+        "description": ""
+    },
+    "never": {
+        "message": "niemals",
         "description": ""
     },
     "step1_4": {
@@ -229,6 +241,10 @@
     },
     "file_types": {
         "message": "Datei-Typen",
+        "description": ""
+    },
+    "finished": {
+        "message": "sobald der Download beendet ist",
         "description": ""
     },
     "done1": {
