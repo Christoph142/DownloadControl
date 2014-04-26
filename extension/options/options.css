@@ -312,10 +312,13 @@ a {
 .rule:hover{ background:#CCC; }
 .delete_rule{ width:19px; border-radius:5px; color:#F30; font-weight:bold; cursor:pointer; }
 .rule:hover > .delete_rule{ background:#FFD2B7;}
-.rule:hover > .delete_rule::before{ content:"✗"; position:relative; left:6px; bottom:3px; }
+.rule:hover > .delete_rule::before{ content:"✗"; position:relative; left:6px; bottom:2px; }
 .adopt_rule{ width:19px; border-radius:5px; color:#4B5; font-weight:bold; cursor:pointer; }
 .rule:hover > .adopt_rule{ background:#7D8;}
-.rule:hover > .adopt_rule::before{ content:"✓"; position:relative; left:6px; bottom:3px; }
+.rule:hover > .adopt_rule::before{ content:"✓"; position:relative; left:6px; bottom:1px; }
+.move_rule_up{ width:19px; border-radius:5px; color:#888; font-weight:bold; cursor:pointer; }
+.rule:hover > .move_rule_up{ background:#CCC;}
+.rule:hover > .move_rule_up::before{ content:"▲"; position:relative; left:5px; bottom:1px; }
 
 .example  { color: #7B8; }
 #defaultPath{ width:100%; }

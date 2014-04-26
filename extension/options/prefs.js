@@ -70,7 +70,8 @@ function restoreprefs()
 			if(rules !== "rules_url") tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".ext'>"+getFileTypes(storage[rules][i])+"</td>";
 			tr += "<td contenteditable spellcheck='false' data-rule='"+rules+"."+i+".dir'>"+storage[rules][i].dir+"</td>\
 				   <td class='delete_rule' data-nr='"+i+"' data-from='"+rules+"'></td>";
-			if(rules === "suggestedRules") tr += "<td class='adopt_rule' data-nr='"+i+"'></td>";
+			if(rules === "suggestedRules") 	tr += "<td class='adopt_rule' data-nr='"+i+"'></td>";
+			else if(i > 0)					tr += "<td class='move_rule_up' data-from='"+rules+"' data-nr='"+i+"'></td>";
 			tr += "</tr>";
 
 			rules_element.innerHTML += tr;
@@ -85,6 +86,18 @@ function restoreprefs()
 	{
 		delete_rule_buttons[i].addEventListener("click", function(){
 			storage[this.dataset.from].splice([this.dataset.nr], 1);
+			bg.save_new_value(this.dataset.from, storage[this.dataset.from], restoreprefs);
+		}, false);
+	}
+
+	// "move rule up"-buttons:
+	var move_rule_up_buttons = document.getElementsByClassName("move_rule_up");
+	for(var i = 0; i < move_rule_up_buttons.length; i++)
+	{
+		move_rule_up_buttons[i].addEventListener("click", function(){
+			var helper = storage[this.dataset.from][this.dataset.nr-1];
+			storage[this.dataset.from][this.dataset.nr-1] = storage[this.dataset.from][this.dataset.nr];
+			storage[this.dataset.from][this.dataset.nr] = helper;
 			bg.save_new_value(this.dataset.from, storage[this.dataset.from], restoreprefs);
 		}, false);
 	}
