@@ -166,6 +166,8 @@ function openFile(change){
 
 function deleteFile(change_id){
 	chrome.downloads.search({id: change_id}, function (downloads){
+		if(downloads.length === 0) return; // download got removed already
+
 		if(!downloads[0].exists)
 		{
 			chrome.downloads.erase({ id: downloads[0].id });
@@ -323,6 +325,10 @@ function removeBrowserClosingPrevention(change){
 
 // remove downloads from Downloads history:
 function removeDownloadFromList(change){
-	if( w.removeFromListWhen === "finished" && change.state) if( change.state.current === "complete" ) chrome.downloads.erase({"state" : "complete"});
+	if( w.removeFromListWhen === "finished" && change.state) if( change.state.current === "complete" )
+		chrome.storage.local.get( change.id.toString(), function (l){
+			if(l[ change.id.toString() ] !== undefined) return;	// don't remove just yet if file is supposed to get opened by extension
+			chrome.downloads.erase({"state" : "complete"});
+		});
 	if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
 }
