@@ -41,7 +41,8 @@ function determineFolder(download, suggest){
 
 	var path = "";
 	var filetype = download.filename.substring(download.filename.lastIndexOf(".")+1);
-	
+	var matched = false;
+
 	// check for matching rules with URL and file type first:
 	for(var i = 0; i < w.rules_both.length; i++)
 	{
@@ -49,33 +50,36 @@ function determineFolder(download, suggest){
 		if(regex.test(download.url) && w.rules_both[i].ext.indexOf(filetype) !== -1)
 		{
 			path = w.rules_both[i].dir;
+			matched = true;
 			break;
 		}
 	}
 	
 	// if no rules matched, check for URL only:
-	if(path === "") for(var i = 0; i < w.rules_url.length; i++)
+	if(!matched) for(var i = 0; i < w.rules_url.length; i++)
 	{
 		var regex = new RegExp(w.rules_url[i].url, "i");
 		if(regex.test(download.url))
 		{
 			path = w.rules_url[i].dir;
+			matched = true;
 			break;
 		}
 	}
 	
 	// else check for file type only rules:
-	if(path === "") for(var i = 0; i < w.rules_ext.length; i++)
+	if(!matched) for(var i = 0; i < w.rules_ext.length; i++)
 	{
 		if(w.rules_ext[i].ext.indexOf(filetype) !== -1)
 		{
 			path = w.rules_ext[i].dir;
+			matched = true;
 			break;
 		}
 	}
 	
 	// if no rule matched, take default path:
-	if(path === "") path = w.defaultPathAppendix;
+	if(!matched) path = w.defaultPathAppendix;
 	
 	// check if path contains variables and substitute them with appropriate values:
 	path = path.replace(/%DOMAIN%/gi, download.url.split("?")[0].split("/")[2]); // 2 because of "//" behind protocol
@@ -222,7 +226,7 @@ function checkIfSavedInExpectedFolder (change){
 						"type" : "basic",
 						"iconUrl" : "icon96.png",
 						"title" : "New rule suggested",
-						"message" : "Click this notification to ",
+						"message" : "Click this notification to review it now",
 						"isClickable" : true
 					},
 					function (id){}
