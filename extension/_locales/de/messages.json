@@ -290,5 +290,13 @@
     "overwrite": {
         "message": "Die vorhandene Datei überschreiben",
         "description": ""
+    },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
+        "description": ""
     }
 }
