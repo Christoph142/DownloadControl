@@ -71,5 +71,7 @@
 	"step3_3" :					{ "message" : "e.g. if you want your default folder to be \"C:\\Users\\You\\Downloads\\\" and you set \"C:\\Users\\You\\\" in step 1 (and 2), enter \"Downloads\\\"."},
 	"thatsit" :					{ "message" : "That's it"},
 	"done1" :					{ "message" : "The initial setup is completed."},
-	"done2" :					{ "message" : "If you want to, you can start creating some rules or have a look at Download Control's settings now."}
+	"done2" :					{ "message" : "If you want to, you can start creating some rules or have a look at Download Control's settings now."},
+	"notifyDone" :				{"message" : "Show desktop notification on download completion"},
+	"notifyFail" :				{"message" : "Show desktop notification on download interruption"}
 }

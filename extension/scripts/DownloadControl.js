@@ -13,7 +13,9 @@ chrome.storage.sync.get( null, function (storage){
 	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
 	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"]),
 	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"]),
-	"preventClosing"		:	(!storage["preventClosing"]			? "1" 				: storage["preventClosing"])
+	"preventClosing"		:	(!storage["preventClosing"]			? "1" 				: storage["preventClosing"]),
+	"notifyDone"			:	(!storage["notifyDone"]				? "1" 				: storage["notifyDone"]),
+	"notifyFail"			:	(!storage["notifyFail"]				? "1" 				: storage["notifyFail"])
 	};
 
 	adjustContextMenu(); // contextmenu entries
@@ -31,6 +33,7 @@ function onDeterminingFilename(download, suggest){
 function onChanged(change){
 	openFile( change );
 	checkIfSavedInExpectedFolder( change );
+	notifyDownloadState( change );
 	removeBrowserClosingPrevention( change );
 	removeDownloadFromList( change );
 }
@@ -335,4 +338,18 @@ function removeDownloadFromList(change){
 			chrome.downloads.erase({"state" : "complete"});
 		});
 	if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
+}
+
+// show desktop notification of download completion or stop
+function notifyDownloadState(change){
+	// only if download is complete or interrupted and one of notification options is turned on
+	if( ( change.state.current == "complete" && w.notifyDone == "1" ) || ( change.state.current == "interrupted" && w.notifyFail == "1" ) ) ){
+		chrome.downloads.search({"id": change.id}, function(ds){
+			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
+			if( ds[0].state == "complete" && w.notifyDone == "1" )
+				new Notification("Download Completed", {"body": "The file " + filename + " has downloaded sucessfully"});
+			if( ds[0].state == "interrupted" && w.notifyFail == "1" )
+				new Notification("Download Failed", {"body": "The file " + filename + " download was interrupted"});
+		});
+	}
 }
