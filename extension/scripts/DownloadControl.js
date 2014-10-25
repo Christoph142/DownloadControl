@@ -135,15 +135,15 @@ function adjustContextMenu(){
 
 function save(file){
 	chrome.downloads.download({ "url" : file }, function (downloadid){
-		if (downloadid !== undefined)	console.log("Saving ", file);
-		else							console.error(file, " is an invalid URL - downloading impossible");
+		if (typeof downloadid !== "undefined")	console.log("Saving ", file);
+		else									console.error(file, " is an invalid URL - downloading impossible");
 	});
 }
 
 // mark file to open at completion:
 function open(file){
 	chrome.downloads.download({ "url" : file }, function (downloadid){
-		if (downloadid !== undefined)
+		if (typeof downloadid !== "undefined")
 		{
 			var saveobject = {};
 			saveobject[ downloadid ] = "open";
@@ -161,7 +161,7 @@ function openFile(change){
 	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
 	chrome.storage.local.get( change.id.toString(), function (l){
-		if(l[ change.id.toString() ] === undefined) return;		// stop if file shouldn't get opened
+		if(typeof l[ change.id.toString() ] === "undefined") return; // stop if file shouldn't get opened
 		
 		chrome.storage.local.remove( change.id.toString() );	// remove from list of file to get opened
 		if(change.state.current !== "complete") return;			// if download got interrupted stop here
@@ -334,7 +334,7 @@ function removeBrowserClosingPrevention(change){
 function removeDownloadFromList(change){
 	if( w.removeFromListWhen === "finished" && change.state) if( change.state.current === "complete" )
 		chrome.storage.local.get( change.id.toString(), function (l){
-			if(l[ change.id.toString() ] !== undefined) return;	// don't remove just yet if file is supposed to get opened by extension
+			if(typeof l[ change.id.toString() ] !== "undefined") return; // don't remove just yet if file is supposed to get opened by extension
 			chrome.downloads.erase({"state" : "complete"});
 		});
 	if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
