@@ -343,12 +343,12 @@ function removeDownloadFromList(change){
 // show desktop notification of download completion or stop
 function notifyDownloadState(change){
 	// only if download is complete or interrupted and one of notification options is turned on
-	if( change.state == ( "complete" && "interrupted" ) && ( (w.notifyDone || w.notifyFail) == "1" ) ){
+	if( change.state.current == ( "complete" || "interrupted" ) && ( (w.notifyDone || w.notifyFail) == "1" ) ){
 		chrome.downloads.search({"id": change.id}, function(ds){
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
-			if( change.state.current == "complete" && w.notifyDone == "1" )
+			if( ds[0].state == "complete" && w.notifyDone == "1" )
 				new Notification("Download Completed", {"body": "The file " + filename + " has downloaded sucessfully"});
-			if( change.state.current == "interrupted" && w.notifyFail == "1" )
+			if( ds[0].state == "interrupted" && w.notifyFail == "1" )
 				new Notification("Download Failed", {"body": "The file " + filename + " download was interrupted"});
 		});
 	}
