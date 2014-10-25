@@ -128,7 +128,7 @@
         "description": ""
     },
     "notifyDone": {
-        "message": "Show desktop notification on download completion",
+        "message": "Zeige eine Benachrichtigung wenn der Download beendet ist",
         "description": ""
     },
     "pathRelativeError": {
@@ -200,7 +200,7 @@
         "description": ""
     },
     "notifyFail": {
-        "message": "Show desktop notification on download interruption",
+        "message": "Zeige eine Benachrichtigung wenn der Download unterbrochen wurde",
         "description": ""
     },
     "note": {
