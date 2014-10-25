@@ -314,10 +314,14 @@ function make_array(ext_string, may_be_empty)
 
 // prevent browser from closing while there are downloads in progress by opening a non-closable tab:
 function preventBrowserClosing(){
-	if( w.preventClosing === "1" ) chrome.tabs.create({
-		url : "windowClosingPrevention/windowClosingPrevention.html",
-		active: false
-	}, function (tab){});
+	if( w.preventClosing !== "1" ) return;
+
+	chrome.tabs.query({"url":"chrome-extension://*/windowClosingPrevention/windowClosingPrevention.html"}, function(tabs){
+		if( tabs.length === 0 ) chrome.tabs.create({
+			url : "windowClosingPrevention/windowClosingPrevention.html",
+			active: false
+		}, function (tab){});
+	});
 }
 
 // remove tab if no download is active anymore:
