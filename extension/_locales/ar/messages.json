@@ -127,6 +127,10 @@
         "message": "File type only",
         "description": ""
     },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
+        "description": ""
+    },
     "pathRelativeError": {
         "message": "Relative paths are not allowed here.\nIt needs to start with the letter of your hard drive, e.g. \"C:\\\"",
         "description": ""
@@ -193,6 +197,10 @@
     },
     "no_rules_yet": {
         "message": "No rules yet",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
         "description": ""
     },
     "note": {

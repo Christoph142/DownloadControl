@@ -1,50 +1,50 @@
 {
     "welcome": {
-        "message": "Welcome",
+        "message": "Welkom",
         "description": ""
     },
     "incompleteInput": {
-        "message": "You need to enter a website and/or at least 1 file type for a rule to make sense.",
+        "message": "U moet een website invullen en/of op zijn minst 1 bestandstype om een regel logisch te laten klinken.",
         "description": ""
     },
     "auto_detection3": {
-        "message": "If you don't know it just cancel the dialog and go back into browser settings, copy the content of the \"Download location\"-field and paste it to this page.",
+        "message": "Indien onzeker, sluit dan gewoon het dialoogvenster en ga terug naar de browserinstellingen en kopieer de inhoud van het \"Downloadlocatie\"-veld en plak dit hier.",
         "description": ""
     },
     "settings": {
-        "message": "Settings",
+        "message": "Instellingen",
         "description": ""
     },
     "contextMenu": {
-        "message": "Which entries do you want the extension to add to context menu?",
+        "message": "Welke vermeldingen wilt u door deze extensie laten toevoegen aan het contextmenu?",
         "description": ""
     },
     "step3_3": {
-        "message": "e.g. if you want your default folder to be \"C:\\Users\\You\\Downloads\\\" and you set \"C:\\Users\\You\\\" in step 1 (and 2), enter \"Downloads\\\".",
+        "message": "Als u bijv. wilt dat uw standaardmap \"C:\\Gebuikers\\Uw naam\\Downloads\\\" is en u stelt \"C:\\Gebruikers\\Uw naam\\\" in bij stap 1 (en 2), vul dan \"Downloads\\\" in.",
         "description": ""
     },
     "intro2": {
-        "message": "You can close this window to skip these 3 steps for now, but some functionality will not be working until you complete them.",
+        "message": "U kunt dit venster sluiten om deze drie stappen voor nu over te slaan, maar sommige functionaliteit zal niet werken totdat u deze stappen voltooid.",
         "description": ""
     },
     "conflictAction": {
-        "message": "What should be done if a file with the same name already exists in determined location?",
+        "message": "Wat moet er gebeuren als een bestand met dezelfde naam al bestaat in de opgegeven locatie?",
         "description": ""
     },
     "auto_detection1": {
-        "message": "Depending on your browser settings automatic determination may not work.",
+        "message": "Afhankelijk van uw browserinstellingen kan automatische detectie mogelijk niet werken.",
         "description": ""
     },
     "suggestedRules": {
-        "message": "Possible new rules",
+        "message": "Mogelijke nieuwe regels",
         "description": ""
     },
     "directory": {
-        "message": "Directory",
+        "message": "Map",
         "description": ""
     },
     "by": {
-        "message": "by",
+        "message": "door",
         "description": ""
     },
     "website": {
@@ -52,243 +52,251 @@
         "description": ""
     },
     "placeholder3": {
-        "message": "e.g. \"google.com\" or \"example-url.org/x\"",
+        "message": "bijv. \"google.com\" of \"voorbeeld-url.org/x\"",
         "description": ""
     },
     "prompt": {
-        "message": "Ask me",
+        "message": "Vraag het me",
         "description": ""
     },
     "done2": {
-        "message": "If you want to, you can start creating some rules or have a look at Download Control's settings now.",
+        "message": "Als u wilt kunt u nu beginnen met het aanmaken van regels of een kijkje nemen in de instellingen van Downloadbeheer.",
         "description": ""
     },
     "step1_3": {
-        "message": "To specify this folder",
+        "message": "Om deze folder op te geven",
         "description": ""
     },
     "new_rule": {
-        "message": "Add a new rule",
+        "message": "Nieuwe regel toevoegen",
         "description": ""
     },
     "placeholder4": {
-        "message": "e.g. \"pdf, doc\"",
+        "message": "bijv. \"pdf, doc\"",
         "description": ""
     },
     "intro1": {
-        "message": "Let's start with a quick initial setup that's required for this extension to work properly.",
+        "message": "Laten we beginnen met een snelle initiële instellingswizard welke vereist is om deze extensie goed te laten werken.",
         "description": ""
     },
     "initialSetup": {
-        "message": "Initial Setup",
+        "message": "Initiële instellingswizard",
         "description": ""
     },
     "step2_2": {
-        "message": "If you don't need or want this feature, you can proceed with step 3.",
+        "message": "Als u deze functie niet wilt of nodig heeft, kunt u doorgaan met stap 3.",
         "description": ""
     },
     "checkDefaultPathBrowser": {
-        "message": "Try to detect your browser's default download location automatically",
+        "message": "Proberen om de standaard downloadlocatie van uw browser te detecteren",
         "description": ""
     },
     "step3": {
-        "message": "A universal rule",
+        "message": "Een universele regel",
         "description": ""
     },
     "step1_6": {
-        "message": "click \"Change...\"",
+        "message": "klik op \"Veranderen...\"",
         "description": ""
     },
     "fileDeleted": {
-        "message": "when the downloaded file has been deleted / moved",
+        "message": "wanneer een gedownload bestand verwijderd/verplaatst is",
         "description": ""
     },
     "open": {
-        "message": "Open",
+        "message": "Openen",
         "description": ""
     },
     "step1_2": {
-        "message": "e.g. if you want to save files at \"C:\\Users\\You\\Downloads\\Stuff\\\" and \"C:\\Users\\You\\Documents\\\", the perfect choice would be \"C:\\Users\\You\\\".",
+        "message": "Als u bijv. bestanden wilt opslaan in \"C:\\Gebruikers\\Uw naam\\Downloads\\Dingen\\\", dan zou de perfecte keuze zijn \"C:\\Gebruikers\\Uw naam\\\".",
         "description": ""
     },
     "step2_1": {
-        "message": "It can suggest new rules whenever you choose to save a file at a location different from the one it expects this file to be saved at.",
+        "message": "Het kan nieuwe regels voorstellen wanneer u kiest om een bestand op te slaan in een locatie die anders is dan de verwachte locatie.",
         "description": ""
     },
     "step1_5": {
-        "message": "scroll down to find \"Download location\"-setting (you need to click \"Show advanced settings...\" first in Chrome)",
+        "message": "scroll naar beneden en vind de \"Downloadlocatie\"-instelling (u moet eerst klikken op \"Geavanceerde instellingen tonen\" in Chrome)",
         "description": ""
     },
     "downloadInProgress": {
-        "message": "Currently there's a download in progress.\nYou will have to restart from the beginning if you close your browser now.",
+        "message": "Er is momenteel een lopende download.\nU moet deze herstarten vanaf het begin als u nu uw browser sluit.",
         "description": ""
     },
     "rules_ext": {
-        "message": "File type only",
+        "message": "Alleen bestandstype",
+        "description": ""
+    },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
         "description": ""
     },
     "pathRelativeError": {
-        "message": "Relative paths are not allowed here.\nIt needs to start with the letter of your hard drive, e.g. \"C:\\\"",
+        "message": "Relatieve paden zijn hier niet toegestaan.\nHet moet beginnen met een letter van uw harde schijf, bijv. \"C:\\\"",
         "description": ""
     },
     "removeFromListWhen": {
-        "message": "Automatically remove download from browser's downloads history",
+        "message": "Verwijder automatisch downloads uit uw browser-downloadgeschiedenis",
         "description": ""
     },
     "rules": {
-        "message": "Saving Rules",
+        "message": "Opslaan van regels",
         "description": ""
     },
     "rules_both": {
-        "message": "Website & file type",
+        "message": "Website en bestandstype",
         "description": ""
     },
     "thatsit": {
-        "message": "That's it",
+        "message": "Dat is alles",
         "description": ""
     },
     "step1_7": {
-        "message": "select the folder you want to use",
+        "message": "selecteer de map die u wilt gebruiken",
         "description": ""
     },
     "footer": {
-        "message": "Thanks for installing this extension. You can contact me at any time for feedback and questions.",
+        "message": "Bedankt voor het installeren van deze extensie. U kunt me altijd contacteren voor feedback en vragen.",
         "description": ""
     },
     "step3_2": {
-        "message": "In order to prevent all files that don't get matched by any of your rules from ending up in this folder, you need to tell Download Control the subfolder to save those at.",
+        "message": "Om te voorkomen dat alle bestanden die niet overeenkomen met één van uw regels in deze map eindigen, moet u Downloadbeheer vertellen in welke submap deze moeten worden opgeslagen.",
         "description": ""
     },
     "placeholder1": {
-        "message": "e.g. C:\\Users\\You\\Downloads\\",
+        "message": "bijv. C:\\Gebruikers\\Uw naam\\Downloads\\",
         "description": ""
     },
     "pathOutsideError": {
-        "message": "You can only choose folders inside your default download folder.\nIf you want to use a folder that's outside of it, change your default download folder in browser settings first so that it includes all the folders you want and then use the Default download location field in here to ensure all files that aren't dealt by any of your rules will end up in the correct folder.",
+        "message": "U kunt alleen mappen kiezen binnen uw standaard downloadmap.\nAls u een map wilt gebruiken die erbuiten is, moet u uw standaard download veranderen in de browserinstellingen naar de map die al uw mappen van keuze bevat. Daarna kunt u het standaard download-locatieveld hier invullen om te zorgen dat alle bestanden die niet onder uw regels vallen in de juiste map terecht zullen komen.",
         "description": ""
     },
     "defaultPathBrowser": {
-        "message": "Default download location of your browser",
+        "message": "Standaard downloadlocatie van uw browser",
         "description": ""
     },
     "step3_1": {
-        "message": "Changing your browser's default folder comes along with one disadvantage: your default folder changed (\"No, really?\").",
+        "message": "Het veranderen van de standaard map van uw browser komt met één nadeel: uw standaard map verandert. (\"Nee, echt?\")",
         "description": ""
     },
     "auto_detection4": {
-        "message": "You can safely repeat this automatic step if you need to see these instructions again.",
+        "message": "U kunt deze stap veilig automatisch herhalen wanneer u deze instructies opnieuw wenst te zien.",
         "description": ""
     },
     "never": {
-        "message": "never",
+        "message": "nooit",
         "description": ""
     },
     "step1_4": {
-        "message": "open settings (Alt+P in Opera)",
+        "message": "open de instellingen (ALT+P in Opera)",
         "description": ""
     },
     "auto_detection_failed": {
-        "message": "Auto-detection failed. Retry?",
+        "message": "Automatische detectie mislukt. Opnieuw proberen?",
         "description": ""
     },
     "no_rules_yet": {
-        "message": "No rules yet",
+        "message": "Nog geen regels",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
         "description": ""
     },
     "note": {
-        "message": "Note:",
+        "message": "Let op:",
         "description": ""
     },
     "save": {
-        "message": "Save",
+        "message": "Opslaan",
         "description": ""
     },
     "step2_3": {
-        "message": "However, if you do want this feature to work, you need to tell Download Control the folder you just chose in step 1. Enter it in here:",
+        "message": "Als u deze functie wel wilt benutten, moet u Downloadbeheer de juiste map vertellen die u koos in stap 1. Vul hem hier in:",
         "description": ""
     },
     "rules_url": {
-        "message": "Website only",
+        "message": "Alleen website",
         "description": ""
     },
     "step": {
-        "message": "Step",
+        "message": "Stap",
         "description": ""
     },
     "placeholder5": {
-        "message": "e.g. path\\to\\your\\file\\",
+        "message": "bijv. pad\\naar\\uw\\bestand\\",
         "description": ""
     },
     "add": {
-        "message": "Add",
+        "message": "Toevoegen",
         "description": ""
     },
     "uniquify": {
-        "message": "Download it anyway and save it with a number behind",
+        "message": "Download het en sla het op met een nummer erachter",
         "description": ""
     },
     "preventClosing": {
-        "message": "Ask for confirmation before closing the browser while there are downloads in progress",
+        "message": "Vraag om bevestiging alvorens het sluiten van de browser wanneer er nog lopende downloads zijn",
         "description": ""
     },
     "defaultPath": {
-        "message": "Default download location",
+        "message": "Standaard downloadlocatie",
         "description": ""
     },
     "step2": {
-        "message": "Download Control can make your life easy",
+        "message": "Downloadbeheer kan uw leven vereenvoudigen",
         "description": ""
     },
     "file_types": {
-        "message": "File types",
+        "message": "Bestandstypen",
         "description": ""
     },
     "finished": {
-        "message": "as soon as it finishes downloading",
+        "message": "direct na het afronden van de download",
         "description": ""
     },
     "done1": {
-        "message": "The initial setup is completed.",
+        "message": "De initiële instellingswizard is doorlopen.",
         "description": ""
     },
     "auto_detection_succeeded": {
-        "message": "Auto-detection succeeded. Click to refresh if you changed it again",
+        "message": "Automatische detectie geslaagd. Klik op verversen indien u het wederom heeft gewijzigd.",
         "description": ""
     },
     "step2_4": {
-        "message": "Download Control will not work properly if this folder is incorrect. Remember to always change it in here if you change it in your browser's settings!",
+        "message": "Downloadbeheer zal niet goed werken indien u niet de juiste map opgeeft. Vergeet niet om hem altijd hier te wijzigen indien u dit doet in uw browserinstellingen!",
         "description": ""
     },
     "step1": {
-        "message": "Download Control will determine a folder for each download according to the rules you set up",
+        "message": "Downloadbeheer zal een map toewijzen voor elke download volgens de regels die u opstelt",
         "description": ""
     },
     "step1_1": {
-        "message": "Due to security restrictions this is only possible inside your browser's default download folder. As a consequence, you need to choose this folder in a way that it contains all folders that you want to save files at.",
+        "message": "Vanwege beveiligingsrestricties is het alleen mogelijk binnen de standaard downloadmap van uw browser. Daarom moet u een map kiezen die al uw mappen bevat waarnaar u bestanden wilt opslaan.",
         "description": ""
     },
     "letsgetstarted": {
-        "message": "Let's get started",
+        "message": "Laten we beginnen",
         "description": ""
     },
     "pathAbsoluteError": {
-        "message": "Absolute paths are not allowed here.\nMake it relative to your default download folder.",
+        "message": "Absolute paden zijn hier niet toegestaan.\nMaak deze relatief aan uw standaard downloadmap.",
         "description": ""
     },
     "placeholder2": {
-        "message": "e.g. Downloads\\",
+        "message": "bijv. Downloads\\",
         "description": ""
     },
     "description": {
-        "message": "Manage your downloads",
+        "message": "Uw downloads beheren",
         "description": ""
     },
     "auto_detection2": {
-        "message": "So if this step opens a file chooser dialog that prompts you to specify a download location, you may select your default download folder instead if you want to (don't alter the file name!).",
+        "message": "Wanneer deze stap een bestandsdialoogvenster opent die u een downloadlocatie laat kiezen, kunt u een standaard downloadmap kiezen (verander de bestandsnaam niet!).",
         "description": ""
     },
     "overwrite": {
-        "message": "Overwrite the existing file",
+        "message": "Overschrijf het bestande bestand",
         "description": ""
     }
 }

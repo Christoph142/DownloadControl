@@ -127,6 +127,10 @@
         "message": "Nur Datei-Typ",
         "description": ""
     },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
+        "description": ""
+    },
     "pathRelativeError": {
         "message": "Relative Pfade sind hier nicht erlaubt.\nEs muss mit dem Buchstaben deines Laufwerks starten, z.B. \"C:\\\"",
         "description": ""
@@ -193,6 +197,10 @@
     },
     "no_rules_yet": {
         "message": "Noch keine Regeln",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
         "description": ""
     },
     "note": {

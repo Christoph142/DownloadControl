@@ -127,6 +127,10 @@
         "message": "Tylko typ pliku",
         "description": ""
     },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
+        "description": ""
+    },
     "pathRelativeError": {
         "message": "Ścieżki względne są tutaj niedozwolone.\nMuszą się one zaczynać od litery twojego dysku twardego, np.: \"C:\\\"",
         "description": ""
@@ -193,6 +197,10 @@
     },
     "no_rules_yet": {
         "message": "Obecnie nie ma reguł.",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
         "description": ""
     },
     "note": {

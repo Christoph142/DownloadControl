@@ -127,6 +127,10 @@
         "message": "Type de fichier seulement",
         "description": ""
     },
+    "notifyDone": {
+        "message": "Show desktop notification on download completion",
+        "description": ""
+    },
     "pathRelativeError": {
         "message": "Les chemins d'accès partiels ne sont pas autorisés ici.\nLe chemin d'accès doit commencer par la lettre de votre partition de disque dur (ex : C:\\).",
         "description": ""
@@ -193,6 +197,10 @@
     },
     "no_rules_yet": {
         "message": "Pas encore de règle spécifiée",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Show desktop notification on download interruption",
         "description": ""
     },
     "note": {
