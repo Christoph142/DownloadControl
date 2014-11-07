@@ -67,6 +67,10 @@
         "message": "Om deze folder op te geven",
         "description": ""
     },
+    "interrupted_body": {
+        "message": "Downloading $file$ was interrupted",
+        "description": ""
+    },
     "new_rule": {
         "message": "Nieuwe regel toevoegen",
         "description": ""
@@ -207,6 +211,10 @@
         "message": "Let op:",
         "description": ""
     },
+    "download_completed": {
+        "message": "Download completed",
+        "description": ""
+    },
     "save": {
         "message": "Opslaan",
         "description": ""
@@ -267,12 +275,20 @@
         "message": "Downloadbeheer zal niet goed werken indien u niet de juiste map opgeeft. Vergeet niet om hem altijd hier te wijzigen indien u dit doet in uw browserinstellingen!",
         "description": ""
     },
+    "click_to_open": {
+        "message": "Click to open $file$",
+        "description": ""
+    },
     "step1": {
         "message": "Downloadbeheer zal een map toewijzen voor elke download volgens de regels die u opstelt",
         "description": ""
     },
     "step1_1": {
         "message": "Vanwege beveiligingsrestricties is het alleen mogelijk binnen de standaard downloadmap van uw browser. Daarom moet u een map kiezen die al uw mappen bevat waarnaar u bestanden wilt opslaan.",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download failed",
         "description": ""
     },
     "letsgetstarted": {

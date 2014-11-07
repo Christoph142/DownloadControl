@@ -67,6 +67,10 @@
         "message": "Pour sélectionner ce dossier",
         "description": ""
     },
+    "interrupted_body": {
+        "message": "Downloading $file$ was interrupted",
+        "description": ""
+    },
     "new_rule": {
         "message": "Ajouter une nouvelle règle",
         "description": ""
@@ -207,6 +211,10 @@
         "message": "Note :",
         "description": ""
     },
+    "download_completed": {
+        "message": "Download completed",
+        "description": ""
+    },
     "save": {
         "message": "Sauvegarder",
         "description": ""
@@ -267,12 +275,20 @@
         "message": "Download Control ne fonctionnera pas correctelement si ce dossier est incorrectement spécifié. Souvenez vous de toujours le changer ici si vous le changez dans les apramètres de votre navigateur !",
         "description": ""
     },
+    "click_to_open": {
+        "message": "Click to open $file$",
+        "description": ""
+    },
     "step1": {
         "message": "Download Control déterminera un dossier pour chaque téléchargement en fonction des règles que vous aurez choisies",
         "description": ""
     },
     "step1_1": {
         "message": "A cause de restrictions liées à la sécurité, cela n'est seulement possible que dans votre dossier de téléchargement par défaut de votre navigateur. Par conséquent, vous devez choisir ce dossier de façon à ce qu'il contienne tous les dossiers où vous voudriez sauvegarder vos fichiers.",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download failed",
         "description": ""
     },
     "letsgetstarted": {

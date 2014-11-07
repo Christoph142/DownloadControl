@@ -72,6 +72,14 @@
 	"thatsit" :					{ "message" : "That's it"},
 	"done1" :					{ "message" : "The initial setup is completed."},
 	"done2" :					{ "message" : "If you want to, you can start creating some rules or have a look at Download Control's settings now."},
-	"notifyDone" :				{"message" : "Show desktop notification on download completion"},
-	"notifyFail" :				{"message" : "Show desktop notification on download interruption"}
+	"notifyDone" :				{ "message" : "Show desktop notification on download completion"},
+	"notifyFail" :				{ "message" : "Show desktop notification on download interruption"},
+	"download_completed" :		{ "message" : "Download completed"},
+	"download_interrupted" :	{ "message" : "Download failed"},
+	"click_to_open" :			{ "message" : "Click to open $file$",
+								  "placeholders" : { "file" : { "content" : "$1" } }
+								},
+	"interrupted_body" :		{ "message" : "Downloading $file$ was interrupted",
+								  "placeholders" : { "file" : { "content" : "$1" } }
+								}
 }

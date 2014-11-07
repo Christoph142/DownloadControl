@@ -67,6 +67,10 @@
         "message": "Um diesen Ordner festzulegen",
         "description": ""
     },
+    "interrupted_body": {
+        "message": "Downloading $file$ was interrupted",
+        "description": ""
+    },
     "new_rule": {
         "message": "Neue Regel hinzufügen",
         "description": ""
@@ -207,6 +211,10 @@
         "message": "Hinweis:",
         "description": ""
     },
+    "download_completed": {
+        "message": "Download completed",
+        "description": ""
+    },
     "save": {
         "message": "Speichern",
         "description": ""
@@ -267,12 +275,20 @@
         "message": "Download Control wird nicht richtig funktionieren, wenn dieser Ordner inkorrekt ist. Denk daran, ihn immer hier zu ändern, wenn du ihn in den Browser-Einstellungen änderst!",
         "description": ""
     },
+    "click_to_open": {
+        "message": "Click to open $file$",
+        "description": ""
+    },
     "step1": {
         "message": "Download Control wird nach den Regeln, die du festlegst, einen Ordner für jeden Download bestimmen",
         "description": ""
     },
     "step1_1": {
         "message": "Wegen Sicherheitsbeschränkungen ist dies nur im Standard-Download-Ordner deines Browsers möglich. Deshalb musst du diesen Ordner so festlegen, dass er alle Ordner enthält, in denen du Dateien speichern möchtest.",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download failed",
         "description": ""
     },
     "letsgetstarted": {

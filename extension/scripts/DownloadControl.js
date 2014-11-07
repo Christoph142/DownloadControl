@@ -224,13 +224,12 @@ function checkIfSavedInExpectedFolder (change){
 				save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
 				
 				if(chrome.notifications) chrome.notifications.create(
-					"DownloadControl",
+					"newRule",
 					{
 						"type" : "basic",
-						"iconUrl" : "icon96.png",
+						"iconUrl" : "images/96.png",
 						"title" : "New rule suggested",
-						"message" : "Click this notification to review it now",
-						"isClickable" : true
+						"message" : "Click this notification to review it now"
 					},
 					function (id){}
 				);	
@@ -258,7 +257,9 @@ chrome.commands.onCommand.addListener(function (e){
 
 // notification handling:
 if(chrome.notifications) chrome.notifications.onClicked.addListener( function (id){
-	if(id === "DownloadControl") chrome.tabs.create({ url : "options/options.html" });
+	if 		(id === "newRule") 					chrome.tabs.create({ url : "options/options.html" });
+	else if (id.split("_")[0] === "completed") 	chrome.downloads.open( parseInt(id.split("_")[1]) );
+	else 										chrome.tabs.create("opera://downloads");
 });
 
 // helper functions:
@@ -351,9 +352,25 @@ function notifyDownloadState(change){
 	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) || ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.indexOf("USER") !== 0 ) )
 		chrome.downloads.search({"id": change.id}, function(ds){
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
-			if( ds[0].state === "complete" && w.notifyDone === "1" )
-				new Notification("Download Completed", {"body": "The file " + filename + " has downloaded sucessfully"});
-			if( ds[0].state === "interrupted" && w.notifyFail === "1" )
-				new Notification("Download Failed", {"body": "The file " + filename + " download was interrupted"});
+			if( ds[0].state === "complete") chrome.notifications.create(
+				"completed_"+ds[0].id, // use download's ID as notification ID
+				{
+					type : "basic",
+					iconUrl : "images/128.png",
+					title : chrome.i18n.getMessage("download_completed"),
+					message : chrome.i18n.getMessage("click_to_open", filename)
+				},
+				function (id){ /* creation callback */ }
+				);
+			else chrome.notifications.create(
+				"interrupted_"+ds[0].id,
+				{
+					type : "basic",
+					iconUrl : "images/128.png",
+					title : chrome.i18n.getMessage("download_interrupted"),
+					message : chrome.i18n.getMessage("interrupted_body", filename)
+				},
+				function (id){ /* creation callback */ }
+				);
 		});
 }

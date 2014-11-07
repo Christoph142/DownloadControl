@@ -67,6 +67,10 @@
         "message": "Aby sprecyzować ten folder",
         "description": ""
     },
+    "interrupted_body": {
+        "message": "Downloading $file$ was interrupted",
+        "description": ""
+    },
     "new_rule": {
         "message": "Dodaj nową regułę",
         "description": ""
@@ -207,6 +211,10 @@
         "message": "Uwaga:",
         "description": ""
     },
+    "download_completed": {
+        "message": "Download completed",
+        "description": ""
+    },
     "save": {
         "message": "Zapisz",
         "description": ""
@@ -267,12 +275,20 @@
         "message": "\"Kontroler pobierania\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
         "description": ""
     },
+    "click_to_open": {
+        "message": "Click to open $file$",
+        "description": ""
+    },
     "step1": {
         "message": "\"Kontroler pobierania\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
         "description": ""
     },
     "step1_1": {
         "message": "Ze względu na restrykcje bezpieczeństwa, jest to możliwe tylko wewnątrz domyślnego folderu pobierania Twojej przeglądarki. W związku z tym, musisz wybrać ten folder, który zawiera wszystkie foldery, w których chcesz zapisywać pliki.",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download failed",
         "description": ""
     },
     "letsgetstarted": {

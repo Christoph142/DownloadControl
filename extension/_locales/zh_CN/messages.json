@@ -67,6 +67,10 @@
         "message": "To specify this folder",
         "description": ""
     },
+    "interrupted_body": {
+        "message": "Downloading $file$ was interrupted",
+        "description": ""
+    },
     "new_rule": {
         "message": "Add a new rule",
         "description": ""
@@ -207,6 +211,10 @@
         "message": "Note:",
         "description": ""
     },
+    "download_completed": {
+        "message": "Download completed",
+        "description": ""
+    },
     "save": {
         "message": "Save",
         "description": ""
@@ -267,12 +275,20 @@
         "message": "Download Control will not work properly if this folder is incorrect. Remember to always change it in here if you change it in your browser's settings!",
         "description": ""
     },
+    "click_to_open": {
+        "message": "Click to open $file$",
+        "description": ""
+    },
     "step1": {
         "message": "Download Control will determine a folder for each download according to the rules you set up",
         "description": ""
     },
     "step1_1": {
         "message": "Due to security restrictions this is only possible inside your browser's default download folder. As a consequence, you need to choose this folder in a way that it contains all folders that you want to save files at.",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download failed",
         "description": ""
     },
     "letsgetstarted": {
