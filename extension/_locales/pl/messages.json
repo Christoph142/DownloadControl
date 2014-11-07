@@ -8,7 +8,7 @@
         "description": ""
     },
     "auto_detection3": {
-        "message": "Jeśli nie wiesz, to po prostu anuluje okno dialogowe i powraca do ustawień przeglądarki, kopiuje zawartości pola \"Lokalizacja pobierania\" i wkleja to do tej strony.",
+        "message": "Jeśli nie wiesz, to po prostu anuluj okno dialogowe i powróć do ustawień przeglądarki, skopiuj zawartość pola \"Lokalizacja pobierania\" i wklej to do tej strony.",
         "description": ""
     },
     "settings": {
@@ -32,7 +32,7 @@
         "description": ""
     },
     "auto_detection1": {
-        "message": "W zależności od ustawień swojej przeglądarki, automatyczne określenie może nie działać.",
+        "message": "W zależności od ustawień Twojej przeglądarki, automatyczne określenie może nie działać.",
         "description": ""
     },
     "suggestedRules": {
@@ -88,7 +88,7 @@
         "description": ""
     },
     "checkDefaultPathBrowser": {
-        "message": "Spróbuj wykryć domyślną lokalizację pobierania twojej przeglądarki automatycznie",
+        "message": "Spróbuj wykryć domyślną lokalizację pobierania Twojej przeglądarki automatycznie",
         "description": ""
     },
     "step3": {
@@ -128,11 +128,11 @@
         "description": ""
     },
     "notifyDone": {
-        "message": "Show desktop notification on download completion",
+        "message": "Pokaż powiadomienie na pulpicie po poprawnie pobranym pliku",
         "description": ""
     },
     "pathRelativeError": {
-        "message": "Ścieżki względne są tutaj niedozwolone.\nMuszą się one zaczynać od litery twojego dysku twardego, np.: \"C:\\\"",
+        "message": "Ścieżki względne są tutaj niedozwolone.\nMuszą się one zaczynać od litery Twojego dysku twardego, np.: \"C:\\\"",
         "description": ""
     },
     "removeFromListWhen": {
@@ -156,11 +156,11 @@
         "description": ""
     },
     "footer": {
-        "message": "Dziękuję za zainstalowanie tego rozszerzenia. Możesz skontaktować się ze mną w dowolnym czasie w celu odzewu i pytań. ",
+        "message": "Dziękuję za zainstalowanie tego rozszerzenia. Możesz skontaktować się ze mną w dowolnym czasie w celu opinii i pytań.",
         "description": ""
     },
     "step3_2": {
-        "message": "W celu uniknięcia wszystkich plików, które nie są dopasowane do dowolnej z twoich reguł kończących się w tym folderze, musisz dać znać \"Download Control\" gdzie zapiszesz je w podfolderze.",
+        "message": "W celu uniknięcia wszystkich plików, które nie są dopasowane do dowolnej z Twoich reguł kończących się w tym folderze, musisz dać znać \"Kontrolerowi pobierania\" gdzie zapiszesz je w podfolderze.",
         "description": ""
     },
     "placeholder1": {
@@ -168,15 +168,15 @@
         "description": ""
     },
     "pathOutsideError": {
-        "message": "Możesz wybrać tylko foldery wewnątrz twojego domyślnego folderu pobierania.\nJeśli chcesz użyć folderu, który jest na zewnątrz niego, zmień najpierw w ustawieniach przeglądarki twój domyślny folder pobierania, który będzie zawierał wszystkie foldery, które chcesz, a wtedy użyj tutaj pola Domyślna lokalizacja pobierania, aby upewnić się, że wszystkie pliki, które nie są zajmowane przez dowolną z twoich reguł trafią do poprawnego folderu.",
+        "message": "Możesz wybrać tylko foldery wewnątrz Twojego domyślnego folderu pobierania.\nJeśli chcesz użyć folderu, który jest na zewnątrz niego, zmień najpierw w ustawieniach przeglądarki Twój domyślny folder pobierania, który będzie zawierał wszystkie foldery, które chcesz, a wtedy użyj tutaj pola \"Domyślna lokalizacja pobierania\", aby upewnić się, że wszystkie pliki, które nie są zajmowane przez dowolną z Twoich reguł trafią do poprawnego folderu.",
         "description": ""
     },
     "defaultPathBrowser": {
-        "message": "Domyślna lokalizacja pobierania plików twojej przeglądarki",
+        "message": "Domyślna lokalizacja pobierania plików Twojej przeglądarki",
         "description": ""
     },
     "step3_1": {
-        "message": "Zmiana swoich domyślnych folderów przeglądarki przychodzi wraz z jedną wadą: zmieniono swój domyślny folder (\"Nie, naprawdę?\").",
+        "message": "Zmiana Twoich domyślnych folderów przeglądarki przychodzi wraz z jedną wadą: zmienia Twój domyślny folder (\"co ty nie powiesz?\").",
         "description": ""
     },
     "auto_detection4": {
@@ -200,7 +200,7 @@
         "description": ""
     },
     "notifyFail": {
-        "message": "Show desktop notification on download interruption",
+        "message": "Pokaż powiadomienie na pulpicie po błędzie z pobieranym plikiem",
         "description": ""
     },
     "note": {
@@ -244,7 +244,7 @@
         "description": ""
     },
     "step2": {
-        "message": "\"Download Control\" potrafi ułatwić Ci życie",
+        "message": "\"Kontroler pobierania\" potrafi ułatwić Ci życie",
         "description": ""
     },
     "file_types": {
@@ -264,15 +264,15 @@
         "description": ""
     },
     "step2_4": {
-        "message": "\"Download Control\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
+        "message": "\"Kontroler pobierania\" nie będzie działał odpowiednio, jeśli ten folder jest niepoprawny. Pamiętaj, aby zawsze zmieniać go w tym miejscu, jeśli go zmieniłeś w ustawieniach swojej przeglądarki!",
         "description": ""
     },
     "step1": {
-        "message": "\"Download Control\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
+        "message": "\"Kontroler pobierania\" będzie ustalał folder dla każdego pobierania zgodnie z regułami, które ustawiłeś",
         "description": ""
     },
     "step1_1": {
-        "message": "Ze względu na restrykcje bezpieczeństwa, jest to możliwe tylko wewnątrz domyślnego folderu pobierania twojej przeglądarki. W związku z tym, musisz wybrać ten folder, który zawiera wszystkie foldery, w których chcesz zapisywać pliki.",
+        "message": "Ze względu na restrykcje bezpieczeństwa, jest to możliwe tylko wewnątrz domyślnego folderu pobierania Twojej przeglądarki. W związku z tym, musisz wybrać ten folder, który zawiera wszystkie foldery, w których chcesz zapisywać pliki.",
         "description": ""
     },
     "letsgetstarted": {
@@ -280,7 +280,7 @@
         "description": ""
     },
     "pathAbsoluteError": {
-        "message": "Ścieżki bezwzględne są tutaj niedozwolone.\nMusisz uczynić je względne do twojego domyślnego folderu pobierania.",
+        "message": "Ścieżki bezwzględne są tutaj niedozwolone.\nMusisz uczynić je względne do Twojego domyślnego folderu pobierania.",
         "description": ""
     },
     "placeholder2": {
@@ -292,7 +292,7 @@
         "description": ""
     },
     "auto_detection2": {
-        "message": "Więc jeśli ten krok otworzy okno dialogowe z wyborem pliku, które podpowie Ci, aby sprecyzować lokalizację pobierania, możesz wybrać swój domyślny folder pobierania zamiast jeśli chcesz (nie nazwę alternatywną pliku!)",
+        "message": "Więc jeśli ten krok otworzy okno dialogowe z wyborem pliku, które podpowie Ci, aby sprecyzować lokalizację pobierania, możesz zamiast tego wybrać Twój domyślny folder pobierania jeśli chcesz (nie nazwę alternatywną pliku!)",
         "description": ""
     },
     "overwrite": {
