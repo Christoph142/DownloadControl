@@ -349,7 +349,7 @@ function removeDownloadFromList(change){
 function notifyDownloadState(change){
 	if( !change.state ) return;
 	// only if download is complete or interrupted and according notification option is turned on
-	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) || ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.indexOf("USER") !== 0 ) )
+	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) || ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.current.indexOf("USER") !== 0 ) )
 		chrome.downloads.search({"id": change.id}, function(ds){
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
 			if( ds[0].state === "complete") chrome.notifications.create(
