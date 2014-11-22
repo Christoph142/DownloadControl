@@ -198,14 +198,37 @@ function checkIfSavedInExpectedFolder (change){
 					"ext" : make_array( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
 					"url" : d.url.split("/")[2]
 				};
-				var jsonRule = JSON.stringify(newRule);
 				
 				// check if rule got suggested earlier already:
 				for(var i = w.suggestedRules.length-1; i >= 0; i--)
 				{
-					if ( jsonRule === JSON.stringify(w.suggestedRules[i]) )
+					if ( JSON.stringify(newRule) === JSON.stringify(w.suggestedRules[i]) )
 					{
-						console.log("location changed inside default folder -> rule", w.suggestedRules[w.suggestedRules.length-1], "suggested earlier already");
+						console.log(w.suggestedRules[i], "suggested earlier already");
+						return;
+					}
+				}
+
+				// check if same folder got suggested for another file type from same URL earlier already:
+				for(var i = w.suggestedRules.length-1; i >= 0; i--)
+				{
+					if ( newRule.url === w.suggestedRules[i]["url"] && newRule.dir === w.suggestedRules[i]["dir"] )
+					{
+						console.log("file type",newRule.ext, "added to", w.suggestedRules[i]);
+						w.suggestedRules[i]["ext"].push(newRule.ext);
+						save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
+						return;
+					}
+				}
+
+				// check if another folder got suggested for this file type and URL earlier already:
+				for(var i = w.suggestedRules.length-1; i >= 0; i--)
+				{
+					if ( newRule.url === w.suggestedRules[i]["url"] && w.suggestedRules[i]["ext"].indexOf(newRule.ext) )
+					{
+						console.log("folder of", w.suggestedRules[i], "updated into", newRule.dir);
+						w.suggestedRules[i]["dir"] = newRule.dir;
+						save_new_value("suggestedRules", w.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
 						return;
 					}
 				}
