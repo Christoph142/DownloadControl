@@ -1,28 +1,23 @@
 "use strict";
 
 //retrieve and store settings (filled with default values):
-var w = {};
-chrome.storage.sync.get( null, function (storage){
-	w = {
-	"conflictAction"		:	(!storage["conflictAction"] 		? "prompt"			: storage["conflictAction"]),
-	"removeFromListWhen"	:	(!storage["removeFromListWhen"]		? "fileDeleted"		: storage["removeFromListWhen"]),
-	"contextMenu"			:	(!storage["contextMenu"	] 			? { "open" : "1" }	: storage["contextMenu"	]),
-	"defaultPathBrowser"	:	(!storage["defaultPathBrowser"] 	? ""				: storage["defaultPathBrowser"]),
-	"defaultPathAppendix"	:	(!storage["defaultPathAppendix"] 	? ""				: storage["defaultPathAppendix"]),
-	"rules_both" 			:	(!storage["rules_both"]				? [] 				: storage["rules_both"]),
-	"rules_url" 			:	(!storage["rules_url"]				? [] 				: storage["rules_url"]),
-	"rules_ext" 			:	(!storage["rules_ext"]				? [] 				: storage["rules_ext"]),
-	"suggestedRules" 		:	(!storage["suggestedRules"]			? [] 				: storage["suggestedRules"]),
-	"preventClosing"		:	(!storage["preventClosing"]			? "1" 				: storage["preventClosing"]),
-	"notifyDone"			:	(!storage["notifyDone"]				? "1" 				: storage["notifyDone"]),
-	"notifyFail"			:	(!storage["notifyFail"]				? "1" 				: storage["notifyFail"])
-	};
+var w = {
+	"conflictAction"		:	(!localStorage["conflictAction"] 		? "prompt"			: JSON.parse(localStorage["conflictAction"])),
+	"removeFromListWhen"	:	(!localStorage["removeFromListWhen"]	? "fileDeleted"		: JSON.parse(localStorage["removeFromListWhen"])),
+	"contextMenu"			:	(!localStorage["contextMenu"	] 		? { "open" : "1" }	: JSON.parse(localStorage["contextMenu"])),
+	"defaultPathBrowser"	:	(!localStorage["defaultPathBrowser"] 	? ""				: JSON.parse(localStorage["defaultPathBrowser"])),
+	"defaultPathAppendix"	:	(!localStorage["defaultPathAppendix"] 	? ""				: JSON.parse(localStorage["defaultPathAppendix"])),
+	"rules_both" 			:	(!localStorage["rules_both"]			? [] 				: JSON.parse(localStorage["rules_both"])),
+	"rules_url" 			:	(!localStorage["rules_url"]				? [] 				: JSON.parse(localStorage["rules_url"])),
+	"rules_ext" 			:	(!localStorage["rules_ext"]				? [] 				: JSON.parse(localStorage["rules_ext"])),
+	"suggestedRules" 		:	(!localStorage["suggestedRules"]		? [] 				: JSON.parse(localStorage["suggestedRules"])),
+	"preventClosing"		:	(!localStorage["preventClosing"]		? "1" 				: JSON.parse(localStorage["preventClosing"])),
+	"notifyDone"			:	(!localStorage["notifyDone"]			? "1" 				: JSON.parse(localStorage["notifyDone"])),
+	"notifyFail"			:	(!localStorage["notifyFail"]			? "1" 				: JSON.parse(localStorage["notifyFail"]))
+};
 
-	adjustContextMenu(); // contextmenu entries
-});
+adjustContextMenu(); // contextmenu entries
 
-
-chrome.runtime.onStartup.addListener(function(){/* make extension start once before downloading to prevent first download from ending up in default folder */});
 chrome.downloads.onDeterminingFilename.addListener( onDeterminingFilename );
 chrome.downloads.onChanged.addListener( onChanged );
 
@@ -145,10 +140,7 @@ function open(file){
 	chrome.downloads.download({ "url" : file }, function (downloadid){
 		if (typeof downloadid !== "undefined")
 		{
-			var saveobject = {};
-			saveobject[ downloadid ] = "open";
-			chrome.storage.local.set(saveobject);
-
+			localStorage[ downloadid ] = "open";
 			console.log("Opening ", file);
 		}
 		else console.error(file, " is an invalid URL - downloading impossible");
@@ -160,15 +152,13 @@ function openFile(change){
 	if(!change.state) return;
 	else if(change.state.current !== "complete" && change.state.current !== "interrupted") { console.log("Following untreated change of state occured: ", change); return; }
 	
-	chrome.storage.local.get( change.id.toString(), function (l){
-		if(typeof l[ change.id.toString() ] === "undefined") return; // stop if file shouldn't get opened
-		
-		chrome.storage.local.remove( change.id.toString() );	// remove from list of file to get opened
-		if(change.state.current !== "complete") return;			// if download got interrupted stop here
+	if(typeof localStorage[ change.id.toString() ] === "undefined") return; // stop if file shouldn't get opened
+	
+	delete localStorage[ change.id.toString() ];	// remove from list of files to get opened
+	if(change.state.current !== "complete") return;	// if download got interrupted stop here
 
-		chrome.downloads.open( change.id );
-		window.setTimeout( function(){ deleteFile(change.id); }, 5000);
-	});
+	chrome.downloads.open( change.id );
+	window.setTimeout( function(){ deleteFile(change.id); }, 5000);
 }
 
 function deleteFile(change_id){
@@ -267,15 +257,13 @@ function save_new_value(key, value, callback)
 {
 	key = key.split("."); // split tree
 	
-	// save to sync storage cache (w):
+	// save to storage cache (w):
 	var saveobjectBranch = w;
 	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
 	saveobjectBranch[ key[key.length-1] ] = value;
 	
-	// save in Chrome's synced storage:
-	var saveobject = {};
-	saveobject[ key[0] ] = w[ key[0] ];
-	chrome.storage.sync.set(saveobject);
+	// save in localStorage:
+	localStorage[ key[0] ] = JSON.stringify( w[ key[0] ] );
 
 	if( key[0] === "contextMenu" ) adjustContextMenu(); // update contextMenu if necessary
 
@@ -337,12 +325,12 @@ function removeBrowserClosingPrevention(change){
 
 // remove downloads from Downloads history:
 function removeDownloadFromList(change){
-	if( w.removeFromListWhen === "finished" && change.state) if( change.state.current === "complete" )
-		chrome.storage.local.get( change.id.toString(), function (l){
-			if(typeof l[ change.id.toString() ] !== "undefined") return; // don't remove just yet if file is supposed to get opened by extension
+	if( w.removeFromListWhen === "finished" && change.state)
+		if( change.state.current === "complete" ){
+			if(typeof localStorage[ change.id.toString() ] !== "undefined") return; // don't remove just yet if file is supposed to get opened by extension
 			chrome.downloads.erase({"state" : "complete"});
-		});
-	if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
+		}
+	else if( w.removeFromListWhen === "fileDeleted" && change.exists) chrome.downloads.erase({"exists" : false});
 }
 
 // show desktop notification of download completion or stop
