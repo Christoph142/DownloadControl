@@ -59,7 +59,9 @@ function restoreprefs()
 		var head = "<tr>";
 		if(rules !== "rules_ext") head += "<th>" + chrome.i18n.getMessage("website") + "</th>";
 		if(rules !== "rules_url") head += "<th>" + chrome.i18n.getMessage("file_types") + "</th>";
-		head += "<th>" + chrome.i18n.getMessage("directory") + "</th></tr>";
+		head += "<th>" + chrome.i18n.getMessage("directory") + "</th>";
+		if(rules === "suggestedRules" && storage[rules].length > 1) head += "<td class='delete_all_rules' id='delete_all_suggested_rules' data-from='"+rules+"'></td>";
+		head += "</tr>";
 		rules_element.innerHTML = head;
 
 		// content:
@@ -89,6 +91,11 @@ function restoreprefs()
 			bg.save_new_value(this.dataset.from, storage[this.dataset.from], restoreprefs);
 		}, false);
 	}
+
+	// "delete all rules"-button:
+	if(storage["suggestedRules"].length > 1) document.getElementById("delete_all_suggested_rules").addEventListener("click", function(){
+		bg.save_new_value("suggestedRules", [], restoreprefs);
+	}, false);
 
 	// "move rule up"-buttons:
 	var move_rule_up_buttons = document.getElementsByClassName("move_rule_up");
