@@ -280,6 +280,8 @@ function save_new_value(key, value, callback)
 {
 	key = key.split("."); // split tree
 	
+	if( key[0] === "suggestedRules" ) value.sort(function(a, b) { return a.url.localeCompare(b.url); }); // sort alphabetically
+
 	// save to storage cache (w):
 	var saveobjectBranch = w;
 	for(var i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
