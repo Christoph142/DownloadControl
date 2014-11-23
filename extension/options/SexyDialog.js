@@ -1,7 +1,9 @@
 // Check for necessary HTML5 support:
 if(document.createElement("dialog").showModal !== undefined){
 
-window.alert = function(text){
+var callback_fn = function(){};
+
+window.alert = function(text, callback){
 	text = text.toString().replace(/\n/g, "<br>");
 	
 	var dialog = document.createElement("dialog");
@@ -16,13 +18,14 @@ window.alert = function(text){
 	
 	document.documentElement.appendChild(dialog);
 	
-	document.getElementById("sexy_close_button").addEventListener("click", sexy_close, true); // close button
-	document.getElementById("sexy_confirm").addEventListener("click", sexy_close, true); // confirm button
+	if(typeof callback === "function") 	callback_fn = callback;
+	else 								callback_fn = function(){};
+
+	document.getElementById("sexy_close_button").addEventListener("click", sexy_cancel, true); // close button
+	document.getElementById("sexy_confirm").addEventListener("click", sexy_confirm, true); // confirm button
 	window.addEventListener("keydown", sexy_check_key, true);
 	
 	dialog.showModal();
-}
-
 }
 
 function sexy_close(returnValue){
@@ -33,7 +36,12 @@ function sexy_close(returnValue){
 		dialog.close(returnValue);
 		document.documentElement.removeChild(dialog);
 	}, 200);
+
+	if(returnValue) callback_fn();
 }
+
+function sexy_cancel(){ sexy_close(false); }
+function sexy_confirm(){ sexy_close(true); }
 
 function sexy_check_key(){
 	if(window.event.which === 13 || window.event.which === 27){ // Enter & Esc
@@ -41,4 +49,6 @@ function sexy_check_key(){
 		window.event.stopPropagation();
 		sexy_close( window.event.which === 13 ? true : false );
 	}
+}
+
 }

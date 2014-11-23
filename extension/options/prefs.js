@@ -283,11 +283,15 @@ function checkDefaultPathBrowser(callback){
 			chrome.downloads.erase({ "id" : change.id });
 		}
 	});
-	alert( chrome.i18n.getMessage("auto_detection1") + "\n" + chrome.i18n.getMessage("auto_detection2") + "\n" + chrome.i18n.getMessage("auto_detection3") + "\n\n" + chrome.i18n.getMessage("auto_detection4") );
-	chrome.downloads.download({
-		"url" : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/options/DownloadControl.check",
-		"conflictAction" : "overwrite" },
-		function (id){ storage.checkId = id; });
+	alert( chrome.i18n.getMessage("auto_detection1") + "\n" + chrome.i18n.getMessage("auto_detection2") + "\n" + chrome.i18n.getMessage("auto_detection3") + "\n\n" + chrome.i18n.getMessage("auto_detection4"),
+		function(){
+			chrome.downloads.download({
+				"url" : "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/options/DownloadControl.check",
+				"conflictAction" : "overwrite" },
+				function (id){ storage.checkId = id; }
+			);
+		}
+	);
 }
 
 function getFileTypes(rule){
