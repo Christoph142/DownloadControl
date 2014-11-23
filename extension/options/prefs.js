@@ -207,6 +207,9 @@ function add_page_handling()
 				storage.rules_both[storage.rules_both.length] = { "url" : document.getElementById("url").value, "ext" : bg.make_array(document.getElementById("ext").value), "dir" : dir };
 				bg.save_new_value("rules_both", storage.rules_both, restoreprefs);
 			}
+
+			// clear fields:
+			document.getElementById("url").value = document.getElementById("ext").value = document.getElementById("dir").value = "";
 		}
 	}, false);
 	
