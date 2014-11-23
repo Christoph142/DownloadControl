@@ -23,12 +23,12 @@ dialog#sexy_dialog::backdrop {
 }
 
 @keyframes show_moved {
-	from {opacity:0; -webkit-transform:translateY(-20px); }
-	to {opacity:1; -webkit-transform:translateY(0); }
+	from {opacity:0; -webkit-transform:translateY(-20px); transform:translateY(-20px); }
+	to {opacity:1; -webkit-transform:translateY(0); transform:translateY(0); }
 }
 @-webkit-keyframes show_moved {
-	from {opacity:0; -webkit-transform:translateY(-20px); }
-	to {opacity:1; -webkit-transform:translateY(0); }
+	from {opacity:0; -webkit-transform:translateY(-20px); transform:translateY(-20px); }
+	to {opacity:1; -webkit-transform:translateY(0); transform:translateY(0); }
 }
 
 @keyframes show {
@@ -38,6 +38,24 @@ dialog#sexy_dialog::backdrop {
 @-webkit-keyframes show {
 	from {opacity:0; }
 	to {opacity:1; }
+}
+
+@keyframes hide_moved {
+	from {opacity:1; -webkit-transform:translateY(0); transform:translateY(0); }
+	to {opacity:0; -webkit-transform:translateY(-20px); transform:translateY(-20px); }
+}
+@-webkit-keyframes hide_moved {
+	from {opacity:1; -webkit-transform:translateY(0); transform:translateY(0); }
+	to {opacity:0; -webkit-transform:translateY(-20px); transform:translateY(-20px); }
+}
+
+@keyframes hide {
+	from {opacity:1; }
+	to {opacity:0; }
+}
+@-webkit-keyframes hide {
+	from {opacity:1; }
+	to {opacity:0; }
 }
 
 dialog#sexy_dialog #sexy_close_button {
@@ -76,11 +94,11 @@ dialog#sexy_dialog .sexy_action_area {
 }
 
 dialog#sexy_dialog.close{
-	animation:show_moved 200ms reverse;
-	-webkit-animation:show_moved 200ms reverse;
+	animation:hide_moved 200ms;
+	-webkit-animation:hide_moved 200ms;
 }
 
 dialog#sexy_dialog.close::backdrop{
-	animation:show 200ms reverse;
-	-webkit-animation:show 200ms reverse;
+	animation:hide 200ms;
+	-webkit-animation:hide 200ms;
 }
