@@ -91,29 +91,25 @@ function determineFolder(download, suggest){
 }
 
 // omnibox:
-chrome.omnibox.onInputStarted.addListener( handleOmnibox );
-chrome.omnibox.onInputChanged.addListener( handleOmnibox );
-chrome.omnibox.onInputEntered.addListener( function (string){
+chrome.omnibox.onInputStarted.addListener( omnibox_suggest );
+chrome.omnibox.onInputChanged.addListener( omnibox_suggest );
+chrome.omnibox.onInputEntered.addListener( omnibox_handle );
+
+function omnibox_suggest(text, suggest){
+	suggest([
+		{ "content" : "open "+text, "description" : "Open "+text},
+		{ "content" : "save "+text, "description" : "Save "+text}
+	]);
+}
+
+function omnibox_handle(string){
 	var s = string.split(" ");
 	for(var i = 0; i < s.length; i++) if(s[i] === "") s.splice(i, 1); // remove empty entries
 
-	if(!s[1]) // no keyword -> try to download it:
-		save( s[0].indexOf("://") > 0 ? s[0] : "http://"+s[0] );
-	else if(s[0] === "o" || s[0] === "open") // open
-		open( s[1].indexOf("://") > 0 ? s[1] : "http://"+s[1] );
-	else if(s[0] === "s" || s[0] === "search") // search
-	{
-		//chrome.downloads.search({ });
-	}
-	else console.log("User entered an invalid command into omnibox");
-});
-function handleOmnibox(text, suggest){
-	console.log(text);
-	suggest([
-		{ "content" : "open "+text, "description" : "Open "+text},
-		{ "content" : "search "+text, "description" : "Search a download containing "+text}
-	]);
-};
+	if(!s[1] || s[0] === "s" || s[0] === "save")	save( s[0].indexOf("://") > 0 ? s[0] : "http://"+s[0] ); // no keyword / download entry
+	else if(s[0] === "o" || s[0] === "open")		open( s[1].indexOf("://") > 0 ? s[1] : "http://"+s[1] ); // open
+	else 											console.log("User entered an invalid command into omnibox");
+}
 
 // contextMenu clicks:
 chrome.contextMenus.onClicked.addListener( function (e){
