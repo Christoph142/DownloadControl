@@ -361,25 +361,29 @@ function notifyDownloadState(change){
 	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) || ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.current.indexOf("USER") !== 0 ) )
 		chrome.downloads.search({"id": change.id}, function(ds){
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
-			if( ds[0].state === "complete") chrome.notifications.create(
-				"completed_"+ds[0].id, // use download's ID as notification ID
-				{
-					type : "basic",
-					iconUrl : "images/128.png",
-					title : chrome.i18n.getMessage("download_completed"),
-					message : chrome.i18n.getMessage("click_to_open", filename)
-				},
-				function (id){ /* creation callback */ }
+			if( ds[0].state === "complete") chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
+				chrome.notifications.create(
+					"completed_"+ds[0].id, // use download's ID as notification ID
+					{
+						type : "basic",
+						iconUrl : fileicon,
+						title : chrome.i18n.getMessage("download_completed"),
+						message : chrome.i18n.getMessage("click_to_open", filename)
+					},
+					function (id){ /* creation callback */ }
 				);
-			else chrome.notifications.create(
-				"interrupted_"+ds[0].id,
-				{
-					type : "basic",
-					iconUrl : "images/128.png",
-					title : chrome.i18n.getMessage("download_interrupted"),
-					message : chrome.i18n.getMessage("interrupted_body", filename)
-				},
-				function (id){ /* creation callback */ }
+			});
+			else chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
+				chrome.notifications.create(
+					"interrupted_"+ds[0].id,
+					{
+						type : "basic",
+						iconUrl : fileicon,
+						title : chrome.i18n.getMessage("download_interrupted"),
+						message : chrome.i18n.getMessage("interrupted_body", filename)
+					},
+					function (id){ /* creation callback */ }
 				);
+			});
 		});
 }
