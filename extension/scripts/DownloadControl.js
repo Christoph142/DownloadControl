@@ -362,28 +362,59 @@ function notifyDownloadState(change){
 		chrome.downloads.search({"id": change.id}, function(ds){
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
 			if( ds[0].state === "complete") chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
-				chrome.notifications.create(
-					"completed_"+ds[0].id, // use download's ID as notification ID
-					{
-						type : "basic",
-						iconUrl : fileicon,
-						title : chrome.i18n.getMessage("download_completed"),
-						message : chrome.i18n.getMessage("click_to_open", filename)
-					},
-					function (id){ /* creation callback */ }
-				);
+				createNotificationIcon(fileicon, function(notificationIcon){
+					chrome.notifications.create(
+						"completed_"+ds[0].id, // use download's ID as notification ID
+						{
+							type : "basic",
+							iconUrl : notificationIcon,
+							title : chrome.i18n.getMessage("download_completed"),
+							message : chrome.i18n.getMessage("click_to_open", filename)
+						},
+						function (id){ /* creation callback */ }
+					);
+				});
 			});
 			else chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
-				chrome.notifications.create(
-					"interrupted_"+ds[0].id,
-					{
-						type : "basic",
-						iconUrl : fileicon,
-						title : chrome.i18n.getMessage("download_interrupted"),
-						message : chrome.i18n.getMessage("interrupted_body", filename)
-					},
-					function (id){ /* creation callback */ }
-				);
+				createNotificationIcon(fileicon, function(notificationIcon){
+					chrome.notifications.create(
+						"interrupted_"+ds[0].id,
+						{
+							type : "basic",
+							iconUrl : notificationIcon,
+							title : chrome.i18n.getMessage("download_interrupted"),
+							message : chrome.i18n.getMessage("interrupted_body", filename)
+						},
+						function (id){ /* creation callback */ }
+					);
+				});
 			});
 		});
+}
+
+function createNotificationIcon(fileIconString, callback){
+    // Create an empty canvas element
+    var canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 256;
+
+    // Copy images into canvas
+    var loaded = 0;
+
+    var fileIcon = new Image();
+	var extensionIcon = new Image();
+	fileIcon.src = fileIconString;
+	extensionIcon.src = "images/64.png";
+	var ctx = canvas.getContext("2d");
+
+	fileIcon.onload = extensionIcon.onload = function(){
+	    if (loaded === 0) 	loaded++;
+	    else 				finishIcon();
+	};
+
+	function finishIcon(){
+		ctx.drawImage(fileIcon, 32, 32, 176, 176);
+	    ctx.drawImage(extensionIcon, 160, 160);
+
+	    if(typeof callback === "function") callback(canvas.toDataURL("image/png"));
+	}
 }
