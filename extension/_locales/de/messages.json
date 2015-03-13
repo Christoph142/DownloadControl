@@ -68,8 +68,7 @@
         "description": ""
     },
     "interrupted_body": {
-        "message": "Downloading $file$ was interrupted",
-        "placeholders" : { "file" : { "content" : "$1" } },
+        "message": "Der Download von $file$ wurde unterbrochen",
         "description": ""
     },
     "new_rule": {
@@ -213,7 +212,7 @@
         "description": ""
     },
     "download_completed": {
-        "message": "Download completed",
+        "message": "Download vollständig",
         "description": ""
     },
     "save": {
@@ -277,8 +276,7 @@
         "description": ""
     },
     "click_to_open": {
-        "message": "Click to open $file$",
-        "placeholders" : { "file" : { "content" : "$1" } },
+        "message": "Hier klicken, um $file$ zu öffnen",
         "description": ""
     },
     "step1": {
@@ -290,7 +288,7 @@
         "description": ""
     },
     "download_interrupted": {
-        "message": "Download failed",
+        "message": "Download abgebrochen",
         "description": ""
     },
     "letsgetstarted": {

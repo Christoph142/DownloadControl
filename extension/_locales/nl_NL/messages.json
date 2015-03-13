@@ -68,8 +68,7 @@
         "description": ""
     },
     "interrupted_body": {
-        "message": "Downloading $file$ was interrupted",
-        "placeholders" : { "file" : { "content" : "$1" } },
+        "message": "Het downloaden van $file$ werd onderbroken",
         "description": ""
     },
     "new_rule": {
@@ -133,7 +132,7 @@
         "description": ""
     },
     "notifyDone": {
-        "message": "Show desktop notification on download completion",
+        "message": "Bureaubladmeldingen weergeven wanneer het downloaden is voltooid",
         "description": ""
     },
     "pathRelativeError": {
@@ -205,7 +204,7 @@
         "description": ""
     },
     "notifyFail": {
-        "message": "Show desktop notification on download interruption",
+        "message": "Bureaubladmeldingen weergeven wanneer het downloaden wordt onderbroken",
         "description": ""
     },
     "note": {
@@ -213,7 +212,7 @@
         "description": ""
     },
     "download_completed": {
-        "message": "Download completed",
+        "message": "Het downloaden is voltooid",
         "description": ""
     },
     "save": {
@@ -277,8 +276,7 @@
         "description": ""
     },
     "click_to_open": {
-        "message": "Click to open $file$",
-        "placeholders" : { "file" : { "content" : "$1" } },
+        "message": "Klik om $file$ te openen",
         "description": ""
     },
     "step1": {
@@ -290,7 +288,7 @@
         "description": ""
     },
     "download_interrupted": {
-        "message": "Download failed",
+        "message": "Het downloaden is mislukt",
         "description": ""
     },
     "letsgetstarted": {
