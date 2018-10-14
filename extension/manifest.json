@@ -1,7 +1,6 @@
 {	
 	"name"						: "Download Control",
 	"description"				: "__MSG_description__",
-	"developer"					: {"name" : "Christoph D."},
 	"homepage_url"				: "https://christoph142.wordpress.com",
 	
 	"default_locale"			: "en",

@@ -303,12 +303,6 @@ a {
 .visible{ height:auto; }
 .invisible{ height:0; overflow:hidden; }
 
-#help		{ position:fixed; top:20px; right:20px; width:auto; height:auto; box-shadow:0 0 10px #F00; background:#FFF; padding:10px 10px 20px 10px; text-align:center; cursor:pointer; border-radius:5px; }
-#close_help	{ position:fixed; top:25px; right:25px; height:15px; width:12px; border-radius:4px; border:1px solid #BBB; cursor:default; transition:200ms; }
-#close_help:hover{background:#DDD;}
-#close_help > p{ position:fixed; top:12px; right:30px; }
-#close_help > p::before{ content:"✗"; font-size:xx-small; position: relative; top: -1px; left: 1px; }
-
 .rule:hover{ background:#CCC; }
 .delete_rule, .delete_all_rules{ width:19px; border-radius:5px; color:#F30; font-weight:bold; cursor:pointer; background:#FFD2B7; opacity:0; }
 .delete_rule::before{ content:"✗"; position:relative; left:6px; bottom:2px; }
