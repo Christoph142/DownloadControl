@@ -230,12 +230,6 @@ function add_page_handling()
 		t.removeEventListener("blur", handleChanges, false);
 	}
 
-	// help:
-	document.getElementById("close_help").addEventListener("click", function(e){
-		e.preventDefault(); e.stopPropagation();
-		document.getElementById("help").style.display = "none";
-	}, false);
-
 	// auto-detect default folder button:
 	document.getElementById("checkDefaultPathBrowser").addEventListener("click", function(){
 		checkDefaultPathBrowser( function(){
