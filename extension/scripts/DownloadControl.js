@@ -12,6 +12,7 @@ var w = {
 	"rules_ext" 			:	(!localStorage["rules_ext"]				? [] 				: JSON.parse(localStorage["rules_ext"])),
 	"suggestedRules" 		:	(!localStorage["suggestedRules"]		? [] 				: JSON.parse(localStorage["suggestedRules"])),
 	"preventClosing"		:	(!localStorage["preventClosing"]		? "1" 				: JSON.parse(localStorage["preventClosing"])),
+	"notifyProgress"		:	(!localStorage["notifyProgress"]		? "1" 				: JSON.parse(localStorage["notifyProgress"])),
 	"notifyDone"			:	(!localStorage["notifyDone"]			? "1" 				: JSON.parse(localStorage["notifyDone"])),
 	"notifyFail"			:	(!localStorage["notifyFail"]			? "1" 				: JSON.parse(localStorage["notifyFail"]))
 };
@@ -19,18 +20,74 @@ var w = {
 adjustContextMenu(); // contextmenu entries
 
 chrome.downloads.onDeterminingFilename.addListener( onDeterminingFilename );
+chrome.downloads.onCreated.addListener( onCreated );
 chrome.downloads.onChanged.addListener( onChanged );
+chrome.downloads.onErased.addListener( onErased );
 
 function onDeterminingFilename(download, suggest){
 	determineFolder(download, suggest);
 	if(!download.byExtensionId || download.filename.indexOf("DownloadControl.check") === -1) preventBrowserClosing(); // default folder check
 }
-function onChanged(change){
+
+async function onCreated(download) {
+	if (!w.notifyProgress === "1") return;
+	if (download.state === "interrupted" || download.state === "complete") return; // TODO different notification?
+	
+	console.log("onCreated: ", download);
+	chrome.notifications.create(
+		"inprogress_"+download.id, // use download's ID as notification ID
+		{
+			type : "progress",
+			iconUrl : "images/96.png",
+			title : chrome.i18n.getMessage("downloading"),
+			message : chrome.i18n.getMessage("progress_body", new Date(download.estimatedEndTime)),
+			buttons : [{ title : "❚❚" }, { title : "⬛" }]
+		},
+		function (notificationId){
+			chrome.downloads.getFileIcon(download.id, {size : 32}, function (fileicon){
+				createNotificationIcon(fileicon, function(notificationIcon){
+					chrome.notifications.update(
+						"inprogress_"+download.id,
+						{
+							iconUrl : notificationIcon,
+						},
+						function(){ updateProgress( download.id ); }
+					);
+				});
+			});
+		}
+	);
+}
+
+async function onChanged(change){
+	console.log("onChanged: ", change);
+	if (change.state) onStateChanged(change);
+	else if (change.filename) onFilenameChanged(change);
+	else if (change.paused) onPausedChanged(change);
+}
+
+async function onStateChanged(change){
 	openFile( change );
-	checkIfSavedInExpectedFolder( change );
 	notifyDownloadState( change );
 	removeBrowserClosingPrevention( change );
 	removeDownloadFromList( change );
+}
+
+async function onFilenameChanged(change){
+	checkIfSavedInExpectedFolder( change );
+}
+
+async function onPausedChanged(change){
+	chrome.notifications.update("inprogress_"+change.id, {
+		buttons : [{ title : change.paused.current ? "►" : "❚❚" }, { title : chrome.i18n.getMessage("cancel") }]
+	}, function(){ if (!change.paused.current) updateProgress(change.id); });
+}
+
+async function onErased(id){
+	console.debug("onErased: ", id);
+	chrome.notifications.clear("inprogress_"+id);	
+	chrome.notifications.clear("completed_"+id);	
+	chrome.notifications.clear("interrupted_"+id);	
 }
 
 // determine correct location:
@@ -177,7 +234,7 @@ function deleteFile(change_id){
 
 // check if file gets saved where Download Control expects it:
 function checkIfSavedInExpectedFolder (change){
-	if(!change.filename || !w[change.id] || w.defaultPathBrowser.length < 3) return;
+	if(!w[change.id] || w.defaultPathBrowser.length < 3) return;
 	console.log("final folder check: is: ", change.filename.current, "expected:", w[change.id]);
 	
 	// if folder is different than expected (outside of expected folder OR subfolder thereof):
@@ -265,11 +322,23 @@ chrome.commands.onCommand.addListener(function (e){
 });
 
 // notification handling:
-if(chrome.notifications) chrome.notifications.onClicked.addListener( function (id){
-	if 		(id === "newRule") 					chrome.tabs.create({ url : "options/options.html" });
-	else if (id.split("_")[0] === "completed") 	chrome.downloads.open( parseInt(id.split("_")[1]) );
-	else 										chrome.tabs.create("opera://downloads");
-});
+if(chrome.notifications) {
+	chrome.notifications.onClicked.addListener( function (id) {
+		if 		(id === "newRule") 					chrome.tabs.create({ url : "options/options.html" });
+		else if (id.split("_")[0] === "completed") 	chrome.downloads.open( parseInt(id.split("_")[1]) );
+		else 										chrome.tabs.create("vivaldi://downloads");
+	});
+	chrome.notifications.onButtonClicked.addListener(function (id, buttonIndex) {
+		if (id.split("_")[0] === "inprogress") {
+			if (buttonIndex === 0)	chrome.downloads.pause( parseInt(id.split("_")[1]) );
+			else					chrome.downloads.cancel( parseInt(id.split("_")[1]) );
+		}
+		else if (id.split("_")[0] === "completed") {
+			if (buttonIndex === 0)	chrome.downloads.open( parseInt(id.split("_")[1]) );
+			else					chrome.downloads.show( parseInt(id.split("_")[1]) );
+		}
+	});
+}
 
 // helper functions:
 function save_new_value(key, value, callback)
@@ -357,9 +426,10 @@ function removeDownloadFromList(change){
 // show desktop notification of download completion or stop
 function notifyDownloadState(change){
 	if( !change.state ) return;
-	// only if download is complete or interrupted and according notification option is turned on
-	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) || ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.current.indexOf("USER") !== 0 ) )
+	else if( ( change.state.current === "complete" && w.notifyDone === "1" ) ||
+			 ( change.state.current === "interrupted" && w.notifyFail === "1" && change.error.current.indexOf("USER") !== 0 ) )
 		chrome.downloads.search({"id": change.id}, function(ds){
+			console.log(ds.filename);
 			var filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
 			if( ds[0].state === "complete") chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
 				createNotificationIcon(fileicon, function(notificationIcon){
@@ -369,7 +439,8 @@ function notifyDownloadState(change){
 							type : "basic",
 							iconUrl : notificationIcon,
 							title : chrome.i18n.getMessage("download_completed"),
-							message : chrome.i18n.getMessage("click_to_open", filename)
+							message : chrome.i18n.getMessage("click_to_open", filename),
+							buttons : [{ title : chrome.i18n.getMessage("open") }, { title : chrome.i18n.getMessage("show") }]
 						},
 						function (id){ /* creation callback */ }
 					);
@@ -390,6 +461,24 @@ function notifyDownloadState(change){
 				});
 			});
 		});
+}
+
+var df = new Intl.RelativeTimeFormat("en");
+async function updateProgress( id ) {
+	chrome.downloads.search({"id": id}, function(ds){
+		if( ds[0] === undefined || ds[0].state !== "in_progress") return;
+		let minutesRemaining = Math.round((new Date(ds[0].estimatedEndTime)- new Date())/1000/60);
+		console.log(minutesRemaining);
+		chrome.notifications.update(
+			"inprogress_"+id,
+			{
+				progress : Math.round(100 * ds[0].bytesReceived / ds[0].totalBytes),
+				title : ds[0].paused ? "Download paused" : "Downloading...",
+				message : ds[0].estimatedEndTime ? df.format(minutesRemaining, "minute") : ""
+			},
+			function (wasUpdated){ if (!ds[0].paused) window.setTimeout(function(){ updateProgress( id ); }, 500); }
+		);
+	});
 }
 
 function createNotificationIcon(fileIconString, callback){

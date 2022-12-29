@@ -1,284 +1,138 @@
 {
-    "welcome": {
-        "message": "Bienvenue",
-        "description": ""
-    },
-    "incompleteInput": {
-        "message": "Vous avez besoin d'abord d'entrer un site web et/ou au moins 1 type de fichier pour qu'une règle puisse être fonctionnelle.",
-        "description": ""
-    },
-    "auto_detection3": {
-        "message": "Si vous ne le connaissez pas, annulez la boîte de dialogue et retourner dans les paramètres du navigateur, copiez le contenu du champs concernant le \"Répertoire de téléchargement\", et remplacez-le sur cette présente page.",
-        "description": ""
-    },
-    "settings": {
-        "message": "Paramètres",
-        "description": ""
-    },
-    "contextMenu": {
-        "message": "Quelles entrées voulez-vous que l'extension ajoute au menu contextuel ?",
-        "description": ""
-    },
-    "step3_3": {
-        "message": "ex : si vous que votre dossier par défaut soit \"C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\\" et que vous avez indiqué \"C:\\Utilisateurs\\VOTRENOM\\\" à l'étape 1 (et 2), indiquez ici \"Téléchargements\\\".",
-        "description": ""
-    },
-    "intro2": {
-        "message": "Vous pouvez fermer cette fenêtre pour passer ces 3 étapes dès maintenant, mais certaines fonctionnalités ne seront pas disponibles tant que vous ne les aurez pas suivies.",
-        "description": ""
-    },
-    "conflictAction": {
-        "message": "Que faire lorsqu'un fichier avec le même nom existe déjà dans le répertoire indiqué ?",
-        "description": ""
-    },
-    "auto_detection1": {
-        "message": "En focntion des paramètres de votre navigateur, la détection automatique peut ne pas fonctionner.",
-        "description": ""
-    },
-    "suggestedRules": {
-        "message": "Nouvelles règles possibles",
-        "description": ""
-    },
-    "directory": {
-        "message": "Répertoire",
+    "description": {
+        "message": "Gérez vos téléchargements",
         "description": ""
     },
     "by": {
         "message": "par",
         "description": ""
     },
-    "website": {
-        "message": "Site web",
-        "description": ""
-    },
-    "placeholder3": {
-        "message": "ex : \"google.fr\" ou \"example-url.org/x\"",
-        "description": ""
-    },
-    "prompt": {
-        "message": "Me demander",
-        "description": ""
-    },
-    "done2": {
-        "message": "Si vous le voulez, vous pouvez commencer par créer de nouvelles règles ou jeter un oeuil sur les paramètres de Download Control maintenant.",
-        "description": ""
-    },
-    "step1_3": {
-        "message": "Pour sélectionner ce dossier",
-        "description": ""
-    },
-    "interrupted_body": {
-        "message": "Downloading $file$ was interrupted",
-        "placeholders" : { "file" : { "content" : "$1" } },
-        "description": ""
-    },
-    "new_rule": {
-        "message": "Ajouter une nouvelle règle",
-        "description": ""
-    },
-    "placeholder4": {
-        "message": "ex : \"pdf, doc\"",
-        "description": ""
-    },
-    "intro1": {
-        "message": "Débutons par un petit tutoriel qui est nécessaire pour que cette extension fonctionne correctement.",
-        "description": ""
-    },
-    "initialSetup": {
-        "message": "Tutoriel",
-        "description": ""
-    },
-    "step2_2": {
-        "message": "Si vous n'avez pas besoin ou ne voulez pas de cette fonctionnalité, vous pouvez passer directement à l’étape 3.",
-        "description": ""
-    },
-    "checkDefaultPathBrowser": {
-        "message": "Essayer de détecter automatiquement le répertoire de téléchargment par défaut de votre navigateur",
-        "description": ""
-    },
-    "step3": {
-        "message": "Une règle universelle",
-        "description": ""
-    },
-    "step1_6": {
-        "message": "Cliquez sur \"Changer...\"",
-        "description": ""
-    },
-    "fileDeleted": {
-        "message": "Lorsuqe le fichier téléchargé aura été supprimé/déplacé",
-        "description": ""
-    },
-    "open": {
-        "message": "Ouvrir",
-        "description": ""
-    },
-    "step1_2": {
-        "message": "ex : si vous voulez sauvegarder vos fichiers dans \"C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\\" et dans \"C:\\Utilisateurs\\VOTRENOM\\Documents\\\", la meilleur solution serait de choisir \"C:\\Utilisateurs\\VOTRENOM\\\".",
-        "description": ""
-    },
-    "step2_1": {
-        "message": "De nouvelles règles peuvent vous être suggérées même qi vous choisissiez de sauvegarder un fichier à un endroit différent de celui qu'il espérait être l'endroit de sauvegarde par défaut.",
-        "description": ""
-    },
-    "step1_5": {
-        "message": "Faites défiler vers le bas pour trouver le paramètre \"Destination du téléchargement\" (Dans Chrome, vous devez d'abord cliquer sur \"Montrer les paramètres avancés...\")",
-        "description": ""
-    },
-    "downloadInProgress": {
-        "message": "Il y a actuellement un téléchargemetn en cours.\nVous aurez à le recommencer depuis le début si vous fermez votre navigateur maintenant.",
-        "description": ""
-    },
-    "rules_ext": {
-        "message": "Type de fichier seulement",
-        "description": ""
-    },
-    "notifyDone": {
-        "message": "Show desktop notification on download completion",
-        "description": ""
-    },
-    "pathRelativeError": {
-        "message": "Les chemins d'accès partiels ne sont pas autorisés ici.\nLe chemin d'accès doit commencer par la lettre de votre partition de disque dur (ex : C:\\).",
-        "description": ""
-    },
-    "removeFromListWhen": {
-        "message": "Supprimer automatiquement le téléchargemeent de l'historique des téléchargements du navigatuer.",
-        "description": ""
-    },
     "rules": {
         "message": "Règles de sauvegarde",
+        "description": ""
+    },
+    "settings": {
+        "message": "Paramètres",
         "description": ""
     },
     "rules_both": {
         "message": "Site web & type de fichier",
         "description": ""
     },
-    "thatsit": {
-        "message": "C'est bon",
-        "description": ""
-    },
-    "step1_7": {
-        "message": "Sélectionner le dossier que vous voulez utiliser",
-        "description": ""
-    },
-    "footer": {
-        "message": "Merci d'avoir installé cette extension. Vous pouvez me contacter quand vous voulez pour me soumettre un commentaire ou me poser des questions.",
-        "description": ""
-    },
-    "step3_2": {
-        "message": "Afin d'éviter que les fichiers pour lesquels vous n'avez pas spécifié de règle dans l'étape précédente ne se trouvent pas liés, vous devez indiquer à Download Control le sous-dossier où ils doivent être sauvegardés.",
-        "description": ""
-    },
-    "placeholder1": {
-        "message": "ex : C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\",
-        "description": ""
-    },
-    "pathOutsideError": {
-        "message": "Vous ne pouvez choisir que les dossiers contenus dans votre dossier de téléchargement par défaut.\nSi vous désirez utiliser un dossier en dehors de celui-ci, changez d'abord votre dossier de téléchargement par défaut dans les paramètres de votre navigateur pour qu'y soient incluent tous les dossiers que vous voulez ; puis après choisissez le répertoire de téléchargement par Défaut avec Dowload control pour permettre à tous les fichiers qui ne sont pas classés par aucunes de vos préférences de se classer dans le dossier correcte. ",
-        "description": ""
-    },
-    "defaultPathBrowser": {
-        "message": "Dossier de téléchargement de votre navigateur par défaut",
-        "description": ""
-    },
-    "step3_1": {
-        "message": "Changer le dossier par défaut du navigateur peut apporter un inconvénient : votre dossier par défaut aura changé (\"Nan, vraiment ?\").",
-        "description": ""
-    },
-    "auto_detection4": {
-        "message": "Vous pouvez recommencer sans problème cette étape automatique si vous avez besoin de voir à nouveau ces instructions.",
-        "description": ""
-    },
-    "never": {
-        "message": "Jamais",
-        "description": ""
-    },
-    "step1_4": {
-        "message": "ouvrez les apramètres (Alt+P pour Opera)",
-        "description": ""
-    },
-    "auto_detection_failed": {
-        "message": "La détection automatique a échoué. Réessayer ?",
-        "description": ""
-    },
-    "no_rules_yet": {
-        "message": "Pas encore de règle spécifiée",
-        "description": ""
-    },
-    "notifyFail": {
-        "message": "Show desktop notification on download interruption",
-        "description": ""
-    },
-    "note": {
-        "message": "Note :",
-        "description": ""
-    },
-    "download_completed": {
-        "message": "Download completed",
-        "description": ""
-    },
-    "save": {
-        "message": "Sauvegarder",
-        "description": ""
-    },
-    "step2_3": {
-        "message": "Toutefois, si vous voulez qu'elle fonctionne, vous devez indiquer à Download Control le dossier que vous avez indiqué à l'étape 1. Indiquez-le ici : ",
-        "description": ""
-    },
     "rules_url": {
         "message": "Site web seulement",
         "description": ""
     },
-    "step": {
-        "message": "Passer",
+    "rules_ext": {
+        "message": "Type de fichier seulement",
         "description": ""
     },
-    "placeholder5": {
-        "message": "ex : chemin\\vers\\votre\\fichier",
+    "new_rule": {
+        "message": "Ajouter une nouvelle règle",
         "description": ""
     },
-    "add": {
-        "message": "Ajouter",
-        "description": ""
-    },
-    "uniquify": {
-        "message": "Le télécharcger quand même, et le sauvegarder en rajoutant un chiffre à la fin du nom de fichier",
-        "description": ""
-    },
-    "preventClosing": {
-        "message": "Demander confirmation avant de fermer le navigateur alors qu'il y a des téléchargement en cours",
-        "description": ""
-    },
-    "defaultPath": {
-        "message": "Dossier de téléchargement par défaut",
-        "description": ""
-    },
-    "step2": {
-        "message": "Download Control peut vous faciliter la vie",
+    "website": {
+        "message": "Site web",
         "description": ""
     },
     "file_types": {
         "message": "Types de ficheirs",
         "description": ""
     },
-    "finished": {
-        "message": "Dès que le téléchargmeetn est terminé",
+    "directory": {
+        "message": "Répertoire",
         "description": ""
     },
-    "done1": {
-        "message": "Le tutoriel est terminé",
+    "incompleteInput": {
+        "message": "Vous avez besoin d'abord d'entrer un site web et/ou au moins 1 type de fichier pour qu'une règle puisse être fonctionnelle.",
         "description": ""
     },
-    "auto_detection_succeeded": {
-        "message": "La détection automatique a réussi. Cliquez pour rafraîchir si vous l'avez à nouveau changé.",
+    "defaultPath": {
+        "message": "Dossier de téléchargement par défaut",
         "description": ""
     },
-    "step2_4": {
-        "message": "Download Control ne fonctionnera pas correctelement si ce dossier est incorrectement spécifié. Souvenez vous de toujours le changer ici si vous le changez dans les apramètres de votre navigateur !",
+    "pathAbsoluteError": {
+        "message": "Les chemins d'accès complets ne sont pas autorisés ici.\nVeuillez indiquer directement votre dossier de téléchargement par défaut.",
         "description": ""
     },
-    "click_to_open": {
-        "message": "Click to open $file$",
-        "placeholders" : { "file" : { "content" : "$1" } },
+    "pathOutsideError": {
+        "message": "Vous ne pouvez choisir que les dossiers contenus dans votre dossier de téléchargement par défaut.\nSi vous désirez utiliser un dossier en dehors de celui-ci, changez d'abord votre dossier de téléchargement par défaut dans les paramètres de votre navigateur pour qu'y soient incluent tous les dossiers que vous voulez ; puis après choisissez le répertoire de téléchargement par Défaut avec Dowload control pour permettre à tous les fichiers qui ne sont pas classés par aucunes de vos préférences de se classer dans le dossier correcte. ",
+        "description": ""
+    },
+    "add": {
+        "message": "Ajouter",
+        "description": ""
+    },
+    "conflictAction": {
+        "message": "Que faire lorsqu'un fichier avec le même nom existe déjà dans le répertoire indiqué ?",
+        "description": ""
+    },
+    "prompt": {
+        "message": "Me demander",
+        "description": ""
+    },
+    "overwrite": {
+        "message": "Ecraser le fichier existant",
+        "description": ""
+    },
+    "uniquify": {
+        "message": "Le télécharcger quand même, et le sauvegarder en rajoutant un chiffre à la fin du nom de fichier",
+        "description": ""
+    },
+    "footer": {
+        "message": "Merci d'avoir installé cette extension. Vous pouvez me contacter quand vous voulez pour me soumettre un commentaire ou me poser des questions.",
+        "description": ""
+    },
+    "save": {
+        "message": "Sauvegarder",
+        "description": ""
+    },
+    "open": {
+        "message": "Ouvrir",
+        "description": ""
+    },
+    "suggestedRules": {
+        "message": "Nouvelles règles possibles",
+        "description": ""
+    },
+    "checkDefaultPathBrowser": {
+        "message": "Essayer de détecter automatiquement le répertoire de téléchargment par défaut de votre navigateur",
+        "description": ""
+    },
+    "defaultPathBrowser": {
+        "message": "Dossier de téléchargement de votre navigateur par défaut",
+        "description": ""
+    },
+    "pathRelativeError": {
+        "message": "Les chemins d'accès partiels ne sont pas autorisés ici.\nLe chemin d'accès doit commencer par la lettre de votre partition de disque dur (ex : C:\\).",
+        "description": ""
+    },
+    "contextMenu": {
+        "message": "Quelles entrées voulez-vous que l'extension ajoute au menu contextuel ?",
+        "description": ""
+    },
+    "initialSetup": {
+        "message": "Tutoriel",
+        "description": ""
+    },
+    "welcome": {
+        "message": "Bienvenue",
+        "description": ""
+    },
+    "intro1": {
+        "message": "Débutons par un petit tutoriel qui est nécessaire pour que cette extension fonctionne correctement.",
+        "description": ""
+    },
+    "intro2": {
+        "message": "Vous pouvez fermer cette fenêtre pour passer ces 3 étapes dès maintenant, mais certaines fonctionnalités ne seront pas disponibles tant que vous ne les aurez pas suivies.",
+        "description": ""
+    },
+    "letsgetstarted": {
+        "message": "Commençons",
+        "description": ""
+    },
+    "step": {
+        "message": "Passer",
         "description": ""
     },
     "step1": {
@@ -289,32 +143,176 @@
         "message": "A cause de restrictions liées à la sécurité, cela n'est seulement possible que dans votre dossier de téléchargement par défaut de votre navigateur. Par conséquent, vous devez choisir ce dossier de façon à ce qu'il contienne tous les dossiers où vous voudriez sauvegarder vos fichiers.",
         "description": ""
     },
-    "download_interrupted": {
-        "message": "Download failed",
+    "step1_2": {
+        "message": "ex : si vous voulez sauvegarder vos fichiers dans \"C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\\" et dans \"C:\\Utilisateurs\\VOTRENOM\\Documents\\\", la meilleur solution serait de choisir \"C:\\Utilisateurs\\VOTRENOM\\\".",
         "description": ""
     },
-    "letsgetstarted": {
-        "message": "Commençons",
+    "step1_3": {
+        "message": "Pour sélectionner ce dossier",
         "description": ""
     },
-    "pathAbsoluteError": {
-        "message": "Les chemins d'accès complets ne sont pas autorisés ici.\nVeuillez indiquer directement votre dossier de téléchargement par défaut.",
+    "step1_4": {
+        "message": "ouvrez les apramètres (Alt+P pour Opera)",
+        "description": ""
+    },
+    "step1_5": {
+        "message": "Faites défiler vers le bas pour trouver le paramètre \"Destination du téléchargement\" (Dans Chrome, vous devez d'abord cliquer sur \"Montrer les paramètres avancés...\")",
+        "description": ""
+    },
+    "step1_6": {
+        "message": "Cliquez sur \"Changer...\"",
+        "description": ""
+    },
+    "step1_7": {
+        "message": "Sélectionner le dossier que vous voulez utiliser",
+        "description": ""
+    },
+    "step2": {
+        "message": "Download Control peut vous faciliter la vie",
+        "description": ""
+    },
+    "step2_1": {
+        "message": "De nouvelles règles peuvent vous être suggérées même qi vous choisissiez de sauvegarder un fichier à un endroit différent de celui qu'il espérait être l'endroit de sauvegarde par défaut.",
+        "description": ""
+    },
+    "step2_2": {
+        "message": "Si vous n'avez pas besoin ou ne voulez pas de cette fonctionnalité, vous pouvez passer directement à l’étape 3.",
+        "description": ""
+    },
+    "step2_3": {
+        "message": "Toutefois, si vous voulez qu'elle fonctionne, vous devez indiquer à Download Control le dossier que vous avez indiqué à l'étape 1. Indiquez-le ici : ",
+        "description": ""
+    },
+    "note": {
+        "message": "Note :",
+        "description": ""
+    },
+    "step2_4": {
+        "message": "Download Control ne fonctionnera pas correctelement si ce dossier est incorrectement spécifié. Souvenez vous de toujours le changer ici si vous le changez dans les apramètres de votre navigateur !",
+        "description": ""
+    },
+    "step3": {
+        "message": "Une règle universelle",
+        "description": ""
+    },
+    "step3_1": {
+        "message": "Changer le dossier par défaut du navigateur peut apporter un inconvénient : votre dossier par défaut aura changé (\"Nan, vraiment ?\").",
+        "description": ""
+    },
+    "step3_2": {
+        "message": "Afin d'éviter que les fichiers pour lesquels vous n'avez pas spécifié de règle dans l'étape précédente ne se trouvent pas liés, vous devez indiquer à Download Control le sous-dossier où ils doivent être sauvegardés.",
+        "description": ""
+    },
+    "step3_3": {
+        "message": "ex : si vous que votre dossier par défaut soit \"C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\\" et que vous avez indiqué \"C:\\Utilisateurs\\VOTRENOM\\\" à l'étape 1 (et 2), indiquez ici \"Téléchargements\\\".",
+        "description": ""
+    },
+    "thatsit": {
+        "message": "C'est bon",
+        "description": ""
+    },
+    "done1": {
+        "message": "Le tutoriel est terminé",
+        "description": ""
+    },
+    "done2": {
+        "message": "Si vous le voulez, vous pouvez commencer par créer de nouvelles règles ou jeter un oeuil sur les paramètres de Download Control maintenant.",
+        "description": ""
+    },
+    "no_rules_yet": {
+        "message": "Pas encore de règle spécifiée",
+        "description": ""
+    },
+    "placeholder1": {
+        "message": "ex : C:\\Utilisateurs\\VOTRENOM\\Téléchargements\\",
         "description": ""
     },
     "placeholder2": {
         "message": "ex : Téléchargements\\",
         "description": ""
     },
-    "description": {
-        "message": "Gérez vos téléchargements",
+    "placeholder3": {
+        "message": "ex : \"google.fr\" ou \"example-url.org/x\"",
+        "description": ""
+    },
+    "placeholder4": {
+        "message": "ex : \"pdf, doc\"",
+        "description": ""
+    },
+    "placeholder5": {
+        "message": "ex : chemin\\vers\\votre\\fichier",
+        "description": ""
+    },
+    "auto_detection1": {
+        "message": "En focntion des paramètres de votre navigateur, la détection automatique peut ne pas fonctionner.",
         "description": ""
     },
     "auto_detection2": {
         "message": "Donc si cette étape ouvre un -- dialogue sélecteur de fichier -- qui vous somme de spécifier un répertoire pour le téléchargement, vous devriez sélectionner votre dossier de téléchargmeent par défaut au moins que vous ne vouliez pas ?? (ne pas changer le nom de fichier !).",
         "description": ""
     },
-    "overwrite": {
-        "message": "Ecraser le fichier existant",
+    "auto_detection3": {
+        "message": "Si vous ne le connaissez pas, annulez la boîte de dialogue et retourner dans les paramètres du navigateur, copiez le contenu du champs concernant le \"Répertoire de téléchargement\", et remplacez-le sur cette présente page.",
+        "description": ""
+    },
+    "auto_detection4": {
+        "message": "Vous pouvez recommencer sans problème cette étape automatique si vous avez besoin de voir à nouveau ces instructions.",
+        "description": ""
+    },
+    "auto_detection_failed": {
+        "message": "La détection automatique a échoué. Réessayer ?",
+        "description": ""
+    },
+    "auto_detection_succeeded": {
+        "message": "La détection automatique a réussi. Cliquez pour rafraîchir si vous l'avez à nouveau changé.",
+        "description": ""
+    },
+    "preventClosing": {
+        "message": "Demander confirmation avant de fermer le navigateur alors qu'il y a des téléchargement en cours",
+        "description": ""
+    },
+    "downloadInProgress": {
+        "message": "Il y a actuellement un téléchargemetn en cours.\nVous aurez à le recommencer depuis le début si vous fermez votre navigateur maintenant.",
+        "description": ""
+    },
+    "removeFromListWhen": {
+        "message": "Supprimer automatiquement le téléchargemeent de l'historique des téléchargements du navigatuer.",
+        "description": ""
+    },
+    "never": {
+        "message": "Jamais",
+        "description": ""
+    },
+    "fileDeleted": {
+        "message": "Lorsuqe le fichier téléchargé aura été supprimé/déplacé",
+        "description": ""
+    },
+    "finished": {
+        "message": "Dès que le téléchargmeetn est terminé",
+        "description": ""
+    },
+    "notifyDone": {
+        "message": "Afficher la notification du bureau à la fin du téléchargement",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Afficher la notification du bureau en cas d'interruption du téléchargement",
+        "description": ""
+    },
+    "download_completed": {
+        "message": "Téléchargement terminé",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Échec du téléchargement",
+        "description": ""
+    },
+    "click_to_open": {
+        "message": "Cliquer pour ouvrir$file$",
+        "description": ""
+    },
+    "interrupted_body": {
+        "message": "Le téléchargement de $file$a été interrompu",
         "description": ""
     }
 }

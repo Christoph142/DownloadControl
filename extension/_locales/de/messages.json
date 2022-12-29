@@ -1,282 +1,138 @@
 {
-    "welcome": {
-        "message": "Willkommen",
-        "description": ""
-    },
-    "incompleteInput": {
-        "message": "Du musst eine Webseite und/oder zumindest 1 Datei-Typ eingeben, damit eine Regel sinnvoll ist.",
-        "description": ""
-    },
-    "auto_detection3": {
-        "message": "Wenn du ihn nicht weißt, schließ einfach den Dialog und gehe zurück in die Einstellungen deines Browsers, kopiere den Inhalt des \"Download-Ordner\"-Feldes und füge ihn hier auf dieser Seite ein.",
-        "description": ""
-    },
-    "settings": {
-        "message": "Einstellungen",
-        "description": ""
-    },
-    "contextMenu": {
-        "message": "Welche Einträge sollen dem Kontextmenü hinzugefügt werden?",
-        "description": ""
-    },
-    "step3_3": {
-        "message": "Wenn du z.B. möchtest, dass dein Standard-Order \"C:\\Benutzer\\Du\\Downloads\\\" ist und du \"C:\\Benutzer\\Du\\\" in Schritt 1 (und 2) angegeben hast, dann trage \"Downloads\\\" ein.",
-        "description": ""
-    },
-    "intro2": {
-        "message": "Du kannst dieses Fenster schließen um diese 3 Schritte erst einmal zu überspringen, aber Teile der Erweiterung werden nicht funktionieren solange sie nicht abgeschlossen sind.",
-        "description": ""
-    },
-    "conflictAction": {
-        "message": "Was soll passieren, wenn bereits eine Datei mit dem selben Namen im ermittelten Ordern vorhanden ist?",
-        "description": ""
-    },
-    "auto_detection1": {
-        "message": "Abhängig von deinen Browser-Einstellungen kann es sein, dass die automatische Erkennung nicht funktioniert.",
-        "description": ""
-    },
-    "suggestedRules": {
-        "message": "Mögliche neue Regeln",
-        "description": ""
-    },
-    "directory": {
-        "message": "Ordner",
+    "description": {
+        "message": "Verwalte deine Downloads",
         "description": ""
     },
     "by": {
         "message": "von",
         "description": ""
     },
-    "website": {
-        "message": "Webseite",
-        "description": ""
-    },
-    "placeholder3": {
-        "message": "z.B. \"google.de\" oder \"beispiel-url.org/x\"",
-        "description": ""
-    },
-    "prompt": {
-        "message": "Nachfragen",
-        "description": ""
-    },
-    "done2": {
-        "message": "Wenn du möchtest, kannst du jetzt anfangen, ein paar Regeln zu definieren oder dir Download Controls Einstellungen ansehen.",
-        "description": ""
-    },
-    "step1_3": {
-        "message": "Um diesen Ordner festzulegen",
-        "description": ""
-    },
-    "interrupted_body": {
-        "message": "Der Download von $file$ wurde unterbrochen",
-        "description": ""
-    },
-    "new_rule": {
-        "message": "Neue Regel hinzufügen",
-        "description": ""
-    },
-    "placeholder4": {
-        "message": "z.B. \"pdf, doc\"",
-        "description": ""
-    },
-    "intro1": {
-        "message": "Fangen wir mit einer kurzen Initialisierung an, die notwendig ist, damit diese Erweiterung richtig funktioniert.",
-        "description": ""
-    },
-    "initialSetup": {
-        "message": "Initialisierung",
-        "description": ""
-    },
-    "step2_2": {
-        "message": "Wenn du dieses Feature nicht willst oder brauchst, kannst du mit Schritt 3 weiter machen.",
-        "description": ""
-    },
-    "checkDefaultPathBrowser": {
-        "message": "Versuche den Standard-Download-Ordner deines Browsers automatisch zu erkennen",
-        "description": ""
-    },
-    "step3": {
-        "message": "Eine universelle Regel",
-        "description": ""
-    },
-    "step1_6": {
-        "message": "klicke auf \"Ändern...\"",
-        "description": ""
-    },
-    "fileDeleted": {
-        "message": "wenn die heruntergeladene Datei gelöscht / verschoben wurde",
-        "description": ""
-    },
-    "open": {
-        "message": "Öffnen",
-        "description": ""
-    },
-    "step1_2": {
-        "message": "Wenn du z.B. Dateien in \"C:\\Benutzer\\Du\\Downloads\\Zeug\\\" und \"C:\\Benutzer\\Du\\Dokumente\\\" speichern willst, wäre \"C:\\Benutzer\\Du\\\" die perfekte Wahl.",
-        "description": ""
-    },
-    "step2_1": {
-        "message": "Immer wenn du dich entscheidest, eine Datei an einer Stelle zu speichern, die sich von der erwarteten unterscheidet, kann es dafür neue Regeln vorschlagen.",
-        "description": ""
-    },
-    "step1_5": {
-        "message": "Scrolle nach unten zur \"Download-Ordner\"-Einstellung (in Chrome musst du zuerst auf \"Zeige erweiterte Einstellungen...\" klicken)",
-        "description": ""
-    },
-    "downloadInProgress": {
-        "message": "Momentan ist ein Download aktiv.\nDu musst mit dem Herunterladen komplett von vorne anfangen, wenn du deinen Browser jetzt schließt.",
-        "description": ""
-    },
-    "rules_ext": {
-        "message": "Nur Datei-Typ",
-        "description": ""
-    },
-    "notifyDone": {
-        "message": "Zeige eine Benachrichtigung wenn der Download beendet ist",
-        "description": ""
-    },
-    "pathRelativeError": {
-        "message": "Relative Pfade sind hier nicht erlaubt.\nEs muss mit dem Buchstaben deines Laufwerks starten, z.B. \"C:\\\"",
-        "description": ""
-    },
-    "removeFromListWhen": {
-        "message": "Entferne Downloads automatisch aus dem Download-Verlauf des Browsers",
-        "description": ""
-    },
     "rules": {
         "message": "Speicher-Regeln",
+        "description": ""
+    },
+    "settings": {
+        "message": "Einstellungen",
         "description": ""
     },
     "rules_both": {
         "message": "Webseite & Datei-Typ",
         "description": ""
     },
-    "thatsit": {
-        "message": "Das war's",
-        "description": ""
-    },
-    "step1_7": {
-        "message": "wähle den Ordner, den du nutzen möchtest",
-        "description": ""
-    },
-    "footer": {
-        "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
-        "description": ""
-    },
-    "step3_2": {
-        "message": "Damit nicht alle Dateien, auf die keine deiner Regeln zutrifft, in diesem Ordner landen, musst du Download Control einen Unterordner nennen, in dem all diese Dateien gespeichert werden sollen.",
-        "description": ""
-    },
-    "placeholder1": {
-        "message": "z.B. C:\\Benutzer\\Du\\Downloads\\",
-        "description": ""
-    },
-    "pathOutsideError": {
-        "message": "Du kannst nur Ordner im Standard-Download-Verzeichnis nutzen.\nWenn du einen Ordner nutzen möchtest, der sich außerhalb befindet, ändere zuerst das Standard-Download-Verzeichnis in den Browser-Einstellungen so ab, dass es alle gewünschten Ordner enthält und nutze dann das Standard-Download-Verzeichnis-Feld hier um sicher zu stellen, dass alle Downloads, die von keiner Regel betroffen sind, im richtigen Verzeichnis landen.",
-        "description": ""
-    },
-    "defaultPathBrowser": {
-        "message": "Standard-Download-Ordner deines Browsers",
-        "description": ""
-    },
-    "step3_1": {
-        "message": "Das Ändern des Standard-Download-Ordners deines Browsers bringt einen Nachteil mit sich: dein Standard-Ordner änder sich (\"Nein, wirklich?\").",
-        "description": ""
-    },
-    "auto_detection4": {
-        "message": "Du kannst diesen automatischen Schritt gefahrlos wiederholen, wenn du diese Anweisungen noch einmal sehen willst.",
-        "description": ""
-    },
-    "never": {
-        "message": "niemals",
-        "description": ""
-    },
-    "step1_4": {
-        "message": "öffne die Einstellungen (Alt+P in Opera)",
-        "description": ""
-    },
-    "auto_detection_failed": {
-        "message": "Automatische Erkennung fehlgeschlagen. Erneut versuchen?",
-        "description": ""
-    },
-    "no_rules_yet": {
-        "message": "Noch keine Regeln",
-        "description": ""
-    },
-    "notifyFail": {
-        "message": "Zeige eine Benachrichtigung wenn der Download unterbrochen wurde",
-        "description": ""
-    },
-    "note": {
-        "message": "Hinweis:",
-        "description": ""
-    },
-    "download_completed": {
-        "message": "Download vollständig",
-        "description": ""
-    },
-    "save": {
-        "message": "Speichern",
-        "description": ""
-    },
-    "step2_3": {
-        "message": "Wenn du dieses Feature nutzen möchtest, musst du Download Control den Ordner, den du gerade in Schritt 1 gewählt hast, mitteilen. Trage ihn hier ein:",
-        "description": ""
-    },
     "rules_url": {
         "message": "Nur Webseite",
         "description": ""
     },
-    "step": {
-        "message": "Schritt",
+    "rules_ext": {
+        "message": "Nur Datei-Typ",
         "description": ""
     },
-    "placeholder5": {
-        "message": "z.B. Pfad\\zu\\deiner\\Datei\\",
+    "new_rule": {
+        "message": "Neue Regel hinzufügen",
         "description": ""
     },
-    "add": {
-        "message": "Hinzufügen",
-        "description": ""
-    },
-    "uniquify": {
-        "message": "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen",
-        "description": ""
-    },
-    "preventClosing": {
-        "message": "Schließen des Browsers nur nach Bestätigung wenn Downloads aktiv sind",
-        "description": ""
-    },
-    "defaultPath": {
-        "message": "Standard-Download-Verzeichnis",
-        "description": ""
-    },
-    "step2": {
-        "message": "Download Control kann dir das Leben einfach machen",
+    "website": {
+        "message": "Webseite",
         "description": ""
     },
     "file_types": {
         "message": "Datei-Typen",
         "description": ""
     },
-    "finished": {
-        "message": "sobald der Download beendet ist",
+    "directory": {
+        "message": "Ordner",
         "description": ""
     },
-    "done1": {
-        "message": "Die Initialisierung ist abgeschlossen.",
+    "incompleteInput": {
+        "message": "Du musst eine Webseite und/oder zumindest 1 Datei-Typ eingeben, damit eine Regel sinnvoll ist.",
         "description": ""
     },
-    "auto_detection_succeeded": {
-        "message": "Automatische Erkennung erfolgreich. Zum Aktualisieren klicken, falls du ihn nochmal geändert hast",
+    "defaultPath": {
+        "message": "Standard-Download-Verzeichnis",
         "description": ""
     },
-    "step2_4": {
-        "message": "Download Control wird nicht richtig funktionieren, wenn dieser Ordner inkorrekt ist. Denk daran, ihn immer hier zu ändern, wenn du ihn in den Browser-Einstellungen änderst!",
+    "pathAbsoluteError": {
+        "message": "Absolute Pfade sind hier nicht erlaubt.\nNotiere ihn relativ zum Standard-Download-Verzeichnis.",
         "description": ""
     },
-    "click_to_open": {
-        "message": "Hier klicken, um $file$ zu öffnen",
+    "pathOutsideError": {
+        "message": "Du kannst nur Ordner im Standard-Download-Verzeichnis nutzen.\nWenn du einen Ordner nutzen möchtest, der sich außerhalb befindet, ändere zuerst das Standard-Download-Verzeichnis in den Browser-Einstellungen so ab, dass es alle gewünschten Ordner enthält und nutze dann das Standard-Download-Verzeichnis-Feld hier um sicher zu stellen, dass alle Downloads, die von keiner Regel betroffen sind, im richtigen Verzeichnis landen.",
+        "description": ""
+    },
+    "add": {
+        "message": "Hinzufügen",
+        "description": ""
+    },
+    "conflictAction": {
+        "message": "Was soll passieren, wenn bereits eine Datei mit dem selben Namen im ermittelten Ordern vorhanden ist?",
+        "description": ""
+    },
+    "prompt": {
+        "message": "Nachfragen",
+        "description": ""
+    },
+    "overwrite": {
+        "message": "Die vorhandene Datei überschreiben",
+        "description": ""
+    },
+    "uniquify": {
+        "message": "Trotzdem herunterladen und mit einer Zahl am Ende kennzeichnen",
+        "description": ""
+    },
+    "footer": {
+        "message": "Danke für das Installieren dieser Erweiterung. Für Feedback und Fragen stehe ich jederzeit gerne zur Verfügung.",
+        "description": ""
+    },
+    "save": {
+        "message": "Speichern",
+        "description": ""
+    },
+    "open": {
+        "message": "Öffnen",
+        "description": ""
+    },
+    "suggestedRules": {
+        "message": "Mögliche neue Regeln",
+        "description": ""
+    },
+    "checkDefaultPathBrowser": {
+        "message": "Versuche den Standard-Download-Ordner deines Browsers automatisch zu erkennen",
+        "description": ""
+    },
+    "defaultPathBrowser": {
+        "message": "Standard-Download-Ordner deines Browsers",
+        "description": ""
+    },
+    "pathRelativeError": {
+        "message": "Relative Pfade sind hier nicht erlaubt.\nEs muss mit dem Buchstaben deines Laufwerks starten, z.B. \"C:\\\"",
+        "description": ""
+    },
+    "contextMenu": {
+        "message": "Welche Einträge sollen dem Kontextmenü hinzugefügt werden?",
+        "description": ""
+    },
+    "initialSetup": {
+        "message": "Initialisierung",
+        "description": ""
+    },
+    "welcome": {
+        "message": "Willkommen",
+        "description": ""
+    },
+    "intro1": {
+        "message": "Fangen wir mit einer kurzen Initialisierung an, die notwendig ist, damit diese Erweiterung richtig funktioniert.",
+        "description": ""
+    },
+    "intro2": {
+        "message": "Du kannst dieses Fenster schließen um diese 3 Schritte erst einmal zu überspringen, aber Teile der Erweiterung werden nicht funktionieren solange sie nicht abgeschlossen sind.",
+        "description": ""
+    },
+    "letsgetstarted": {
+        "message": "Legen wir los",
+        "description": ""
+    },
+    "step": {
+        "message": "Schritt",
         "description": ""
     },
     "step1": {
@@ -287,32 +143,176 @@
         "message": "Wegen Sicherheitsbeschränkungen ist dies nur im Standard-Download-Ordner deines Browsers möglich. Deshalb musst du diesen Ordner so festlegen, dass er alle Ordner enthält, in denen du Dateien speichern möchtest.",
         "description": ""
     },
-    "download_interrupted": {
-        "message": "Download abgebrochen",
+    "step1_2": {
+        "message": "Wenn du z.B. Dateien in \"C:\\Benutzer\\Du\\Downloads\\Zeug\\\" und \"C:\\Benutzer\\Du\\Dokumente\\\" speichern willst, wäre \"C:\\Benutzer\\Du\\\" die perfekte Wahl.",
         "description": ""
     },
-    "letsgetstarted": {
-        "message": "Legen wir los",
+    "step1_3": {
+        "message": "Um diesen Ordner festzulegen",
         "description": ""
     },
-    "pathAbsoluteError": {
-        "message": "Absolute Pfade sind hier nicht erlaubt.\nNotiere ihn relativ zum Standard-Download-Verzeichnis.",
+    "step1_4": {
+        "message": "öffne die Einstellungen (Alt+P in Opera)",
+        "description": ""
+    },
+    "step1_5": {
+        "message": "Scrolle nach unten zur \"Download-Ordner\"-Einstellung (in Chrome musst du zuerst auf \"Zeige erweiterte Einstellungen...\" klicken)",
+        "description": ""
+    },
+    "step1_6": {
+        "message": "klicke auf \"Ändern...\"",
+        "description": ""
+    },
+    "step1_7": {
+        "message": "wähle den Ordner, den du nutzen möchtest",
+        "description": ""
+    },
+    "step2": {
+        "message": "Download Control kann dir das Leben einfach machen",
+        "description": ""
+    },
+    "step2_1": {
+        "message": "Immer wenn du dich entscheidest, eine Datei an einer Stelle zu speichern, die sich von der erwarteten unterscheidet, kann es dafür neue Regeln vorschlagen.",
+        "description": ""
+    },
+    "step2_2": {
+        "message": "Wenn du dieses Feature nicht willst oder brauchst, kannst du mit Schritt 3 weiter machen.",
+        "description": ""
+    },
+    "step2_3": {
+        "message": "Wenn du dieses Feature nutzen möchtest, musst du Download Control den Ordner, den du gerade in Schritt 1 gewählt hast, mitteilen. Trage ihn hier ein:",
+        "description": ""
+    },
+    "note": {
+        "message": "Hinweis:",
+        "description": ""
+    },
+    "step2_4": {
+        "message": "Download Control wird nicht richtig funktionieren, wenn dieser Ordner inkorrekt ist. Denk daran, ihn immer hier zu ändern, wenn du ihn in den Browser-Einstellungen änderst!",
+        "description": ""
+    },
+    "step3": {
+        "message": "Eine universelle Regel",
+        "description": ""
+    },
+    "step3_1": {
+        "message": "Das Ändern des Standard-Download-Ordners deines Browsers bringt einen Nachteil mit sich: dein Standard-Ordner änder sich (\"Nein, wirklich?\").",
+        "description": ""
+    },
+    "step3_2": {
+        "message": "Damit nicht alle Dateien, auf die keine deiner Regeln zutrifft, in diesem Ordner landen, musst du Download Control einen Unterordner nennen, in dem all diese Dateien gespeichert werden sollen.",
+        "description": ""
+    },
+    "step3_3": {
+        "message": "Wenn du z.B. möchtest, dass dein Standard-Order \"C:\\Benutzer\\Du\\Downloads\\\" ist und du \"C:\\Benutzer\\Du\\\" in Schritt 1 (und 2) angegeben hast, dann trage \"Downloads\\\" ein.",
+        "description": ""
+    },
+    "thatsit": {
+        "message": "Das war's",
+        "description": ""
+    },
+    "done1": {
+        "message": "Die Initialisierung ist abgeschlossen.",
+        "description": ""
+    },
+    "done2": {
+        "message": "Wenn du möchtest, kannst du jetzt anfangen, ein paar Regeln zu definieren oder dir Download Controls Einstellungen ansehen.",
+        "description": ""
+    },
+    "no_rules_yet": {
+        "message": "Noch keine Regeln",
+        "description": ""
+    },
+    "placeholder1": {
+        "message": "z.B. C:\\Benutzer\\Du\\Downloads\\",
         "description": ""
     },
     "placeholder2": {
         "message": "z.B. Downloads\\",
         "description": ""
     },
-    "description": {
-        "message": "Verwalte deine Downloads",
+    "placeholder3": {
+        "message": "z.B. \"google.de\" oder \"beispiel-url.org/x\"",
+        "description": ""
+    },
+    "placeholder4": {
+        "message": "z.B. \"pdf, doc\"",
+        "description": ""
+    },
+    "placeholder5": {
+        "message": "z.B. Pfad\\zu\\deiner\\Datei\\",
+        "description": ""
+    },
+    "auto_detection1": {
+        "message": "Abhängig von deinen Browser-Einstellungen kann es sein, dass die automatische Erkennung nicht funktioniert.",
         "description": ""
     },
     "auto_detection2": {
         "message": "Wenn dieser Schritt also einen Dialog öffnet, der dich auffordert, einen Download-Ordner zu wählen, kannst du stattdessen den Standard-Ordner manuell auswählen (verändere den Dateinamen nicht!).",
         "description": ""
     },
-    "overwrite": {
-        "message": "Die vorhandene Datei überschreiben",
+    "auto_detection3": {
+        "message": "Wenn du ihn nicht weißt, schließ einfach den Dialog und gehe zurück in die Einstellungen deines Browsers, kopiere den Inhalt des \"Download-Ordner\"-Feldes und füge ihn hier auf dieser Seite ein.",
+        "description": ""
+    },
+    "auto_detection4": {
+        "message": "Du kannst diesen automatischen Schritt gefahrlos wiederholen, wenn du diese Anweisungen noch einmal sehen willst.",
+        "description": ""
+    },
+    "auto_detection_failed": {
+        "message": "Automatische Erkennung fehlgeschlagen. Erneut versuchen?",
+        "description": ""
+    },
+    "auto_detection_succeeded": {
+        "message": "Automatische Erkennung erfolgreich. Zum Aktualisieren klicken, falls du ihn nochmal geändert hast",
+        "description": ""
+    },
+    "preventClosing": {
+        "message": "Schließen des Browsers nur nach Bestätigung wenn Downloads aktiv sind",
+        "description": ""
+    },
+    "downloadInProgress": {
+        "message": "Momentan ist ein Download aktiv.\nDu musst mit dem Herunterladen komplett von vorne anfangen, wenn du deinen Browser jetzt schließt.",
+        "description": ""
+    },
+    "removeFromListWhen": {
+        "message": "Entferne Downloads automatisch aus dem Download-Verlauf des Browsers",
+        "description": ""
+    },
+    "never": {
+        "message": "niemals",
+        "description": ""
+    },
+    "fileDeleted": {
+        "message": "wenn die heruntergeladene Datei gelöscht / verschoben wurde",
+        "description": ""
+    },
+    "finished": {
+        "message": "sobald der Download beendet ist",
+        "description": ""
+    },
+    "notifyDone": {
+        "message": "Zeige eine Benachrichtigung wenn der Download beendet ist",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Zeige eine Benachrichtigung wenn der Download unterbrochen wurde",
+        "description": ""
+    },
+    "download_completed": {
+        "message": "Download vollständig",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Download abgebrochen",
+        "description": ""
+    },
+    "click_to_open": {
+        "message": "Hier klicken, um $file$ zu öffnen",
+        "description": ""
+    },
+    "interrupted_body": {
+        "message": "Der Download von $file$ wurde unterbrochen",
         "description": ""
     }
 }

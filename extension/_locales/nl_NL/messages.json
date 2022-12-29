@@ -1,282 +1,138 @@
 {
-    "welcome": {
-        "message": "Welkom",
-        "description": ""
-    },
-    "incompleteInput": {
-        "message": "U moet een website invullen en/of op zijn minst 1 bestandstype om een regel logisch te laten klinken.",
-        "description": ""
-    },
-    "auto_detection3": {
-        "message": "Indien onzeker, sluit dan gewoon het dialoogvenster en ga terug naar de browserinstellingen en kopieer de inhoud van het \"Downloadlocatie\"-veld en plak dit hier.",
-        "description": ""
-    },
-    "settings": {
-        "message": "Instellingen",
-        "description": ""
-    },
-    "contextMenu": {
-        "message": "Welke vermeldingen wilt u door deze extensie laten toevoegen aan het contextmenu?",
-        "description": ""
-    },
-    "step3_3": {
-        "message": "Als u bijv. wilt dat uw standaardmap \"C:\\Gebuikers\\Uw naam\\Downloads\\\" is en u stelt \"C:\\Gebruikers\\Uw naam\\\" in bij stap 1 (en 2), vul dan \"Downloads\\\" in.",
-        "description": ""
-    },
-    "intro2": {
-        "message": "U kunt dit venster sluiten om deze drie stappen voor nu over te slaan, maar sommige functionaliteit zal niet werken totdat u deze stappen voltooid.",
-        "description": ""
-    },
-    "conflictAction": {
-        "message": "Wat moet er gebeuren als een bestand met dezelfde naam al bestaat in de opgegeven locatie?",
-        "description": ""
-    },
-    "auto_detection1": {
-        "message": "Afhankelijk van uw browserinstellingen kan automatische detectie mogelijk niet werken.",
-        "description": ""
-    },
-    "suggestedRules": {
-        "message": "Mogelijke nieuwe regels",
-        "description": ""
-    },
-    "directory": {
-        "message": "Map",
+    "description": {
+        "message": "Uw downloads beheren",
         "description": ""
     },
     "by": {
         "message": "door",
         "description": ""
     },
-    "website": {
-        "message": "Website",
-        "description": ""
-    },
-    "placeholder3": {
-        "message": "bijv. \"google.com\" of \"voorbeeld-url.org/x\"",
-        "description": ""
-    },
-    "prompt": {
-        "message": "Vraag het me",
-        "description": ""
-    },
-    "done2": {
-        "message": "Als u wilt kunt u nu beginnen met het aanmaken van regels of een kijkje nemen in de instellingen van Downloadbeheer.",
-        "description": ""
-    },
-    "step1_3": {
-        "message": "Om deze folder op te geven",
-        "description": ""
-    },
-    "interrupted_body": {
-        "message": "Het downloaden van $file$ werd onderbroken",
-        "description": ""
-    },
-    "new_rule": {
-        "message": "Nieuwe regel toevoegen",
-        "description": ""
-    },
-    "placeholder4": {
-        "message": "bijv. \"pdf, doc\"",
-        "description": ""
-    },
-    "intro1": {
-        "message": "Laten we beginnen met een snelle initiële instellingswizard welke vereist is om deze extensie goed te laten werken.",
-        "description": ""
-    },
-    "initialSetup": {
-        "message": "Initiële instellingswizard",
-        "description": ""
-    },
-    "step2_2": {
-        "message": "Als u deze functie niet wilt of nodig heeft, kunt u doorgaan met stap 3.",
-        "description": ""
-    },
-    "checkDefaultPathBrowser": {
-        "message": "Proberen om de standaard downloadlocatie van uw browser te detecteren",
-        "description": ""
-    },
-    "step3": {
-        "message": "Een universele regel",
-        "description": ""
-    },
-    "step1_6": {
-        "message": "klik op \"Veranderen...\"",
-        "description": ""
-    },
-    "fileDeleted": {
-        "message": "wanneer een gedownload bestand verwijderd/verplaatst is",
-        "description": ""
-    },
-    "open": {
-        "message": "Openen",
-        "description": ""
-    },
-    "step1_2": {
-        "message": "Als u bijv. bestanden wilt opslaan in \"C:\\Gebruikers\\Uw naam\\Downloads\\Dingen\\\", dan zou de perfecte keuze zijn \"C:\\Gebruikers\\Uw naam\\\".",
-        "description": ""
-    },
-    "step2_1": {
-        "message": "Het kan nieuwe regels voorstellen wanneer u kiest om een bestand op te slaan in een locatie die anders is dan de verwachte locatie.",
-        "description": ""
-    },
-    "step1_5": {
-        "message": "scroll naar beneden en vind de \"Downloadlocatie\"-instelling (u moet eerst klikken op \"Geavanceerde instellingen tonen\" in Chrome)",
-        "description": ""
-    },
-    "downloadInProgress": {
-        "message": "Er is momenteel een lopende download.\nU moet deze herstarten vanaf het begin als u nu uw browser sluit.",
-        "description": ""
-    },
-    "rules_ext": {
-        "message": "Alleen bestandstype",
-        "description": ""
-    },
-    "notifyDone": {
-        "message": "Bureaubladmeldingen weergeven wanneer het downloaden is voltooid",
-        "description": ""
-    },
-    "pathRelativeError": {
-        "message": "Relatieve paden zijn hier niet toegestaan.\nHet moet beginnen met een letter van uw harde schijf, bijv. \"C:\\\"",
-        "description": ""
-    },
-    "removeFromListWhen": {
-        "message": "Verwijder automatisch downloads uit uw browser-downloadgeschiedenis",
-        "description": ""
-    },
     "rules": {
         "message": "Opslaan van regels",
+        "description": ""
+    },
+    "settings": {
+        "message": "Instellingen",
         "description": ""
     },
     "rules_both": {
         "message": "Website en bestandstype",
         "description": ""
     },
-    "thatsit": {
-        "message": "Dat is alles",
-        "description": ""
-    },
-    "step1_7": {
-        "message": "selecteer de map die u wilt gebruiken",
-        "description": ""
-    },
-    "footer": {
-        "message": "Bedankt voor het installeren van deze extensie. U kunt me altijd contacteren voor feedback en vragen.",
-        "description": ""
-    },
-    "step3_2": {
-        "message": "Om te voorkomen dat alle bestanden die niet overeenkomen met één van uw regels in deze map eindigen, moet u Downloadbeheer vertellen in welke submap deze moeten worden opgeslagen.",
-        "description": ""
-    },
-    "placeholder1": {
-        "message": "bijv. C:\\Gebruikers\\Uw naam\\Downloads\\",
-        "description": ""
-    },
-    "pathOutsideError": {
-        "message": "U kunt alleen mappen kiezen binnen uw standaard downloadmap.\nAls u een map wilt gebruiken die erbuiten is, moet u uw standaard download veranderen in de browserinstellingen naar de map die al uw mappen van keuze bevat. Daarna kunt u het standaard download-locatieveld hier invullen om te zorgen dat alle bestanden die niet onder uw regels vallen in de juiste map terecht zullen komen.",
-        "description": ""
-    },
-    "defaultPathBrowser": {
-        "message": "Standaard downloadlocatie van uw browser",
-        "description": ""
-    },
-    "step3_1": {
-        "message": "Het veranderen van de standaard map van uw browser komt met één nadeel: uw standaard map verandert. (\"Nee, echt?\")",
-        "description": ""
-    },
-    "auto_detection4": {
-        "message": "U kunt deze stap veilig automatisch herhalen wanneer u deze instructies opnieuw wenst te zien.",
-        "description": ""
-    },
-    "never": {
-        "message": "nooit",
-        "description": ""
-    },
-    "step1_4": {
-        "message": "open de instellingen (ALT+P in Opera)",
-        "description": ""
-    },
-    "auto_detection_failed": {
-        "message": "Automatische detectie mislukt. Opnieuw proberen?",
-        "description": ""
-    },
-    "no_rules_yet": {
-        "message": "Nog geen regels",
-        "description": ""
-    },
-    "notifyFail": {
-        "message": "Bureaubladmeldingen weergeven wanneer het downloaden wordt onderbroken",
-        "description": ""
-    },
-    "note": {
-        "message": "Let op:",
-        "description": ""
-    },
-    "download_completed": {
-        "message": "Het downloaden is voltooid",
-        "description": ""
-    },
-    "save": {
-        "message": "Opslaan",
-        "description": ""
-    },
-    "step2_3": {
-        "message": "Als u deze functie wel wilt benutten, moet u Downloadbeheer de juiste map vertellen die u koos in stap 1. Vul hem hier in:",
-        "description": ""
-    },
     "rules_url": {
         "message": "Alleen website",
         "description": ""
     },
-    "step": {
-        "message": "Stap",
+    "rules_ext": {
+        "message": "Alleen bestandstype",
         "description": ""
     },
-    "placeholder5": {
-        "message": "bijv. pad\\naar\\uw\\bestand\\",
+    "new_rule": {
+        "message": "Nieuwe regel toevoegen",
         "description": ""
     },
-    "add": {
-        "message": "Toevoegen",
-        "description": ""
-    },
-    "uniquify": {
-        "message": "Download het en sla het op met een nummer erachter",
-        "description": ""
-    },
-    "preventClosing": {
-        "message": "Vraag om bevestiging alvorens het sluiten van de browser wanneer er nog lopende downloads zijn",
-        "description": ""
-    },
-    "defaultPath": {
-        "message": "Standaard downloadlocatie",
-        "description": ""
-    },
-    "step2": {
-        "message": "Downloadbeheer kan uw leven vereenvoudigen",
+    "website": {
+        "message": "Website",
         "description": ""
     },
     "file_types": {
         "message": "Bestandstypen",
         "description": ""
     },
-    "finished": {
-        "message": "direct na het afronden van de download",
+    "directory": {
+        "message": "Map",
         "description": ""
     },
-    "done1": {
-        "message": "De initiële instellingswizard is doorlopen.",
+    "incompleteInput": {
+        "message": "U moet een website invullen en/of op zijn minst 1 bestandstype om een regel logisch te laten klinken.",
         "description": ""
     },
-    "auto_detection_succeeded": {
-        "message": "Automatische detectie geslaagd. Klik op verversen indien u het wederom heeft gewijzigd.",
+    "defaultPath": {
+        "message": "Standaard downloadlocatie",
         "description": ""
     },
-    "step2_4": {
-        "message": "Downloadbeheer zal niet goed werken indien u niet de juiste map opgeeft. Vergeet niet om hem altijd hier te wijzigen indien u dit doet in uw browserinstellingen!",
+    "pathAbsoluteError": {
+        "message": "Absolute paden zijn hier niet toegestaan.\nMaak deze relatief aan uw standaard downloadmap.",
         "description": ""
     },
-    "click_to_open": {
-        "message": "Klik om $file$ te openen",
+    "pathOutsideError": {
+        "message": "U kunt alleen mappen kiezen binnen uw standaard downloadmap.\nAls u een map wilt gebruiken die erbuiten is, moet u uw standaard download veranderen in de browserinstellingen naar de map die al uw mappen van keuze bevat. Daarna kunt u het standaard download-locatieveld hier invullen om te zorgen dat alle bestanden die niet onder uw regels vallen in de juiste map terecht zullen komen.",
+        "description": ""
+    },
+    "add": {
+        "message": "Toevoegen",
+        "description": ""
+    },
+    "conflictAction": {
+        "message": "Wat moet er gebeuren als een bestand met dezelfde naam al bestaat in de opgegeven locatie?",
+        "description": ""
+    },
+    "prompt": {
+        "message": "Vraag het me",
+        "description": ""
+    },
+    "overwrite": {
+        "message": "Overschrijf het bestande bestand",
+        "description": ""
+    },
+    "uniquify": {
+        "message": "Download het en sla het op met een nummer erachter",
+        "description": ""
+    },
+    "footer": {
+        "message": "Bedankt voor het installeren van deze extensie. U kunt me altijd contacteren voor feedback en vragen.",
+        "description": ""
+    },
+    "save": {
+        "message": "Opslaan",
+        "description": ""
+    },
+    "open": {
+        "message": "Openen",
+        "description": ""
+    },
+    "suggestedRules": {
+        "message": "Mogelijke nieuwe regels",
+        "description": ""
+    },
+    "checkDefaultPathBrowser": {
+        "message": "Proberen om de standaard downloadlocatie van uw browser te detecteren",
+        "description": ""
+    },
+    "defaultPathBrowser": {
+        "message": "Standaard downloadlocatie van uw browser",
+        "description": ""
+    },
+    "pathRelativeError": {
+        "message": "Relatieve paden zijn hier niet toegestaan.\nHet moet beginnen met een letter van uw harde schijf, bijv. \"C:\\\"",
+        "description": ""
+    },
+    "contextMenu": {
+        "message": "Welke vermeldingen wilt u door deze extensie laten toevoegen aan het contextmenu?",
+        "description": ""
+    },
+    "initialSetup": {
+        "message": "Initiële instellingswizard",
+        "description": ""
+    },
+    "welcome": {
+        "message": "Welkom",
+        "description": ""
+    },
+    "intro1": {
+        "message": "Laten we beginnen met een snelle initiële instellingswizard welke vereist is om deze extensie goed te laten werken.",
+        "description": ""
+    },
+    "intro2": {
+        "message": "U kunt dit venster sluiten om deze drie stappen voor nu over te slaan, maar sommige functionaliteit zal niet werken totdat u deze stappen voltooid.",
+        "description": ""
+    },
+    "letsgetstarted": {
+        "message": "Laten we beginnen",
+        "description": ""
+    },
+    "step": {
+        "message": "Stap",
         "description": ""
     },
     "step1": {
@@ -287,32 +143,176 @@
         "message": "Vanwege beveiligingsrestricties is het alleen mogelijk binnen de standaard downloadmap van uw browser. Daarom moet u een map kiezen die al uw mappen bevat waarnaar u bestanden wilt opslaan.",
         "description": ""
     },
-    "download_interrupted": {
-        "message": "Het downloaden is mislukt",
+    "step1_2": {
+        "message": "Als u bijv. bestanden wilt opslaan in \"C:\\Gebruikers\\Uw naam\\Downloads\\Dingen\\\", dan zou de perfecte keuze zijn \"C:\\Gebruikers\\Uw naam\\\".",
         "description": ""
     },
-    "letsgetstarted": {
-        "message": "Laten we beginnen",
+    "step1_3": {
+        "message": "Om deze folder op te geven",
         "description": ""
     },
-    "pathAbsoluteError": {
-        "message": "Absolute paden zijn hier niet toegestaan.\nMaak deze relatief aan uw standaard downloadmap.",
+    "step1_4": {
+        "message": "open de instellingen (ALT+P in Opera)",
+        "description": ""
+    },
+    "step1_5": {
+        "message": "scroll naar beneden en vind de \"Downloadlocatie\"-instelling (u moet eerst klikken op \"Geavanceerde instellingen tonen\" in Chrome)",
+        "description": ""
+    },
+    "step1_6": {
+        "message": "klik op \"Veranderen...\"",
+        "description": ""
+    },
+    "step1_7": {
+        "message": "selecteer de map die u wilt gebruiken",
+        "description": ""
+    },
+    "step2": {
+        "message": "Downloadbeheer kan uw leven vereenvoudigen",
+        "description": ""
+    },
+    "step2_1": {
+        "message": "Het kan nieuwe regels voorstellen wanneer u kiest om een bestand op te slaan in een locatie die anders is dan de verwachte locatie.",
+        "description": ""
+    },
+    "step2_2": {
+        "message": "Als u deze functie niet wilt of nodig heeft, kunt u doorgaan met stap 3.",
+        "description": ""
+    },
+    "step2_3": {
+        "message": "Als u deze functie wel wilt benutten, moet u Downloadbeheer de juiste map vertellen die u koos in stap 1. Vul hem hier in:",
+        "description": ""
+    },
+    "note": {
+        "message": "Let op:",
+        "description": ""
+    },
+    "step2_4": {
+        "message": "Downloadbeheer zal niet goed werken indien u niet de juiste map opgeeft. Vergeet niet om hem altijd hier te wijzigen indien u dit doet in uw browserinstellingen!",
+        "description": ""
+    },
+    "step3": {
+        "message": "Een universele regel",
+        "description": ""
+    },
+    "step3_1": {
+        "message": "Het veranderen van de standaard map van uw browser komt met één nadeel: uw standaard map verandert. (\"Nee, echt?\")",
+        "description": ""
+    },
+    "step3_2": {
+        "message": "Om te voorkomen dat alle bestanden die niet overeenkomen met één van uw regels in deze map eindigen, moet u Downloadbeheer vertellen in welke submap deze moeten worden opgeslagen.",
+        "description": ""
+    },
+    "step3_3": {
+        "message": "Als u bijv. wilt dat uw standaardmap \"C:\\Gebuikers\\Uw naam\\Downloads\\\" is en u stelt \"C:\\Gebruikers\\Uw naam\\\" in bij stap 1 (en 2), vul dan \"Downloads\\\" in.",
+        "description": ""
+    },
+    "thatsit": {
+        "message": "Dat is alles",
+        "description": ""
+    },
+    "done1": {
+        "message": "De initiële instellingswizard is doorlopen.",
+        "description": ""
+    },
+    "done2": {
+        "message": "Als u wilt kunt u nu beginnen met het aanmaken van regels of een kijkje nemen in de instellingen van Downloadbeheer.",
+        "description": ""
+    },
+    "no_rules_yet": {
+        "message": "Nog geen regels",
+        "description": ""
+    },
+    "placeholder1": {
+        "message": "bijv. C:\\Gebruikers\\Uw naam\\Downloads\\",
         "description": ""
     },
     "placeholder2": {
         "message": "bijv. Downloads\\",
         "description": ""
     },
-    "description": {
-        "message": "Uw downloads beheren",
+    "placeholder3": {
+        "message": "bijv. \"google.com\" of \"voorbeeld-url.org/x\"",
+        "description": ""
+    },
+    "placeholder4": {
+        "message": "bijv. \"pdf, doc\"",
+        "description": ""
+    },
+    "placeholder5": {
+        "message": "bijv. pad\\naar\\uw\\bestand\\",
+        "description": ""
+    },
+    "auto_detection1": {
+        "message": "Afhankelijk van uw browserinstellingen kan automatische detectie mogelijk niet werken.",
         "description": ""
     },
     "auto_detection2": {
         "message": "Wanneer deze stap een bestandsdialoogvenster opent die u een downloadlocatie laat kiezen, kunt u een standaard downloadmap kiezen (verander de bestandsnaam niet!).",
         "description": ""
     },
-    "overwrite": {
-        "message": "Overschrijf het bestande bestand",
+    "auto_detection3": {
+        "message": "Indien onzeker, sluit dan gewoon het dialoogvenster en ga terug naar de browserinstellingen en kopieer de inhoud van het \"Downloadlocatie\"-veld en plak dit hier.",
+        "description": ""
+    },
+    "auto_detection4": {
+        "message": "U kunt deze stap veilig automatisch herhalen wanneer u deze instructies opnieuw wenst te zien.",
+        "description": ""
+    },
+    "auto_detection_failed": {
+        "message": "Automatische detectie mislukt. Opnieuw proberen?",
+        "description": ""
+    },
+    "auto_detection_succeeded": {
+        "message": "Automatische detectie geslaagd. Klik op verversen indien u het wederom heeft gewijzigd.",
+        "description": ""
+    },
+    "preventClosing": {
+        "message": "Vraag om bevestiging alvorens het sluiten van de browser wanneer er nog lopende downloads zijn",
+        "description": ""
+    },
+    "downloadInProgress": {
+        "message": "Er is momenteel een lopende download.\nU moet deze herstarten vanaf het begin als u nu uw browser sluit.",
+        "description": ""
+    },
+    "removeFromListWhen": {
+        "message": "Verwijder automatisch downloads uit uw browser-downloadgeschiedenis",
+        "description": ""
+    },
+    "never": {
+        "message": "nooit",
+        "description": ""
+    },
+    "fileDeleted": {
+        "message": "wanneer een gedownload bestand verwijderd/verplaatst is",
+        "description": ""
+    },
+    "finished": {
+        "message": "direct na het afronden van de download",
+        "description": ""
+    },
+    "notifyDone": {
+        "message": "Bureaubladmeldingen weergeven wanneer het downloaden is voltooid",
+        "description": ""
+    },
+    "notifyFail": {
+        "message": "Bureaubladmeldingen weergeven wanneer het downloaden wordt onderbroken",
+        "description": ""
+    },
+    "download_completed": {
+        "message": "Het downloaden is voltooid",
+        "description": ""
+    },
+    "download_interrupted": {
+        "message": "Het downloaden is mislukt",
+        "description": ""
+    },
+    "click_to_open": {
+        "message": "Klik om $file$ te openen",
+        "description": ""
+    },
+    "interrupted_body": {
+        "message": "Het downloaden van $file$ werd onderbroken",
         "description": ""
     }
 }
