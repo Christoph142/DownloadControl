@@ -8,132 +8,129 @@
     <link rel="icon" type="image/png" href="../images/32.png">
     <script src="prefs.js"></script>
     <script src="SexyDialog.js"></script>
-	<script src="scrollbarHandler.js"></script>
 </head>
 
 <body>
-  <div id="wallpaper">
-    <div id="tool-container">
-      <div id="sidebar">
-        <div id="sidebar-icon"></div>
-        <h1>Download Control</h1>
-        <h5 style="margin-top:-5px;"><span class="i18n" data-i18n="by"></span> <a href="https://christoph142.wordpress.com" target="_blank">Christoph142</a></h5>
-        <menu id="sidebar-menu">
-          <li data-target="0" class="i18n menu" data-i18n="initialSetup"></li>
-          <li data-target="1" class="selected i18n menu" data-i18n="rules"></li>
-          <li data-target="2" class="i18n menu" data-i18n="settings"></li>
-        </menu>
-      </div> <!-- sidebar -->
-      <div id="content">
-      
-      	<div id="content0" class="invisible">
-          <h2 class="section-header i18n" data-i18n="welcome"></h2><!-- Welcome -->
-          <span class="i18n" data-i18n="intro1"></span><br>
-          <span class="i18n" data-i18n="intro2"></span><br>
+  <div id="tool-container">
+    <div id="sidebar">
+      <div id="sidebar-icon"></div>
+      <h1>Download Control</h1>
+      <h5 style="margin-top:-5px;"><span class="i18n" data-i18n="by"></span> <a href="https://christoph142.wordpress.com" target="_blank">Christoph142</a></h5>
+      <menu id="sidebar-menu">
+        <li data-target="0" class="i18n menu" data-i18n="initialSetup"></li>
+        <li data-target="1" class="selected i18n menu" data-i18n="rules"></li>
+        <li data-target="2" class="i18n menu" data-i18n="settings"></li>
+      </menu>
+    </div> <!-- sidebar -->
+    <div id="content">
+    
+    	<div id="content0" class="invisible">
+        <h2 class="section-header i18n" data-i18n="welcome"></h2><!-- Welcome -->
+        <span class="i18n" data-i18n="intro1"></span><br>
+        <span class="i18n" data-i18n="intro2"></span><br>
+        <br>
+        <h2 class="section-header i18n" data-i18n="letsgetstarted"></h2><!-- Let's get started -->
+        <div class="setting">
+          <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;1</h3><!-- Step 1 -->
+          <b class="i18n" data-i18n="step1"></b><br>
+          <span class="i18n" data-i18n="step1_1"></span><br>
+          <span class="example i18n" data-i18n="step1_2"></span><br>
           <br>
-          <h2 class="section-header i18n" data-i18n="letsgetstarted"></h2><!-- Let's get started -->
-          <div class="setting">
-            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;1</h3><!-- Step 1 -->
-            <b class="i18n" data-i18n="step1"></b><br>
-            <span class="i18n" data-i18n="step1_1"></span><br>
-            <span class="example i18n" data-i18n="step1_2"></span><br>
-            <br>
-            <span class="i18n" data-i18n="step1_3"></span>
-            <ol>
-              <li class="i18n" data-i18n="step1_4"></li>
-              <li class="i18n" data-i18n="step1_5"></li>
-              <li class="i18n" data-i18n="step1_6"></li>
-              <li class="i18n" data-i18n="step1_7"></li>
-            </ol>
-          </div>
-          <div class="setting">
-            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;2</h3><!-- Step 2 -->
-            <b class="i18n" data-i18n="step2"></b><br>
-            <span class="i18n" data-i18n="step2_1"></span><br>
-            <span class="i18n" data-i18n="step2_2"></span><br>
-            <span class="i18n" data-i18n="step2_3"></span><br>
-            <br>
-            <br>
-            <input type="text" id="defaultPathBrowser" class="i18n" data-i18n="placeholder1" placeholder="e.g. C:\Users\You\Downloads\" style="width:100%;"><br>
-            <button class="i18n" data-i18n="checkDefaultPathBrowser" id="checkDefaultPathBrowser"></button><br>
-            <br>
-            <b class="i18n" data-i18n="note"></b> <span class="i18n" data-i18n="step2_4"></span>
-          </div>
-          <div class="setting">
-            <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;3</h3><!-- Step 3 -->
-            <b class="i18n" data-i18n="step3"></b><br>
-            <span class="i18n" data-i18n="step3_1"></span><br>
-            <span class="i18n" data-i18n="step3_2"></span><br>
-            <span class="example i18n" data-i18n="step3_3"></span><br>
-            <br>
-            <input type="text" id="defaultPathAppendix" class="i18n" data-i18n="placeholder2" placeholder="e.g. Downloads\" style="width:100%;"><br>
-          </div>
-          <br>
-          <h2 class="section-header i18n" data-i18n="thatsit"></h2><!-- That's it -->
-          <span class="i18n" data-i18n="done1"></span><br>
-          <span class="i18n" data-i18n="done2"></span>          
+          <span class="i18n" data-i18n="step1_3"></span>
+          <ol>
+            <li class="i18n" data-i18n="step1_4"></li>
+            <li class="i18n" data-i18n="step1_5"></li>
+            <li class="i18n" data-i18n="step1_6"></li>
+            <li class="i18n" data-i18n="step1_7"></li>
+          </ol>
         </div>
-
-        <div id="content1" class="visible">
-          <span id="inputchangelistener">
-            <h2 class="section-header i18n" data-i18n="rules_both"></h2>
-            
-            <table class="setting" id="rules_both" cellspacing="0"></table>
-            
-            <h2 class="section-header i18n" data-i18n="rules_url"></h2>
-            <table class="setting" id="rules_url" cellspacing="0"></table>
-            
-            <h2 class="section-header i18n" data-i18n="rules_ext"></h2>
-            <table class="setting" id="rules_ext" cellspacing="0"></table>
-
-            <h2 class="section-header i18n" data-i18n="suggestedRules"></h2>
-            <table class="setting" id="suggestedRules" cellspacing="0"></table>
-          </span>
-          
+        <div class="setting">
+          <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;2</h3><!-- Step 2 -->
+          <b class="i18n" data-i18n="step2"></b><br>
+          <span class="i18n" data-i18n="step2_1"></span><br>
+          <span class="i18n" data-i18n="step2_2"></span><br>
+          <span class="i18n" data-i18n="step2_3"></span><br>
           <br>
-          <h2 class="section-header i18n" data-i18n="new_rule"></h2>
-          <div class="setting">
-            <label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" class="i18n" data-i18n="placeholder3" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
-              <label for="ext" class="i18n" data-i18n="file_types">:</label><input type="text" id="ext" class="i18n" data-i18n="placeholder4" placeholder="e.g. 'pdf, doc'" style="width:100%;">
-              <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" class="i18n" data-i18n="placeholder5" placeholder="path\to\your\file\" style="width:100%;">
-              <input type="button" value="Add" id="add_rule">
-          </div>
+          <br>
+          <input type="text" id="defaultPathBrowser" class="i18n" data-i18n="placeholder1" placeholder="e.g. C:\Users\You\Downloads\" style="width:100%;"><br>
+          <button class="i18n" data-i18n="checkDefaultPathBrowser" id="checkDefaultPathBrowser"></button><br>
+          <br>
+          <b class="i18n" data-i18n="note"></b> <span class="i18n" data-i18n="step2_4"></span>
         </div>
+        <div class="setting">
+          <h3 class="section-header"><span class="i18n" data-i18n="step"></span>&nbsp;3</h3><!-- Step 3 -->
+          <b class="i18n" data-i18n="step3"></b><br>
+          <span class="i18n" data-i18n="step3_1"></span><br>
+          <span class="i18n" data-i18n="step3_2"></span><br>
+          <span class="example i18n" data-i18n="step3_3"></span><br>
+          <br>
+          <input type="text" id="defaultPathAppendix" class="i18n" data-i18n="placeholder2" placeholder="e.g. Downloads\" style="width:100%;"><br>
+        </div>
+        <br>
+        <h2 class="section-header i18n" data-i18n="thatsit"></h2><!-- That's it -->
+        <span class="i18n" data-i18n="done1"></span><br>
+        <span class="i18n" data-i18n="done2"></span>          
+      </div>
+
+      <div id="content1" class="visible">
+        <span id="inputchangelistener">
+          <h2 class="section-header i18n" data-i18n="rules_both"></h2>
           
-        <div id="content2" class="invisible">
-     		<h2 class="section-header i18n" data-i18n="settings"></h2>
-            <div class="setting">
-            	<span class="i18n" data-i18n="conflictAction"></span><br><br>
-            	<label><input type="radio" name="conflictAction" value="prompt" checked><span class="i18n" data-i18n="prompt"></span></label><br>
-              <label><input type="radio" name="conflictAction" value="overwrite"><span class="i18n" data-i18n="overwrite"></span></label><br>
-              <label><input type="radio" name="conflictAction" value="uniquify"><span class="i18n" data-i18n="uniquify"></span></label>
-            </div>
-            <div class="setting">
-              <span class="i18n" data-i18n="contextMenu"></span><br><br>
-              <label><input type="checkbox" id="contextMenu.open" checked="true"><span class="i18n" data-i18n="open"></label><br>
-              <label><input type="checkbox" id="contextMenu.save"><span class="i18n" data-i18n="save"></label>
-            </div>
-            <div class="setting">
-              <label><input type="checkbox" id="preventClosing" checked="true"><span class="i18n" data-i18n="preventClosing"></label>
-            </div>
-            <div class="setting">
-              <label><input type="checkbox" id="notifyProgress" checked="true"><span class="i18n" data-i18n="notifyProgress"></label><br>
-              <label><input type="checkbox" id="notifyDone" checked="true"><span class="i18n" data-i18n="notifyDone"></label><br>
-              <label><input type="checkbox" id="notifyFail" checked="true"><span class="i18n" data-i18n="notifyFail"></label>
-            </div>
-            <div class="setting">
-              <span class="i18n" data-i18n="removeFromListWhen"></span><br><br>
-              <label><input type="radio" name="removeFromListWhen" value="never"><span class="i18n" data-i18n="never"></span></label><br>
-              <label><input type="radio" name="removeFromListWhen" value="fileDeleted" checked><span class="i18n" data-i18n="fileDeleted"></span></label><br>
-              <label><input type="radio" name="removeFromListWhen" value="finished"><span class="i18n" data-i18n="finished"></span></label>
-            </div>
-          </div>
-      
-        <div id="footer"><a href="https://christoph142.wordpress.com" target="_blank"><span class="i18n" data-i18n="footer"></span> :)</a></div>
+          <table class="setting" id="rules_both" cellspacing="0"></table>
+          
+          <h2 class="section-header i18n" data-i18n="rules_url"></h2>
+          <table class="setting" id="rules_url" cellspacing="0"></table>
+          
+          <h2 class="section-header i18n" data-i18n="rules_ext"></h2>
+          <table class="setting" id="rules_ext" cellspacing="0"></table>
+
+          <h2 class="section-header i18n" data-i18n="suggestedRules"></h2>
+          <table class="setting" id="suggestedRules" cellspacing="0"></table>
+        </span>
         
-      </div> <!-- content -->
-    </div> <!-- tool-container -->
-  </div> <!-- wallpaper -->
+        <br>
+        <h2 class="section-header i18n" data-i18n="new_rule"></h2>
+        <div class="setting">
+          <label for="url" class="i18n" data-i18n="website">:</label><input type="text" id="url" class="i18n" data-i18n="placeholder3" placeholder="e.g. 'google.com' or 'example-url.org/x'" style="width:100%;">
+            <label for="ext" class="i18n" data-i18n="file_types">:</label><input type="text" id="ext" class="i18n" data-i18n="placeholder4" placeholder="e.g. 'pdf, doc'" style="width:100%;">
+            <label for="dir" class="i18n" data-i18n="directory">:</label><input type="text" id="dir" class="i18n" data-i18n="placeholder5" placeholder="path\to\your\file\" style="width:100%;">
+            <input type="button" value="Add" id="add_rule">
+        </div>
+      </div>
+        
+      <div id="content2" class="invisible">
+   		<h2 class="section-header i18n" data-i18n="settings"></h2>
+          <div class="setting">
+          	<span class="i18n" data-i18n="conflictAction"></span><br><br>
+          	<label><input type="radio" name="conflictAction" value="prompt" checked><span class="i18n" data-i18n="prompt"></span></label><br>
+            <label><input type="radio" name="conflictAction" value="overwrite"><span class="i18n" data-i18n="overwrite"></span></label><br>
+            <label><input type="radio" name="conflictAction" value="uniquify"><span class="i18n" data-i18n="uniquify"></span></label>
+          </div>
+          <div class="setting">
+            <span class="i18n" data-i18n="contextMenu"></span><br><br>
+            <label><input type="checkbox" id="contextMenu.open" checked="true"><span class="i18n" data-i18n="open"></label><br>
+            <label><input type="checkbox" id="contextMenu.save"><span class="i18n" data-i18n="save"></label>
+          </div>
+          <div class="setting">
+            <label><input type="checkbox" id="preventClosing" checked="true"><span class="i18n" data-i18n="preventClosing"></label>
+          </div>
+          <div class="setting">
+            <label><input type="checkbox" id="notifyProgress" checked="true"><span class="i18n" data-i18n="notifyProgress"></label><br>
+            <label><input type="checkbox" id="notifyDone" checked="true"><span class="i18n" data-i18n="notifyDone"></label><br>
+            <label><input type="checkbox" id="notifyFail" checked="true"><span class="i18n" data-i18n="notifyFail"></label>
+          </div>
+          <div class="setting">
+            <span class="i18n" data-i18n="removeFromListWhen"></span><br><br>
+            <label><input type="radio" name="removeFromListWhen" value="never"><span class="i18n" data-i18n="never"></span></label><br>
+            <label><input type="radio" name="removeFromListWhen" value="fileDeleted" checked><span class="i18n" data-i18n="fileDeleted"></span></label><br>
+            <label><input type="radio" name="removeFromListWhen" value="finished"><span class="i18n" data-i18n="finished"></span></label>
+          </div>
+        </div>
+    
+      <div id="footer"><a href="https://christoph142.wordpress.com" target="_blank"><span class="i18n" data-i18n="footer"></span> :)</a></div>
+      
+    </div> <!-- content -->
+  </div> <!-- tool-container -->
 </body>
 
 </html>

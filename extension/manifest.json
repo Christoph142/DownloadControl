@@ -1,10 +1,11 @@
 {	
 	"name"						: "Download Control",
 	"description"				: "__MSG_description__",
-	"homepage_url"				: "https://christoph142.wordpress.com",
+	"homepage_url"				: "https://github.com/Christoph142/DownloadControl",
 	
 	"default_locale"			: "en",
 	"version"					: "1.0",
+	"minimum_chrome_version"	: "88",
 	"icons"						: {
 									"16": "images/16.png",
 									"32": "images/32.png",
@@ -14,9 +15,9 @@
 									"128": "images/128.png"
 								  },
   
-	"background"				: { "scripts": ["scripts/DownloadControl.js"], "persistent" : false },
+	"background"				: { "service_worker": "scripts/DownloadControl.js" },
   
-	"permissions"				: [ "downloads", "downloads.open", "downloads.shelf", "contextMenus", "notifications" ],
+	"permissions"				: [ "downloads", "downloads.open", "downloads.shelf", "contextMenus", "notifications", "storage", "alarms" ],
 	"omnibox"					: { "keyword" : "download" },
 	"commands"					: {
 									"open" : { "suggested_key": { "default": "Ctrl+Shift+O", "mac": "Command+Shift+O" }, "description": "Open (clipboard content)" },
@@ -24,7 +25,5 @@
 								  },
 	"options_page"				: "options/options.html",
 	
-	"manifest_version"			: 2,
-
-	"minimum_chrome_version"	: "54"
+	"manifest_version"			: 3
 }

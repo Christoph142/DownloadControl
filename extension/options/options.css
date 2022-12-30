@@ -8,7 +8,7 @@
 
 html,
 body {
-  background-color: rgb(237, 237, 237);
+  background-color: #cccccc;
   font: menu;
   height: 100%;
   margin: 0;
@@ -23,28 +23,6 @@ table.setting{ width:100%; display:table; }
 table.setting th{ text-align:left; padding-bottom:5px; color:#888; }
 table.setting td{ padding:5px; }
 table.setting > span { color:#888; }
-
-#wallpaper-canvas,
-#scroll-container {
-  height: 100%;
-  left: 0;
-  overflow: auto;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-#wallpaper {
-  background-image: url(../images/wallpaper.jpg);
-  background-position: center bottom;
-  background-size: cover;
-  height: 100%;
-  left: 0;
-  overflow: auto;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
 
 #tool-container {
   bottom: 0;
