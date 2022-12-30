@@ -135,18 +135,18 @@ async function determineFolder(download, suggest){
 }
 
 // omnibox:
-chrome.omnibox.onInputStarted.addListener( omnibox_suggest );
-chrome.omnibox.onInputChanged.addListener( omnibox_suggest );
-chrome.omnibox.onInputEntered.addListener( omnibox_handle );
+chrome.omnibox.onInputStarted.addListener( omniboxSuggest );
+chrome.omnibox.onInputChanged.addListener( omniboxSuggest );
+chrome.omnibox.onInputEntered.addListener( omniboxHandle );
 
-function omnibox_suggest(text, suggest){
+function omniboxSuggest(text, suggest){
 	suggest([
 		{ "content" : "open "+text, "description" : "Open "+text},
 		{ "content" : "save "+text, "description" : "Save "+text}
 	]);
 }
 
-function omnibox_handle(string){
+function omniboxHandle(string){
 	const s = string.split(" ");
 	for(let i = 0; i < s.length; i++) if(s[i] === "") s.splice(i, 1); // remove empty entries
 
@@ -203,8 +203,8 @@ async function openFile(change){
 	chrome.alarms.create( "deleteFile "+change.id, { when: Date.now() + 5000 });
 }
 
-async function deleteFile(change_id){
-	chrome.downloads.search({id: change_id}, function (downloads){
+async function deleteFile(changeId){
+	chrome.downloads.search({id: changeId}, function (downloads){
 		if(downloads.length === 0) return; // download got removed already
 
 		if(!downloads[0].exists)
@@ -237,8 +237,8 @@ async function checkIfSavedInExpectedFolder (change){
 			{
 				const d = ds[0];
 				const newRule = {
-					"dir" : correct_path_format( d.filename.substring(p.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) ),
-					"ext" : make_array( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
+					"dir" : correctPathFormat( d.filename.substring(p.defaultPathBrowser.length, d.filename.lastIndexOf("\\")) ),
+					"ext" : makeArray( d.filename.substring(d.filename.lastIndexOf(".")+1) ),
 					"url" : d.url.split("/")[2]
 				};
 				
@@ -259,7 +259,7 @@ async function checkIfSavedInExpectedFolder (change){
 					{
 						console.log("file type",newRule.ext, "added to", p.suggestedRules[i]);
 						p.suggestedRules[i]["ext"].push(newRule.ext);
-						save_new_value("suggestedRules", p.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
+						saveSuggestedRules(p.suggestedRules);
 						return;
 					}
 				}
@@ -271,13 +271,13 @@ async function checkIfSavedInExpectedFolder (change){
 					{
 						console.log("folder of", p.suggestedRules[i], "updated into", newRule.dir);
 						p.suggestedRules[i]["dir"] = newRule.dir;
-						save_new_value("suggestedRules", p.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
+						saveSuggestedRules(p.suggestedRules);
 						return;
 					}
 				}
 
 				p.suggestedRules[p.suggestedRules.length] = newRule;
-				save_new_value("suggestedRules", p.suggestedRules, function(){ chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */ });
+				saveSuggestedRules(p.suggestedRules);
 				
 				if(chrome.notifications) chrome.notifications.create(
 					"newRule",
@@ -331,28 +331,16 @@ if(chrome.notifications) {
 }
 
 // helper functions:
-async function save_new_value(key, value, callback)
+async function saveSuggestedRules(suggestedRules)
 {
-	const p = await getPrefs();
+	suggestedRules.sort(function(a, b) { return a.url.localeCompare(b.url); }); // sort alphabetically
+	chrome.storage.sync.set({ "suggestedRules" : JSON.stringify(suggestedRules) });
 
-	key = key.split("."); // split tree
-
-	let saveobjectBranch = p;
-	for(let i = 0; i < key.length-1; i++){ saveobjectBranch = saveobjectBranch[ key[i] ]; }
-	saveobjectBranch[ key[key.length-1] ] = value;
-	
-	if( key[0] === "suggestedRules" ) value.sort(function(a, b) { return a.url.localeCompare(b.url); }); // sort alphabetically
-	const t = key[0];
-	chrome.storage.sync.set({ t : JSON.stringify( p[ key[0] ] ) });
-
-	if( key[0] === "contextMenu" ) adjustContextMenu(); // update contextMenu if necessary
-
-	console.log("Saved", key, value, "settings now: ", p);
-
-	if(typeof callback === "function") callback();
+	console.log("Saved suggestedRules", value, "settings now: ", await getPrefs());
+	chrome.runtime.sendMessage({ "update" : "1" }); /* update options page if open */
 }
 
-function correct_path_format(p, type)
+function correctPathFormat(p, type)
 {
 	if(p === "") return (type === "absolute" ? false : p);
 
@@ -370,15 +358,15 @@ function correct_path_format(p, type)
 	else return p;
 }
 
-function make_array(ext_string, may_be_empty)
+function makeArray(extString, mayBeEmpty)
 {
-	ext_string = ext_string.split(" ").join(""); // remove all blanks
-	ext_string = ext_string.split(".").join(""); // remove all dots
+	extString = extString.split(" ").join(""); // remove all blanks
+	extString = extString.split(".").join(""); // remove all dots
 	
-	const ext_array = ext_string.toLowerCase().split(",");
-	for(let i = ext_array.length-1; i >= 0; i--) if(ext_array[i] === "") ext_array.splice(i, 1);
+	const extArray = extString.toLowerCase().split(",");
+	for(let i = extArray.length-1; i >= 0; i--) if(extArray[i] === "") extArray.splice(i, 1);
 
-	return ( (ext_array.length > 0 || may_be_empty) ? ext_array : false );
+	return ( (extArray.length > 0 || mayBeEmpty) ? extArray : false );
 }
 
 // prevent browser from closing while there are downloads in progress by opening a non-closable tab:
