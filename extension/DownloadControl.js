@@ -2,6 +2,7 @@
 
 adjustContextMenu(); // contextmenu entries
 
+chrome.downloads.onDeterminingFilename.removeListener( onDeterminingFilename ); //TODO singleton - check or remove all before readding
 chrome.downloads.onDeterminingFilename.addListener( onDeterminingFilename );
 chrome.downloads.onCreated.addListener( onCreated );
 chrome.downloads.onChanged.addListener( onChanged );
@@ -9,8 +10,9 @@ chrome.downloads.onErased.addListener( onErased );
 chrome.alarms.onAlarm.addListener( onAlarm );
 
 async function onDeterminingFilename(download, suggest){
-	await determineFolder(download, suggest);
-	if(!download.byExtensionId || download.filename.indexOf("DownloadControl.check") === -1) preventBrowserClosing(); // default folder check
+	if (!isDefaultFolderCheck(download)) preventBrowserClosing();
+	determineFolder(download, suggest);
+	return true; // signal asynchronous suggest call to extension system
 }
 
 async function onCreated(download) {
@@ -28,20 +30,30 @@ async function onCreated(download) {
 			message : chrome.i18n.getMessage("progress_body", new Date(download.estimatedEndTime)),
 			buttons : [{ title : "❚❚" }, { title : "⬛" }]
 		},
-		function (notificationId){console.log("notifications create callback", notificationId);
-			chrome.downloads.getFileIcon(download.id, {size : 32}, function (fileicon){
-				createNotificationIcon(fileicon, function(notificationIcon){
-					chrome.notifications.update(
-						"inprogress_"+download.id,
-						{
-							iconUrl : notificationIcon,
-						},
-						function(){ updateProgress( download.id ); }
-					);
-				});
-			});
-		}
+		(notificationId) => onNotificationCreated(notificationId, download.id)
 	);
+}
+
+async function onNotificationCreated(notificationId, downloadId){
+	console.log("notifications create callback", notificationId);
+	chrome.downloads.getFileIcon(downloadId, {size : 32}, function (fileicon){
+		console.log("create notification icon with", fileicon);
+		if (!fileicon) {
+			console.log("no icon yet - ", chrome.runtime.lastError);
+			chrome.alarms.create( "onNotificationCreated " + notificationId + " " + downloadId, { when: Date.now() + 100 });
+			return;
+		}
+		createNotificationIcon(fileicon, function(notificationIcon){
+			console.log("created notification icon", notificationIcon);
+			chrome.notifications.update(
+				"inprogress_"+downloadId,
+				{
+					iconUrl : notificationIcon,
+				},
+				function(){ updateProgress( downloadId ); }
+			);
+		});
+	});
 }
 
 async function onChanged(change){
@@ -77,7 +89,7 @@ async function onErased(id){
 
 // determine correct location:
 async function determineFolder(download, suggest){
-	if(download.byExtensionId === chrome.i18n.getMessage("@@extension_id") && download.filename.indexOf("DownloadControl.check") !== -1) return; // default folder check
+	if(isDefaultFolderCheck(download)) return;
 
 	const p = await getPrefs();
 
@@ -89,7 +101,7 @@ async function determineFolder(download, suggest){
 	for(let i = 0; i < p.rules_both.length; i++)
 	{
 		const regex = new RegExp(p.rules_both[i].url, "i"); // i = matches lower- & uppercase
-		if(regex.test(download.url) && p.rules_both[i].ext.indexOf(filetype) !== -1)
+		if(regex.test(download.url) && p.rules_both[i].ext.includes(filetype))
 		{
 			path = p.rules_both[i].dir;
 			matched = true;
@@ -112,7 +124,7 @@ async function determineFolder(download, suggest){
 	// else check for file type only rules:
 	if(!matched) for(let i = 0; i < p.rules_ext.length; i++)
 	{
-		if(p.rules_ext[i].ext.indexOf(filetype) !== -1)
+		if(p.rules_ext[i].ext.includes(filetype))
 		{
 			path = p.rules_ext[i].dir;
 			matched = true;
@@ -128,8 +140,9 @@ async function determineFolder(download, suggest){
 	path = path.replace(/%FILETYPE%/gi, filetype);
 	
 	p[download.id] = p.defaultPathBrowser+path; // save for comparison with final save path
-	suggest({ filename: path+download.filename, conflictAction: p.conflictAction });
-
+	console.log("suggesting", path, { filename: path + download.filename, conflictAction: p.conflictAction });
+	suggest({ filename: path + download.filename, conflictAction: p.conflictAction });
+if (chrome.runtime.lastError) console.error(chrome.runtime.lastError);
 	console.log("Determined path for ", download);
 	console.log("Suggested ", path);
 }
@@ -150,8 +163,8 @@ function omniboxHandle(string){
 	const s = string.split(" ");
 	for(let i = 0; i < s.length; i++) if(s[i] === "") s.splice(i, 1); // remove empty entries
 
-	if(!s[1] || s[0] === "s" || s[0] === "save")	save( s[0].indexOf("://") > 0 ? s[0] : "http://"+s[0] ); // no keyword / download entry
-	else if(s[0] === "o" || s[0] === "open")		open( s[1].indexOf("://") > 0 ? s[1] : "http://"+s[1] ); // open
+	if(!s[1] || s[0] === "s" || s[0] === "save")	save( s[0].includes("://") ? s[0] : "http://"+s[0] ); // no keyword / download entry
+	else if(s[0] === "o" || s[0] === "open")		open( s[1].includes("://") ? s[1] : "http://"+s[1] ); // open
 	else 											console.log("User entered an invalid command into omnibox");
 }
 
@@ -162,8 +175,8 @@ chrome.contextMenus.onClicked.addListener( function (e){
 });
 
 async function adjustContextMenu(){
-	const p = await getPrefs();
-	chrome.contextMenus.removeAll( function(){
+	chrome.contextMenus.removeAll(async function(){
+		const p = await getPrefs();
 		if( p.contextMenu.open === "1" ) chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
 		if( p.contextMenu.save === "1" ) chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
 	});
@@ -228,10 +241,10 @@ async function checkIfSavedInExpectedFolder (change){
 	console.log("final folder check: is: ", change.filename.current, "expected:", p[change.id]);
 	
 	// if folder is different than expected (outside of expected folder OR subfolder thereof):
-	if(change.filename.current.indexOf(p[change.id]) !== 0 || p[change.id].length !== change.filename.current.lastIndexOf("\\") + 1)
+	if(!change.filename.current.startsWith(p[change.id]) || p[change.id].length !== change.filename.current.lastIndexOf("\\") + 1)
 	{
 		// inside default folder:
-		if(change.filename.current.indexOf(p.defaultPathBrowser) === 0)
+		if(change.filename.current.startsWith(p.defaultPathBrowser))
 		{
 			chrome.downloads.search({ "id" : change.id }, function (ds)
 			{
@@ -267,7 +280,7 @@ async function checkIfSavedInExpectedFolder (change){
 				// check if another folder got suggested for this file type and URL earlier already:
 				for(let i = p.suggestedRules.length-1; i >= 0; i--)
 				{
-					if ( newRule.url === p.suggestedRules[i]["url"] && p.suggestedRules[i]["ext"].indexOf(newRule.ext) )
+					if ( newRule.url === p.suggestedRules[i]["url"] && p.suggestedRules[i]["ext"].includes(newRule.ext) )
 					{
 						console.log("folder of", p.suggestedRules[i], "updated into", newRule.dir);
 						p.suggestedRules[i]["dir"] = newRule.dir;
@@ -300,7 +313,7 @@ async function checkIfSavedInExpectedFolder (change){
 	delete p[change.id]; //clean up
 }
 
-// show initial setup page after setup:
+// show initial setup page after install:
 chrome.runtime.onInstalled.addListener(function (e){
 	if(e.reason === "install") chrome.tabs.create({ url : "options/options.html" });
 });
@@ -370,8 +383,9 @@ function makeArray(extString, mayBeEmpty)
 }
 
 // prevent browser from closing while there are downloads in progress by opening a non-closable tab:
-function preventBrowserClosing(){
-	if( p.preventClosing !== "1" ) return;
+async function preventBrowserClosing(){
+	return; //TODO check if this still works at all
+	if(p.preventClosing !== "1") return;
 
 	chrome.tabs.query({"url":"chrome-extension://*/windowClosingPrevention/windowClosingPrevention.html"}, function(tabs){
 		if( tabs.length === 0 ) chrome.tabs.create({
@@ -411,7 +425,7 @@ async function notifyDownloadState(change){
 
 	const p = await getPrefs();
 	if( ( change.state.current === "complete" && p.notifyDone === "1" ) ||
-		( change.state.current === "interrupted" && p.notifyFail === "1" && change.error.current.indexOf("USER") !== 0 ) )
+		( change.state.current === "interrupted" && p.notifyFail === "1" && !change.error.current.startsWith("USER") ) )
 		chrome.downloads.search({"id": change.id}, function(ds){
 			const filename = ds[0].filename.substring(ds[0].filename.lastIndexOf("\\") + 1);
 			if( ds[0].state === "complete") chrome.downloads.getFileIcon(ds[0].id, {size : 32}, function (fileicon){
@@ -524,7 +538,14 @@ async function getPrefs() {
 		notifyProgress		:	"1",
 		notifyDone			:	"1",
 		notifyFail			:	"1"
-		}, storage => resolve(storage)
+		}, syncedPrefs => {
+			const serializedProps = ["contextMenu", "rules_both", "rules_url", "rules_ext", "suggestedRules"];
+			serializedProps.forEach(p => {
+				if (typeof syncedPrefs[p] === "string") syncedPrefs[p] = JSON.parse(syncedPrefs[p]);
+			});
+			console.log("bg prefs loaded", syncedPrefs);
+			resolve(syncedPrefs);
+		}
 	));
 }
 
@@ -532,5 +553,11 @@ async function onAlarm(alarm) {
 	const action = alarm.name.split(" ");
 	if (action[0] === "deleteFile") deleteFile(parseInt(action[1]));
 	else if (action[0] === "updateProgress") updateProgress(parseInt(action[1]));
+	else if (action[0] === "onNotificationCreated") onNotificationCreated(action[1], parseInt(action[2]));
 	else console.warn("unknown alarm", alarm);
+}
+
+function isDefaultFolderCheck(download) {
+	return download.byExtensionId === chrome.i18n.getMessage("@@extension_id") &&
+		   download.filename.includes("DownloadControl");
 }

@@ -1,4 +1,3 @@
-window.addEventListener("DOMContentLoaded", onInstall, false);
 window.addEventListener("DOMContentLoaded", restoreprefs, false);
 window.addEventListener("DOMContentLoaded", localize, false);
 window.addEventListener("DOMContentLoaded", add_page_handling, false);
@@ -28,6 +27,7 @@ async function getPrefs() {
 			});
 			prefs = syncedPrefs;
 			console.log("prefs loaded", prefs);
+			if (!prefs.defaultPathBrowser) onInstall();
 			resolve();
 		}
 	));
@@ -268,8 +268,6 @@ function localize()
 
 // preselect Initial Setup page if not initialized yet:
 function onInstall(){
-	if(!(prefs.defaultPathBrowser?.length < 2)) return;
-
 	const m = document.querySelectorAll("li");
 	m[0].className = "i18n menu selected";
 	m[1].className = "i18n menu";
@@ -384,9 +382,8 @@ function makeArray(ext_string, may_be_empty)
 }
 
 async function adjustContextMenu(){
-	const p = await getPrefs();
-	chrome.contextMenus.removeAll( function(){
-		if( p.contextMenu.open === "1" ) chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
-		if( p.contextMenu.save === "1" ) chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
+	chrome.contextMenus.removeAll(async function(){
+		if( prefs.contextMenu.open === "1" ) chrome.contextMenus.create({ "id" : "dc_open", "contexts" : ["link"], "title" : chrome.i18n.getMessage("open") });
+		if( prefs.contextMenu.save === "1" ) chrome.contextMenus.create({ "id" : "dc_save", "contexts" : ["link"], "title" : chrome.i18n.getMessage("save") });
 	});
 }
